@@ -79,6 +79,8 @@ export default {
     topics: '학습 주제',
     estimatedTime: '예상 소요 시간',
     difficulty: '난이도',
+    notFound: '레슨을 찾을 수 없습니다',
+    backHome: '홈으로 돌아가기',
   },
   editor: {
     hint: '힌트',

@@ -79,6 +79,8 @@ export default {
     topics: 'Topics',
     estimatedTime: 'Estimated Time',
     difficulty: 'Difficulty',
+    notFound: 'Lesson not found',
+    backHome: 'Back to Home',
   },
   editor: {
     hint: 'Hint',

@@ -286,4 +286,41 @@ src/styles/
 |------|------|------|
 | 2026-03-25 | `2307aef` | Initial commit: CMaster - C언어 전문 학습 플랫폼 (93 files) |
 | 2026-03-25 | `afebbad` | Merge: CNAME + README.md 통합 |
-| 2026-03-25 | - | 개발일지 상세화 및 최종 배포 |
+| 2026-03-25 | `600abde` | 개발일지 상세화 및 최종 배포 |
+
+---
+
+## 2026-03-25 (Day 1) - 버그 수정 패치
+
+### 코드 감사 (Audit) 실시
+전체 프로젝트를 대상으로 import/export 매칭, 데이터 구조 일관성, Context-데이터 연동, locale 키 누락 등을 점검하여 **4개 크리티컬 이슈** 발견 및 수정.
+
+### 수정 내역
+
+#### Fix 1: QuizCenter 런타임 크래시 (`src/pages/QuizCenter.jsx`)
+- **문제**: `quizzes`가 객체(Object)인데 `.map()` 배열 메서드로 호출 → 크래시
+- **원인**: `quizzes.js`는 `{ basics: {...}, intermediate: {...}, ... }` 객체 export, QuizCenter는 배열 기대
+- **수정**: `Object.entries(quizzes).map(([id, quiz]) => ...)` 패턴으로 변환
+- **추가**: `quizzes.length` → `Object.keys(quizzes).length`
+
+#### Fix 2: 퀴즈 채점 실패 (`src/data/quizzes.js`)
+- **문제**: 퀴즈 데이터의 정답 프로퍼티명 `answer` vs QuizComponent가 기대하는 `correct` 불일치
+- **영향**: 모든 퀴즈 채점이 실패 (undefined 비교)
+- **수정**: 전체 40문항의 `answer:` → `correct:` 일괄 변경
+- **추가**: 각 퀴즈에 `icon`, `timeLimit: 600`, `passingScore: 70` 속성 추가
+
+#### Fix 3: 배지 시스템 전면 미작동 (`src/contexts/BadgeContext.jsx`)
+- **문제**: BadgeContext의 switch 조건 타입명과 badges.js의 조건 타입명 완전 불일치
+- **불일치 목록**:
+  - `lessons_completed` → `lesson_complete` (단일 레슨 완료)
+  - `level_completed` → `level_complete` (레벨 완료)
+  - `all_completed` → `all_levels_complete` (전체 완료)
+  - `specific_lessons` → `lessons_complete` (특정 레슨 그룹)
+  - 누락: `quiz_complete_count`, `practice_complete_count`, `quiz_perfect_score`
+- **수정**: switch문 전체 재작성, badges.js의 모든 조건 타입과 1:1 매칭
+
+#### Fix 4: locale 키 누락 (`src/locales/ko.js`, `en.js`)
+- **문제**: `lesson.notFound`, `lesson.backHome` 키가 없어 리터럴 문자열 표시
+- **수정**: 양쪽 locale 파일에 키 추가
+  - ko: `'레슨을 찾을 수 없습니다'`, `'홈으로 돌아가기'`
+  - en: `'Lesson not found'`, `'Back to Home'`

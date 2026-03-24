@@ -11,10 +11,10 @@ export default function QuizCenter() {
   const [selectedQuiz, setSelectedQuiz] = useState(null)
 
   const quizList = useMemo(() => {
-    return quizzes.map(quiz => {
-      const bestScore = getQuizBestScore(quiz.id)
-      const attempts = getQuizAttempts(quiz.id)
-      return { ...quiz, bestScore, attempts }
+    return Object.entries(quizzes).map(([id, quiz]) => {
+      const bestScore = getQuizBestScore(id)
+      const attempts = getQuizAttempts(id)
+      return { ...quiz, id, bestScore, attempts }
     })
   }, [getQuizBestScore, getQuizAttempts])
 
@@ -168,7 +168,7 @@ export default function QuizCenter() {
           ))}
         </div>
 
-        {quizzes.length === 0 && (
+        {Object.keys(quizzes).length === 0 && (
           <div className="no-quizzes">
             <i className="fa-solid fa-clipboard" />
             <h3>{t('quiz.noQuizzes')}</h3>

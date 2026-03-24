@@ -7,13 +7,16 @@ export const quizzes = {
     titleEn: 'Basics Quiz',
     description: 'C언어 기초 문법 테스트',
     descriptionEn: 'Test your C language fundamentals',
+    icon: 'fa-solid fa-seedling',
+    timeLimit: 600,
+    passingScore: 70,
     questions: [
       {
         id: 'b1',
         question: 'C 프로그램의 진입점이 되는 함수는?',
         questionEn: 'What is the entry point function of a C program?',
         options: ['start()', 'main()', 'begin()', 'init()'],
-        answer: 1,
+        correct: 1,
         explanation: 'C 프로그램은 항상 main() 함수에서 시작됩니다.',
         explanationEn: 'A C program always starts from the main() function.'
       },
@@ -22,7 +25,7 @@ export const quizzes = {
         question: '다음 중 printf()에서 정수를 출력하는 서식 지정자는?',
         questionEn: 'Which format specifier prints an integer in printf()?',
         options: ['%f', '%c', '%d', '%s'],
-        answer: 2,
+        correct: 2,
         explanation: '%d는 정수(decimal integer)를 출력하는 서식 지정자입니다.',
         explanationEn: '%d is the format specifier for printing decimal integers.'
       },
@@ -31,7 +34,7 @@ export const quizzes = {
         question: 'int 자료형의 일반적인 크기(바이트)는?',
         questionEn: 'What is the typical size (in bytes) of an int?',
         options: ['1', '2', '4', '8'],
-        answer: 2,
+        correct: 2,
         explanation: '대부분의 현대 시스템에서 int는 4바이트(32비트)입니다.',
         explanationEn: 'On most modern systems, int is 4 bytes (32 bits).'
       },
@@ -40,7 +43,7 @@ export const quizzes = {
         question: '다음 중 C언어의 논리 AND 연산자는?',
         questionEn: 'Which is the logical AND operator in C?',
         options: ['&', '&&', 'AND', '||'],
-        answer: 1,
+        correct: 1,
         explanation: '&&는 논리 AND 연산자이고, &는 비트 AND 연산자입니다.',
         explanationEn: '&& is the logical AND operator, while & is the bitwise AND operator.'
       },
@@ -49,7 +52,7 @@ export const quizzes = {
         question: 'switch문에서 각 case 끝에 넣어야 하는 키워드는?',
         questionEn: 'What keyword should be placed at the end of each case in a switch statement?',
         options: ['stop', 'exit', 'break', 'end'],
-        answer: 2,
+        correct: 2,
         explanation: 'break를 넣지 않으면 다음 case로 fall-through가 발생합니다.',
         explanationEn: 'Without break, execution falls through to the next case.'
       },
@@ -58,7 +61,7 @@ export const quizzes = {
         question: 'for(int i=0; i<5; i++)는 몇 번 반복하는가?',
         questionEn: 'How many times does for(int i=0; i<5; i++) iterate?',
         options: ['4', '5', '6', '무한'],
-        answer: 1,
+        correct: 1,
         explanation: 'i는 0, 1, 2, 3, 4로 총 5번 반복합니다.',
         explanationEn: 'i goes through 0, 1, 2, 3, 4 for a total of 5 iterations.'
       },
@@ -67,7 +70,7 @@ export const quizzes = {
         question: '배열 int arr[5]에서 유효한 인덱스 범위는?',
         questionEn: 'What is the valid index range for int arr[5]?',
         options: ['1~5', '0~5', '0~4', '1~4'],
-        answer: 2,
+        correct: 2,
         explanation: 'C 배열의 인덱스는 0부터 시작하여 크기-1까지입니다.',
         explanationEn: 'C array indices start from 0 and go up to size-1.'
       },
@@ -76,7 +79,7 @@ export const quizzes = {
         question: 'C에서 문자열의 끝을 나타내는 문자는?',
         questionEn: 'What character marks the end of a string in C?',
         options: ["'\\n'", "'\\0'", "'\\t'", "'\\r'"],
-        answer: 1,
+        correct: 1,
         explanation: "널 문자 '\\0'(ASCII 0)이 문자열의 끝을 표시합니다.",
         explanationEn: "The null character '\\0' (ASCII 0) marks the end of a string."
       },
@@ -85,7 +88,7 @@ export const quizzes = {
         question: '함수의 반환 타입이 없을 때 사용하는 키워드는?',
         questionEn: 'Which keyword is used when a function has no return type?',
         options: ['null', 'none', 'void', 'empty'],
-        answer: 2,
+        correct: 2,
         explanation: 'void는 함수가 값을 반환하지 않음을 나타냅니다.',
         explanationEn: 'void indicates that the function does not return a value.'
       },
@@ -94,7 +97,7 @@ export const quizzes = {
         question: '#include <stdio.h>에서 stdio.h는 무엇인가?',
         questionEn: 'What is stdio.h in #include <stdio.h>?',
         options: ['소스 파일', '헤더 파일', '오브젝트 파일', '실행 파일'],
-        answer: 1,
+        correct: 1,
         explanation: 'stdio.h는 표준 입출력 함수가 선언된 헤더 파일입니다.',
         explanationEn: 'stdio.h is a header file containing standard I/O function declarations.'
       }
@@ -105,13 +108,16 @@ export const quizzes = {
     titleEn: 'Intermediate Quiz',
     description: '포인터, 메모리, 구조체 테스트',
     descriptionEn: 'Test your knowledge of pointers, memory, and structs',
+    icon: 'fa-solid fa-rocket',
+    timeLimit: 600,
+    passingScore: 70,
     questions: [
       {
         id: 'i1',
         question: '포인터 변수를 선언할 때 사용하는 기호는?',
         questionEn: 'Which symbol is used to declare a pointer variable?',
         options: ['&', '*', '#', '@'],
-        answer: 1,
+        correct: 1,
         explanation: '* 기호를 사용하여 포인터 변수를 선언합니다. 예: int *ptr;',
         explanationEn: 'The * symbol is used to declare a pointer. Example: int *ptr;'
       },
@@ -120,7 +126,7 @@ export const quizzes = {
         question: 'malloc()이 메모리 할당에 실패하면 무엇을 반환하는가?',
         questionEn: 'What does malloc() return when memory allocation fails?',
         options: ['0', '-1', 'NULL', 'undefined'],
-        answer: 2,
+        correct: 2,
         explanation: 'malloc()은 할당 실패 시 NULL 포인터를 반환합니다.',
         explanationEn: 'malloc() returns NULL when memory allocation fails.'
       },
@@ -129,7 +135,7 @@ export const quizzes = {
         question: 'free()를 호출한 후 포인터에 해야 할 것은?',
         questionEn: 'What should you do with a pointer after calling free()?',
         options: ['다시 free() 호출', 'NULL로 설정', '그대로 사용', '삭제'],
-        answer: 1,
+        correct: 1,
         explanation: 'free() 후 포인터를 NULL로 설정하면 댕글링 포인터를 방지할 수 있습니다.',
         explanationEn: 'Setting a pointer to NULL after free() prevents dangling pointer issues.'
       },
@@ -138,7 +144,7 @@ export const quizzes = {
         question: '구조체 포인터로 멤버에 접근할 때 사용하는 연산자는?',
         questionEn: 'Which operator accesses a struct member through a pointer?',
         options: ['.', '->', '::', '[]'],
-        answer: 1,
+        correct: 1,
         explanation: '-> 연산자는 구조체 포인터를 통해 멤버에 접근합니다. (*ptr).member와 동일합니다.',
         explanationEn: '-> accesses a member through a struct pointer. Equivalent to (*ptr).member.'
       },
@@ -147,7 +153,7 @@ export const quizzes = {
         question: 'typedef의 목적은?',
         questionEn: 'What is the purpose of typedef?',
         options: ['새 변수 선언', '자료형에 별칭 부여', '함수 정의', '매크로 생성'],
-        answer: 1,
+        correct: 1,
         explanation: 'typedef는 기존 자료형에 새로운 이름(별칭)을 부여합니다.',
         explanationEn: 'typedef creates an alias (new name) for an existing data type.'
       },
@@ -156,7 +162,7 @@ export const quizzes = {
         question: 'enum에서 첫 번째 값의 기본값은?',
         questionEn: 'What is the default value of the first element in an enum?',
         options: ['-1', '0', '1', 'undefined'],
-        answer: 1,
+        correct: 1,
         explanation: 'enum의 첫 번째 값은 기본적으로 0부터 시작합니다.',
         explanationEn: 'The first value in an enum defaults to 0.'
       },
@@ -165,7 +171,7 @@ export const quizzes = {
         question: 'fopen()에서 파일을 쓰기 모드로 열 때 사용하는 문자열은?',
         questionEn: 'What string is used to open a file in write mode with fopen()?',
         options: ['"read"', '"w"', '"write"', '"o"'],
-        answer: 1,
+        correct: 1,
         explanation: '"w"는 쓰기 모드로, 파일이 존재하면 내용을 지우고 새로 씁니다.',
         explanationEn: '"w" opens in write mode, truncating existing content.'
       },
@@ -174,7 +180,7 @@ export const quizzes = {
         question: '#define MAX 100에서 MAX는 무엇인가?',
         questionEn: 'What is MAX in #define MAX 100?',
         options: ['변수', '매크로 상수', '함수', '포인터'],
-        answer: 1,
+        correct: 1,
         explanation: '#define으로 정의된 MAX는 전처리기에 의해 100으로 치환되는 매크로 상수입니다.',
         explanationEn: 'MAX defined with #define is a macro constant replaced by 100 during preprocessing.'
       },
@@ -183,7 +189,7 @@ export const quizzes = {
         question: 'static 변수의 특징으로 올바른 것은?',
         questionEn: 'Which is a correct property of a static variable?',
         options: ['함수 호출마다 초기화', '프로그램 종료까지 유지', '전역에서 접근 가능', '힙에 저장'],
-        answer: 1,
+        correct: 1,
         explanation: 'static 지역 변수는 함수가 끝나도 값이 유지되며 프로그램 종료 시까지 존재합니다.',
         explanationEn: 'A static local variable retains its value between function calls until program termination.'
       },
@@ -192,7 +198,7 @@ export const quizzes = {
         question: 'calloc()과 malloc()의 차이점은?',
         questionEn: 'What is the difference between calloc() and malloc()?',
         options: ['속도 차이', 'calloc은 메모리를 0으로 초기화', 'calloc은 스택에 할당', '차이 없음'],
-        answer: 1,
+        correct: 1,
         explanation: 'calloc()은 할당된 메모리를 0으로 초기화하지만, malloc()은 초기화하지 않습니다.',
         explanationEn: 'calloc() initializes allocated memory to 0, while malloc() does not.'
       }
@@ -203,13 +209,16 @@ export const quizzes = {
     titleEn: 'Advanced Quiz',
     description: '자료구조와 알고리즘 테스트',
     descriptionEn: 'Test your data structures and algorithms knowledge',
+    icon: 'fa-solid fa-bolt',
+    timeLimit: 600,
+    passingScore: 70,
     questions: [
       {
         id: 'a1',
         question: '연결 리스트에서 노드를 삭제할 때 반드시 해야 하는 것은?',
         questionEn: 'What must you do when deleting a node from a linked list?',
         options: ['배열 재정렬', '메모리 해제(free)', '전체 리스트 복사', '인덱스 재계산'],
-        answer: 1,
+        correct: 1,
         explanation: '연결 리스트에서 노드 삭제 시 해당 노드의 메모리를 free()로 해제해야 합니다.',
         explanationEn: 'When deleting a node, you must free() its memory to prevent leaks.'
       },
@@ -218,7 +227,7 @@ export const quizzes = {
         question: '스택의 동작 원리는?',
         questionEn: 'What is the operating principle of a stack?',
         options: ['FIFO', 'LIFO', 'FILO', 'Random Access'],
-        answer: 1,
+        correct: 1,
         explanation: '스택은 LIFO(Last In First Out) 원리로 동작합니다.',
         explanationEn: 'A stack operates on the LIFO (Last In First Out) principle.'
       },
@@ -227,7 +236,7 @@ export const quizzes = {
         question: '큐의 동작 원리는?',
         questionEn: 'What is the operating principle of a queue?',
         options: ['LIFO', 'FIFO', 'LILO', 'Random Access'],
-        answer: 1,
+        correct: 1,
         explanation: '큐는 FIFO(First In First Out) 원리로 동작합니다.',
         explanationEn: 'A queue operates on the FIFO (First In First Out) principle.'
       },
@@ -236,7 +245,7 @@ export const quizzes = {
         question: '이진 탐색의 시간 복잡도는?',
         questionEn: 'What is the time complexity of binary search?',
         options: ['O(n)', 'O(n^2)', 'O(log n)', 'O(1)'],
-        answer: 2,
+        correct: 2,
         explanation: '이진 탐색은 매 단계마다 탐색 범위를 절반으로 줄이므로 O(log n)입니다.',
         explanationEn: 'Binary search halves the search range each step, giving O(log n).'
       },
@@ -245,7 +254,7 @@ export const quizzes = {
         question: '퀵 정렬의 평균 시간 복잡도는?',
         questionEn: 'What is the average time complexity of quick sort?',
         options: ['O(n)', 'O(n log n)', 'O(n^2)', 'O(log n)'],
-        answer: 1,
+        correct: 1,
         explanation: '퀵 정렬의 평균 시간 복잡도는 O(n log n)이며, 최악의 경우 O(n^2)입니다.',
         explanationEn: 'Quick sort has an average time complexity of O(n log n), worst case O(n^2).'
       },
@@ -254,7 +263,7 @@ export const quizzes = {
         question: 'BST(이진 탐색 트리)에서 왼쪽 자식 노드의 특징은?',
         questionEn: 'What is the property of a left child node in a BST?',
         options: ['부모보다 큼', '부모보다 작음', '부모와 같음', '관계 없음'],
-        answer: 1,
+        correct: 1,
         explanation: 'BST에서 왼쪽 자식 노드의 값은 부모 노드의 값보다 항상 작습니다.',
         explanationEn: 'In a BST, the left child value is always less than the parent value.'
       },
@@ -263,7 +272,7 @@ export const quizzes = {
         question: '재귀 함수에 반드시 필요한 것은?',
         questionEn: 'What is essential in every recursive function?',
         options: ['반복문', '기저 조건(base case)', '전역 변수', '포인터'],
-        answer: 1,
+        correct: 1,
         explanation: '기저 조건이 없으면 무한 재귀가 발생하여 스택 오버플로가 발생합니다.',
         explanationEn: 'Without a base case, infinite recursion occurs causing a stack overflow.'
       },
@@ -272,7 +281,7 @@ export const quizzes = {
         question: '해시 테이블에서 충돌 해결 방법이 아닌 것은?',
         questionEn: 'Which is NOT a hash collision resolution method?',
         options: ['체이닝', '선형 탐사', '이중 해싱', '트리 순회'],
-        answer: 3,
+        correct: 3,
         explanation: '트리 순회는 트리 자료구조의 탐색 방법이지, 해시 충돌 해결 방법이 아닙니다.',
         explanationEn: 'Tree traversal is for tree data structures, not hash collision resolution.'
       },
@@ -281,7 +290,7 @@ export const quizzes = {
         question: '비트 연산 a << 2의 결과는? (a = 3)',
         questionEn: 'What is the result of a << 2? (a = 3)',
         options: ['6', '12', '1', '9'],
-        answer: 1,
+        correct: 1,
         explanation: '3(0011)을 왼쪽으로 2비트 시프트하면 12(1100)가 됩니다. 2^n배 효과입니다.',
         explanationEn: '3 (0011) shifted left by 2 gives 12 (1100). Equivalent to multiplying by 2^2.'
       },
@@ -290,7 +299,7 @@ export const quizzes = {
         question: '중위 순회(in-order traversal)의 방문 순서는?',
         questionEn: 'What is the visit order of in-order traversal?',
         options: ['루트-왼쪽-오른쪽', '왼쪽-루트-오른쪽', '왼쪽-오른쪽-루트', '오른쪽-루트-왼쪽'],
-        answer: 1,
+        correct: 1,
         explanation: '중위 순회는 왼쪽 서브트리 -> 루트 -> 오른쪽 서브트리 순서로 방문합니다.',
         explanationEn: 'In-order traversal visits left subtree -> root -> right subtree.'
       }
@@ -301,13 +310,16 @@ export const quizzes = {
     titleEn: 'Applied Quiz',
     description: '시스템 프로그래밍과 실전 지식 테스트',
     descriptionEn: 'Test system programming and practical knowledge',
+    icon: 'fa-solid fa-microchip',
+    timeLimit: 600,
+    passingScore: 70,
     questions: [
       {
         id: 'ap1',
         question: '프로그램 메모리에서 지역 변수가 저장되는 영역은?',
         questionEn: 'Where are local variables stored in program memory?',
         options: ['힙(Heap)', '스택(Stack)', '데이터(Data)', '코드(Code)'],
-        answer: 1,
+        correct: 1,
         explanation: '지역 변수는 스택 영역에 저장되며, 함수 종료 시 자동으로 해제됩니다.',
         explanationEn: 'Local variables are stored on the stack and automatically freed when the function returns.'
       },
@@ -316,7 +328,7 @@ export const quizzes = {
         question: '함수 포인터의 올바른 선언은?',
         questionEn: 'Which is a correct function pointer declaration?',
         options: ['int *func();', 'int (*func)();', 'int func*();', '*int func();'],
-        answer: 1,
+        correct: 1,
         explanation: 'int (*func)()는 int를 반환하는 함수를 가리키는 포인터입니다.',
         explanationEn: 'int (*func)() is a pointer to a function that returns int.'
       },
@@ -325,7 +337,7 @@ export const quizzes = {
         question: '헤더 파일에서 중복 포함을 방지하는 방법은?',
         questionEn: 'How do you prevent duplicate header file inclusion?',
         options: ['#define only', '#include guard (#ifndef)', '#import', '#once only'],
-        answer: 1,
+        correct: 1,
         explanation: '#ifndef/#define/#endif 패턴(include guard)으로 중복 포함을 방지합니다.',
         explanationEn: 'The #ifndef/#define/#endif pattern (include guard) prevents duplicate inclusion.'
       },
@@ -334,7 +346,7 @@ export const quizzes = {
         question: 'Makefile에서 타겟의 의존성을 나타내는 형식은?',
         questionEn: 'What is the format for target dependencies in a Makefile?',
         options: ['target -> deps', 'target: deps', 'target = deps', 'target(deps)'],
-        answer: 1,
+        correct: 1,
         explanation: 'Makefile에서 "타겟: 의존성" 형식으로 규칙을 정의합니다.',
         explanationEn: 'In Makefile, rules are defined as "target: dependencies".'
       },
@@ -343,7 +355,7 @@ export const quizzes = {
         question: 'GDB에서 브레이크포인트를 설정하는 명령은?',
         questionEn: 'What GDB command sets a breakpoint?',
         options: ['stop', 'break', 'pause', 'halt'],
-        answer: 1,
+        correct: 1,
         explanation: 'GDB에서 break(또는 b) 명령으로 브레이크포인트를 설정합니다.',
         explanationEn: 'The break (or b) command sets a breakpoint in GDB.'
       },
@@ -352,7 +364,7 @@ export const quizzes = {
         question: 'fork() 시스템 호출의 반환값이 0이면?',
         questionEn: 'What does it mean when fork() returns 0?',
         options: ['에러 발생', '자식 프로세스', '부모 프로세스', '프로세스 종료'],
-        answer: 1,
+        correct: 1,
         explanation: 'fork()는 자식 프로세스에서 0을 반환하고, 부모에서는 자식의 PID를 반환합니다.',
         explanationEn: 'fork() returns 0 in the child process and the child PID in the parent.'
       },
@@ -361,7 +373,7 @@ export const quizzes = {
         question: 'Valgrind의 주요 용도는?',
         questionEn: 'What is the primary purpose of Valgrind?',
         options: ['코드 컴파일', '메모리 누수 검사', '성능 최적화', '코드 포맷팅'],
-        answer: 1,
+        correct: 1,
         explanation: 'Valgrind는 메모리 누수, 잘못된 메모리 접근 등을 검사하는 도구입니다.',
         explanationEn: 'Valgrind detects memory leaks, invalid memory access, and other memory errors.'
       },
@@ -370,7 +382,7 @@ export const quizzes = {
         question: 'extern 키워드의 역할은?',
         questionEn: 'What does the extern keyword do?',
         options: ['변수 삭제', '다른 파일의 변수 참조 선언', '변수 초기화', '메모리 할당'],
-        answer: 1,
+        correct: 1,
         explanation: 'extern은 다른 파일에 정의된 전역 변수나 함수를 참조하겠다고 선언합니다.',
         explanationEn: 'extern declares a reference to a global variable or function defined in another file.'
       },
@@ -379,7 +391,7 @@ export const quizzes = {
         question: 'qsort()에 전달하는 비교 함수의 반환값 규약은?',
         questionEn: 'What should the comparison function passed to qsort() return?',
         options: ['true/false', '음수/0/양수', '0/1', '-1/1'],
-        answer: 1,
+        correct: 1,
         explanation: '비교 함수는 첫 인자가 작으면 음수, 같으면 0, 크면 양수를 반환해야 합니다.',
         explanationEn: 'The comparison function returns negative if a<b, 0 if a==b, positive if a>b.'
       },
@@ -388,7 +400,7 @@ export const quizzes = {
         question: 'assert() 매크로가 실패하면 어떻게 되는가?',
         questionEn: 'What happens when an assert() macro fails?',
         options: ['무시됨', '프로그램 종료', '예외 발생', '경고 출력'],
-        answer: 1,
+        correct: 1,
         explanation: 'assert() 조건이 거짓이면 에러 메시지를 출력하고 프로그램을 종료(abort)합니다.',
         explanationEn: 'When an assert() condition is false, it prints an error and aborts the program.'
       }

@@ -34,37 +34,32 @@ export function BadgeProvider({ children }) {
       let earned = false
 
       switch (condition.type) {
-        case 'lessons_completed':
-          earned = completedLessons.size >= condition.count
+        case 'lesson_complete':
+          earned = completedLessons.has(condition.lessonId)
           break
-        case 'level_completed':
+        case 'lessons_complete':
+          earned = condition.lessonIds.every(id => completedLessons.has(id))
+          break
+        case 'level_complete':
           earned = isLevelCompleted(condition.level)
           break
-        case 'quiz_passed': {
-          const bs = getQuizBestScore(condition.quizId)
-          earned = bs !== undefined && bs >= condition.minScore
+        case 'all_levels_complete':
+          earned = Object.keys(lessons).every(level => isLevelCompleted(level))
           break
-        }
-        case 'quiz_perfect':
-          earned = getQuizBestScore(condition.quizId) === 100
+        case 'quiz_complete_count':
+          earned = Object.keys(quizScores).length >= condition.count
           break
-        case 'all_quizzes_passed':
-          earned = Object.keys(quizScores).length >= 5 && Object.values(quizScores).every(s => s?.bestScore >= 70)
+        case 'quiz_perfect_score':
+          earned = Object.values(quizScores).some(s => s?.bestScore === 100)
           break
-        case 'all_quizzes_perfect':
-          earned = Object.keys(quizScores).length >= 5 && Object.values(quizScores).every(s => s?.bestScore === 100)
+        case 'practice_complete_count':
+          earned = codeRuns >= condition.count
           break
         case 'code_runs':
           earned = codeRuns >= condition.count
           break
         case 'streak':
           earned = streak.count >= condition.days
-          break
-        case 'all_completed':
-          earned = Object.keys(lessons).every(level => isLevelCompleted(level))
-          break
-        case 'specific_lessons':
-          earned = condition.lessonIds.every(id => completedLessons.has(id))
           break
         default:
           break
