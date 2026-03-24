@@ -1,0 +1,169 @@
+/* === Badge Collection Page === */
+.badge-page { padding: 40px 0 80px; }
+
+.badge-section { margin-bottom: 48px; }
+
+.badge-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.badge-section-header h2 {
+  font-size: 20px;
+}
+
+.badge-section-count {
+  font-size: 13px;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  padding: 2px 10px;
+  border-radius: 99px;
+}
+
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* === Badge Card === */
+.badge-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  transition: all var(--transition);
+}
+
+.badge-card.earned { border-color: transparent; }
+.badge-card.earned.tier-bronze { border-color: var(--tier-bronze); }
+.badge-card.earned.tier-silver { border-color: var(--tier-silver); }
+.badge-card.earned.tier-gold { border-color: var(--tier-gold); }
+.badge-card.earned.tier-platinum { border-color: var(--accent-blue); }
+
+.badge-card.locked { opacity: 0.5; filter: grayscale(0.6); }
+
+.badge-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.badge-card.tier-bronze .badge-icon-wrapper { background: rgba(205, 127, 50, 0.12); }
+.badge-card.tier-silver .badge-icon-wrapper { background: rgba(192, 192, 192, 0.15); }
+.badge-card.tier-gold .badge-icon-wrapper { background: rgba(255, 215, 0, 0.12); }
+.badge-card.tier-platinum .badge-icon-wrapper { background: rgba(79, 195, 247, 0.12); }
+
+.badge-icon {
+  font-size: 20px;
+}
+
+.badge-card.tier-bronze .badge-icon { color: var(--tier-bronze); }
+.badge-card.tier-silver .badge-icon { color: var(--tier-silver); }
+.badge-card.tier-gold .badge-icon { color: var(--tier-gold); }
+.badge-card.tier-platinum .badge-icon { color: var(--accent-blue); }
+
+.badge-check {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-info { flex: 1; min-width: 0; }
+
+.badge-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.badge-description {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.badge-tier {
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* === Badge Notification === */
+.badge-notification {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10001;
+  animation: scaleIn 0.4s ease;
+  cursor: pointer;
+}
+
+.badge-notification-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--primary-dark);
+  color: white;
+  padding: 16px 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(79, 195, 247, 0.3);
+}
+
+.badge-notification-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(79, 195, 247, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--accent-gold);
+  animation: badgeEarn 0.5s ease 0.2s both;
+}
+
+.badge-notification-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.badge-notification-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.badge-notification-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.badge-notification-desc {
+  font-size: 12px;
+  opacity: 0.7;
+}

@@ -1,0 +1,92 @@
+/* === Guide Page === */
+.guide-page { padding: 40px 0 80px; }
+
+.guide-page h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.guide-page > .container > p {
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+}
+
+.guide-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.guide-toc a {
+  padding: 6px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 99px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.guide-toc a:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.guide-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  margin-bottom: 24px;
+}
+
+.guide-section h2 {
+  font-size: 22px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-light);
+  color: var(--primary-dark);
+}
+
+.guide-section h3 {
+  font-size: 17px;
+  margin: 20px 0 8px;
+  color: var(--primary-color);
+}
+
+.guide-section p {
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+  color: var(--text-secondary);
+}
+
+.guide-section ul {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 8px 0;
+}
+
+.guide-section li {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--text-secondary);
+}
+
+.guide-section code {
+  background: rgba(79, 195, 247, 0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--primary-color);
+}
+
+.guide-tip {
+  padding: 16px 20px;
+  background: rgba(79, 195, 247, 0.06);
+  border-left: 3px solid var(--accent-blue);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 14px;
+  margin: 12px 0;
+}

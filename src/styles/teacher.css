@@ -1,0 +1,68 @@
+/* === Teacher Page === */
+.teacher-page { padding: 40px 0 80px; }
+
+.teacher-page h1 {
+  font-size: 28px;
+  margin-bottom: 24px;
+}
+
+.teacher-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 24px;
+}
+
+.teacher-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.teacher-class-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.teacher-class-card:hover, .teacher-class-card.active {
+  border-color: var(--accent-blue);
+  box-shadow: var(--shadow-sm);
+}
+
+.teacher-class-card h3 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.class-code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent-blue);
+  letter-spacing: 2px;
+}
+
+.teacher-main {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.create-class-btn {
+  width: 100%;
+  padding: 14px;
+  border: 2px dashed var(--border-light);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.create-class-btn:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}

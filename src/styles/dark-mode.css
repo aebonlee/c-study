@@ -1,0 +1,175 @@
+/* === Dark Mode === */
+[data-theme="dark"] {
+  --text-primary: #E0E7EF;
+  --text-secondary: #A0AEC0;
+  --text-muted: #718096;
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-card: #1c2333;
+  --bg-code: #0a0e14;
+  --border-light: #2d3748;
+  --border-medium: #4a5568;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] body {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .navbar {
+  background: rgba(13, 17, 23, 0.95);
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link.active {
+  background: rgba(79, 195, 247, 0.08);
+  color: var(--accent-blue);
+}
+
+[data-theme="dark"] .dropdown-menu {
+  background: var(--bg-card);
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .dropdown-menu li a:hover {
+  background: rgba(79, 195, 247, 0.08);
+}
+
+[data-theme="dark"] .nav-user-balloon {
+  background: var(--bg-card);
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .nav-balloon-arrow {
+  background: var(--bg-card);
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .lesson-card,
+[data-theme="dark"] .path-card,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .quiz-card,
+[data-theme="dark"] .badge-card,
+[data-theme="dark"] .post-item,
+[data-theme="dark"] .week-card,
+[data-theme="dark"] .practice-example,
+[data-theme="dark"] .guide-section,
+[data-theme="dark"] .admin-card,
+[data-theme="dark"] .mypage-header,
+[data-theme="dark"] .mypage-stat-card,
+[data-theme="dark"] .overview-card,
+[data-theme="dark"] .level-header,
+[data-theme="dark"] .write-form,
+[data-theme="dark"] .comment-item,
+[data-theme="dark"] .teacher-class-card,
+[data-theme="dark"] .teacher-main,
+[data-theme="dark"] .login-card {
+  background: var(--bg-card);
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .lesson-card:hover,
+[data-theme="dark"] .path-card:hover,
+[data-theme="dark"] .feature-card:hover {
+  border-color: var(--accent-blue);
+}
+
+[data-theme="dark"] .lesson-card-title,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .c-lesson-title {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .editor-toolbar-bottom {
+  background: var(--bg-card);
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .editor-btn {
+  background: var(--bg-secondary);
+  border-color: var(--border-light);
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .code-editor {
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .quiz-option {
+  background: var(--bg-card);
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .practice-step-btn {
+  background: var(--bg-card);
+  border-color: var(--border-light);
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .community-filter-btn {
+  background: var(--bg-card);
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .community-search input,
+[data-theme="dark"] .write-form input,
+[data-theme="dark"] .write-form select,
+[data-theme="dark"] .write-form textarea,
+[data-theme="dark"] .comment-form textarea,
+[data-theme="dark"] .editor-input-field {
+  background: var(--bg-secondary);
+  border-color: var(--border-light);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .footer {
+  background: #060a10;
+}
+
+[data-theme="dark"] .google-btn {
+  background: var(--bg-card);
+  border-color: var(--border-light);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .stat-number,
+[data-theme="dark"] .overview-big-number,
+[data-theme="dark"] .mypage-stat-card .stat-value {
+  color: var(--accent-blue);
+}
+
+[data-theme="dark"] .lesson-content,
+[data-theme="dark"] .c-lesson-content,
+[data-theme="dark"] .post-detail-content {
+  background: var(--bg-card);
+  border-color: var(--border-light);
+}
+
+[data-theme="dark"] .lesson-content code,
+[data-theme="dark"] .c-lesson-content code {
+  background: rgba(79, 195, 247, 0.1);
+  color: var(--accent-blue);
+}
+
+[data-theme="dark"] .lesson-content th,
+[data-theme="dark"] .c-lesson-content th {
+  background: var(--bg-secondary);
+}
+
+[data-theme="dark"] .pagination button {
+  border-color: var(--border-light);
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .login-modal {
+  background: var(--bg-card);
+}
+
+[data-theme="dark"] .badge-notification-content {
+  background: var(--bg-card);
+  border-color: rgba(79, 195, 247, 0.2);
+}

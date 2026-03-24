@@ -1,0 +1,118 @@
+/* === Practice Page === */
+.practice-page { padding: 40px 0 80px; }
+
+.practice-page h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.practice-page > .container > p {
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.practice-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.practice-step-btn {
+  padding: 8px 18px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  transition: all 0.2s;
+}
+
+.practice-step-btn:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.practice-step-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Practice Examples */
+.practice-example {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.practice-example-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.practice-example-header h3 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.practice-example-body {
+  padding: 0;
+}
+
+.practice-explanation {
+  padding: 14px 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-light);
+}
+
+/* Practice Runner */
+.practice-runner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: var(--primary-dark);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.practice-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-light);
+}
+
+.practice-output {
+  border-top: 1px solid var(--border-light);
+  padding: 12px 16px;
+  max-height: 200px;
+  overflow: auto;
+}
+
+.practice-output pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.practice-input-form {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
