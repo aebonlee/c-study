@@ -138,6 +138,8 @@ export default {
     inputHeader: 'Input Values',
     inputPlaceholder: 'Enter a value',
     errorPrefix: 'Error',
+    unsupportedWarning: 'This code uses features not supported by the browser compiler (JSCPP).',
+    localCompilerNote: 'Please use a local compiler like GCC to run this code.',
   },
   quiz: {
     title: 'Quiz Center',

@@ -4,21 +4,77 @@ import { useAuth } from '../contexts/AuthContext'
 import { useLanguage } from '../contexts/LanguageContext'
 import JSCPP from 'JSCPP'
 
+const UNSUPPORTED_PATTERNS = [
+  { pattern: /\bmalloc\s*\(/, label: 'malloc' },
+  { pattern: /\bcalloc\s*\(/, label: 'calloc' },
+  { pattern: /\brealloc\s*\(/, label: 'realloc' },
+  { pattern: /\bfree\s*\(/, label: 'free' },
+  { pattern: /\bstruct\s+\w+/, label: 'struct' },
+  { pattern: /\btypedef\s+struct/, label: 'typedef struct' },
+  { pattern: /\bunion\s+\w+/, label: 'union' },
+  { pattern: /\bFILE\s*\*/, label: 'FILE' },
+  { pattern: /\bfopen\s*\(/, label: 'fopen' },
+  { pattern: /\bfclose\s*\(/, label: 'fclose' },
+  { pattern: /\bfprintf\s*\(/, label: 'fprintf' },
+  { pattern: /\bfscanf\s*\(/, label: 'fscanf' },
+  { pattern: /\bfgets\s*\(.*,\s*\w+\s*\)/, label: 'fgets(file)' },
+  { pattern: /\bgoto\s+\w+/, label: 'goto' },
+]
+
+function detectUnsupported(code) {
+  const found = []
+  for (const { pattern, label } of UNSUPPORTED_PATTERNS) {
+    if (pattern.test(code)) {
+      found.push(label)
+    }
+  }
+  return found
+}
+
+function friendlyError(msg, lang) {
+  if (!msg) return msg
+  if (msg.includes('is not defined') || msg.includes('Unknown type')) {
+    const ko = '이 코드는 브라우저 컴파일러(JSCPP)에서 지원하지 않는 기능을 사용합니다. GCC 등 로컬 컴파일러에서 실행해 주세요.'
+    const en = 'This code uses features not supported by the browser compiler (JSCPP). Please use a local compiler like GCC.'
+    return lang === 'en' ? en : ko
+  }
+  if (msg.includes('Parsing failed')) {
+    const ko = '구문 분석 오류: 코드 문법을 확인해 주세요.'
+    const en = 'Parse error: Please check your code syntax.'
+    return lang === 'en' ? en : ko
+  }
+  return msg
+}
+
 export default function CodeEditor({ initialCode = '', expectedOutput = '', lessonId = '' }) {
   const [code, setCode] = useState(initialCode)
   const [showHint, setShowHint] = useState(false)
   const [output, setOutput] = useState('')
   const [status, setStatus] = useState('idle')
+  const [warning, setWarning] = useState(null)
   const textareaRef = useRef(null)
   const { incrementCodeRuns } = useProgress()
   const { requireAuth } = useAuth()
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
 
   const isRunning = status === 'running'
 
   const handleRun = useCallback(() => {
     setStatus('running')
     setOutput('')
+
+    // Detect unsupported features
+    const unsupported = detectUnsupported(code)
+    if (unsupported.length > 0) {
+      const featureList = unsupported.join(', ')
+      const warnMsg = lang === 'en'
+        ? `Warning: This code uses features not fully supported in the browser compiler: ${featureList}. Attempting to run anyway...`
+        : `경고: 이 코드는 브라우저 컴파일러에서 완전히 지원하지 않는 기능을 사용합니다: ${featureList}. 실행을 시도합니다...`
+      setWarning(warnMsg)
+    } else {
+      setWarning(null)
+    }
+
     incrementCodeRuns()
 
     setTimeout(() => {
@@ -34,21 +90,24 @@ export default function CodeEditor({ initialCode = '', expectedOutput = '', less
         setStatus('done')
       } catch (err) {
         const msg = err.message || String(err)
-        setOutput(`${t('editor.errorPrefix')}: ${msg}`)
+        const friendly = friendlyError(msg, lang)
+        setOutput(`${t('editor.errorPrefix')}: ${friendly}`)
         setStatus('error')
       }
     }, 50)
-  }, [code, incrementCodeRuns, t])
+  }, [code, incrementCodeRuns, t, lang])
 
   const handleReset = useCallback(() => {
     setCode(initialCode)
     setOutput('')
     setStatus('idle')
+    setWarning(null)
   }, [initialCode])
 
   const handleClearOutput = useCallback(() => {
     setOutput('')
     setStatus('idle')
+    setWarning(null)
   }, [])
 
   const handleCopy = useCallback(() => {
@@ -130,6 +189,20 @@ export default function CodeEditor({ initialCode = '', expectedOutput = '', less
       {showHint && expectedOutput && (
         <div className="editor-hint">
           <strong>{t('editor.expectedOutput')}</strong> <code>{expectedOutput}</code>
+        </div>
+      )}
+
+      {warning && (
+        <div className="editor-warning" style={{
+          padding: '8px 12px',
+          margin: '8px 0',
+          background: 'var(--warning-bg, #fff3cd)',
+          color: 'var(--warning-text, #856404)',
+          borderRadius: '6px',
+          fontSize: '0.85rem',
+          border: '1px solid var(--warning-border, #ffc107)'
+        }}>
+          <i className="fa-solid fa-triangle-exclamation" /> {warning}
         </div>
       )}
 

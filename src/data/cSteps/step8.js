@@ -33,13 +33,13 @@ int main() {
     manual[4] = 'o';
     manual[5] = '\\0'; // null terminator required!
 
-    printf("greeting: %s (length: %lu)\\n", greeting, strlen(greeting));
-    printf("name: %s (length: %lu)\\n", name, strlen(name));
-    printf("manual: %s (length: %lu)\\n", manual, strlen(manual));
+    printf("greeting: %s (length: %d)\\n", greeting, (int)strlen(greeting));
+    printf("name: %s (length: %d)\\n", name, (int)strlen(name));
+    printf("manual: %s (length: %d)\\n", manual, (int)strlen(manual));
 
     // sizeof vs strlen
-    printf("\\nsizeof(greeting): %lu\\n", sizeof(greeting)); // includes \\0
-    printf("strlen(greeting): %lu\\n", strlen(greeting));    // excludes \\0
+    printf("\\nsizeof(greeting): %d\\n", (int)sizeof(greeting)); // includes \\0
+    printf("strlen(greeting): %d\\n", (int)strlen(greeting));    // excludes \\0
 
     return 0;
 }`,
@@ -75,8 +75,8 @@ int main() {
     int count = 4;
 
     for (int i = 0; i < count; i++) {
-        printf("\\"%s\\": strlen=%lu, my_strlen=%d\\n",
-               words[i], strlen(words[i]), my_strlen(words[i]));
+        printf("\\"%s\\": strlen=%d, my_strlen=%d\\n",
+               words[i], (int)strlen(words[i]), my_strlen(words[i]));
     }
 
     // Practical: check empty string
@@ -161,20 +161,11 @@ int main() {
 
     // Equality check
     if (strcmp(s1, s3) == 0) {
-        printf("\\n\\"%s\\\" and \\"%s\\\" are equal\\n", s1, s3);
+        printf("\\n\\"%s\\" and \\"%s\\" are equal\\n", s1, s3);
     }
 
-    // WRONG: using == for strings
-    // if (s1 == s3) // compares addresses, NOT content!
-
-    // Case-insensitive compare (non-standard but common)
-    char a[] = "Hello";
-    char b[] = "hello";
-    printf("\\nstrcmp(\\"%s\\", \\"%s\\"): %d (case-sensitive)\\n",
-           a, b, strcmp(a, b));
-
     // strncmp: compare first n characters
-    printf("strncmp(\\"%s\\", \\"%s\\", 3): %d\\n",
+    printf("\\nstrncmp(\\"%s\\", \\"%s\\", 3): %d\\n",
            "apple", "application", strncmp("apple", "application", 3));
 
     return 0;
@@ -185,7 +176,6 @@ strcmp("banana", "apple"): 1
 
 "apple" and "apple" are equal
 
-strcmp("Hello", "hello"): -32 (case-sensitive)
 strncmp("apple", "application", 3): 0`,
       explanation: 'strcmp는 사전순 비교입니다. 0이면 같고, 음수면 첫째가 앞, 양수면 뒤입니다. ==로 비교하면 안 됩니다.',
       explanationEn: 'strcmp does lexicographic comparison. 0=equal, negative=first is less, positive=first is greater. Never use ==.'
@@ -217,7 +207,7 @@ int main() {
 
     // strncat: safer with limit
     char buffer[15] = "Hello";
-    strncat(buffer, " World and more", sizeof(buffer) - strlen(buffer) - 1);
+    strncat(buffer, " World and more", sizeof(buffer) - (int)strlen(buffer) - 1);
     printf("strncat: %s\\n", buffer);
 
     // Concatenate numbers to string
@@ -301,18 +291,18 @@ int main() {
 
     // strchr: find first occurrence of character
     char *p = strchr(str, 'W');
-    if (p) printf("strchr 'W': found at index %ld\\n", p - str);
+    if (p) printf("strchr 'W': found at index %d\\n", (int)(p - str));
 
     // strrchr: find last occurrence
     p = strrchr(str, 'l');
-    if (p) printf("strrchr 'l': found at index %ld\\n", p - str);
+    if (p) printf("strrchr 'l': found at index %d\\n", (int)(p - str));
 
     // strstr: find substring
     p = strstr(str, "World");
-    if (p) printf("strstr \\"World\\": found at index %ld\\n", p - str);
+    if (p) printf("strstr \\"World\\": found at index %d\\n", (int)(p - str));
 
     p = strstr(str, "Hello");
-    if (p) printf("strstr \\"Hello\\": first at index %ld\\n", p - str);
+    if (p) printf("strstr \\"Hello\\": first at index %d\\n", (int)(p - str));
 
     // Not found
     p = strstr(str, "Python");
@@ -324,7 +314,7 @@ int main() {
     p = str;
     while ((p = strstr(p, search)) != NULL) {
         count++;
-        p += strlen(search);
+        p += (int)strlen(search);
     }
     printf("\\n\\"Hello\\" appears %d times\\n", count);
 
@@ -403,7 +393,7 @@ Words:
 
 void reverseString(char *str) {
     int left = 0;
-    int right = strlen(str) - 1;
+    int right = (int)strlen(str) - 1;
 
     while (left < right) {
         char temp = str[left];
@@ -416,7 +406,7 @@ void reverseString(char *str) {
 
 int isPalindrome(const char *str) {
     int left = 0;
-    int right = strlen(str) - 1;
+    int right = (int)strlen(str) - 1;
 
     while (left < right) {
         if (str[left] != str[right]) return 0;
@@ -470,7 +460,7 @@ int main() {
 
     printf("Fruits:\\n");
     for (int i = 0; i < n; i++) {
-        printf("  [%d] %s (len: %lu)\\n", i, fruits[i], strlen(fruits[i]));
+        printf("  [%d] %s (len: %d)\\n", i, fruits[i], (int)strlen(fruits[i]));
     }
 
     // Sort strings (bubble sort)

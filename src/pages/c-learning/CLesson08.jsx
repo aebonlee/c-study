@@ -17,6 +17,13 @@ export default function CLesson08() {
         {lang === 'en' ? 'Step 8: Structs & Unions' : '8단계: 구조체와 공용체'}
       </h1>
 
+      <div className="c-lesson-warning" style={{ padding: '12px 16px', margin: '0 0 20px', background: 'var(--warning-bg, #fff3cd)', color: 'var(--warning-text, #856404)', borderRadius: '8px', fontSize: '0.9rem', border: '1px solid var(--warning-border, #ffc107)', lineHeight: 1.6 }}>
+        <i className="fa-solid fa-triangle-exclamation" style={{ marginRight: '8px' }} />
+        {lang === 'en'
+          ? 'This lesson uses struct, union, and typedef which are not supported by the browser compiler (JSCPP). Please use a local compiler like GCC to run these examples.'
+          : '이 레슨은 struct, union, typedef 등 브라우저 컴파일러(JSCPP)에서 지원하지 않는 기능을 사용합니다. GCC 등 로컬 컴파일러에서 실행해 주세요.'}
+      </div>
+
       <section className="c-lesson-section">
         <h2>{lang === 'en' ? 'Structure Definition & Usage' : '구조체 정의와 사용'}</h2>
         <p>{lang === 'en'

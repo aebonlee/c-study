@@ -47,8 +47,8 @@ int main() {
 
     printf("float pi:  %.2f\\n", pi_f);
     printf("double pi: %.15f\\n", pi_d);
-    printf("float size:  %lu bytes\\n", sizeof(float));
-    printf("double size: %lu bytes\\n", sizeof(double));
+    printf("float size:  %d bytes\\n", (int)sizeof(float));
+    printf("double size: %d bytes\\n", (int)sizeof(double));
 
     return 0;
 }`,
@@ -70,7 +70,6 @@ double size: 8 bytes`,
 int main() {
     char letter = 'A';
     char digit = '7';
-    char newline = '\\n';
 
     printf("Letter: %c\\n", letter);
     printf("ASCII of '%c': %d\\n", letter, letter);
@@ -96,13 +95,11 @@ Next letter: B`,
 
 int main() {
     printf("=== Data Type Sizes ===\\n");
-    printf("char:      %lu byte\\n", sizeof(char));
-    printf("short:     %lu bytes\\n", sizeof(short));
-    printf("int:       %lu bytes\\n", sizeof(int));
-    printf("long:      %lu bytes\\n", sizeof(long));
-    printf("long long: %lu bytes\\n", sizeof(long long));
-    printf("float:     %lu bytes\\n", sizeof(float));
-    printf("double:    %lu bytes\\n", sizeof(double));
+    printf("char:      %d byte\\n", (int)sizeof(char));
+    printf("short:     %d bytes\\n", (int)sizeof(short));
+    printf("int:       %d bytes\\n", (int)sizeof(int));
+    printf("float:     %d bytes\\n", (int)sizeof(float));
+    printf("double:    %d bytes\\n", (int)sizeof(double));
 
     return 0;
 }`,
@@ -110,8 +107,6 @@ int main() {
 char:      1 byte
 short:     2 bytes
 int:       4 bytes
-long:      8 bytes
-long long: 8 bytes
 float:     4 bytes
 double:    8 bytes`,
       explanation: 'sizeof는 자료형이나 변수의 바이트 크기를 반환합니다. 크기는 시스템에 따라 다를 수 있습니다.',
@@ -191,7 +186,6 @@ Float division: 7 / 2 = 3.5`,
       description: '부호 없는 자료형으로 양수만 저장합니다.',
       descriptionEn: 'Store only positive numbers with unsigned types.',
       code: `#include <stdio.h>
-#include <limits.h>
 
 int main() {
     unsigned int positive = 42;
@@ -200,26 +194,24 @@ int main() {
     printf("unsigned int: %u\\n", positive);
     printf("signed int: %d\\n", signed_val);
 
-    printf("\\n=== Range Comparison ===\\n");
-    printf("int range: %d to %d\\n", INT_MIN, INT_MAX);
-    printf("unsigned int max: %u\\n", UINT_MAX);
+    printf("\\nint size: %d bytes\\n", (int)sizeof(int));
+    printf("char size: %d byte\\n", (int)sizeof(char));
 
-    printf("\\nchar range: %d to %d\\n", CHAR_MIN, CHAR_MAX);
-    printf("unsigned char max: %d\\n", UCHAR_MAX);
+    // Unsigned allows larger positive values
+    unsigned int big = 3000000000u;
+    printf("\\nunsigned big: %u\\n", big);
 
     return 0;
 }`,
       expectedOutput: `unsigned int: 42
 signed int: -42
 
-=== Range Comparison ===
-int range: -2147483648 to 2147483647
-unsigned int max: 4294967295
+int size: 4 bytes
+char size: 1 byte
 
-char range: -128 to 127
-unsigned char max: 255`,
-      explanation: 'unsigned는 음수를 저장할 수 없지만, 양수의 최대값이 2배가 됩니다. limits.h에 범위가 정의되어 있습니다.',
-      explanationEn: 'unsigned cannot store negatives but doubles the positive max. limits.h defines ranges.'
+unsigned big: 3000000000`,
+      explanation: 'unsigned는 음수를 저장할 수 없지만, 양수의 최대값이 2배가 됩니다.',
+      explanationEn: 'unsigned cannot store negatives but doubles the positive max.'
     },
     {
       id: 's2e8',
@@ -272,17 +264,15 @@ After swap: p = 200, q = 100`,
       description: 'C에서 참/거짓 값을 표현하는 방법입니다.',
       descriptionEn: 'How to represent true/false values in C.',
       code: `#include <stdio.h>
-#include <stdbool.h>
 
 int main() {
-    // C99 stdbool.h
-    bool isReady = true;
-    bool isDone = false;
+    // In C, 0 is false, non-zero is true
+    int isReady = 1; // true
+    int isDone = 0;  // false
 
     printf("isReady: %d\\n", isReady);
     printf("isDone: %d\\n", isDone);
 
-    // In C, 0 is false, non-zero is true
     int flag = 1;
     if (flag) {
         printf("flag is true (non-zero)\\n");
@@ -293,7 +283,7 @@ int main() {
         printf("zero is false\\n");
     }
 
-    printf("true = %d, false = %d\\n", true, false);
+    printf("true = %d, false = %d\\n", 1, 0);
 
     return 0;
 }`,
@@ -302,8 +292,8 @@ isDone: 0
 flag is true (non-zero)
 zero is false
 true = 1, false = 0`,
-      explanation: 'C99부터 stdbool.h로 bool, true, false를 사용할 수 있습니다. C에서 0은 거짓, 0이 아닌 값은 참입니다.',
-      explanationEn: 'Since C99, stdbool.h provides bool, true, false. In C, 0 is false, non-zero is true.'
+      explanation: 'C에서 0은 거짓, 0이 아닌 값은 참입니다. C99부터 stdbool.h로 bool, true, false를 사용할 수도 있습니다.',
+      explanationEn: 'In C, 0 is false, non-zero is true. Since C99, stdbool.h provides bool, true, false.'
     }
   ]
 }

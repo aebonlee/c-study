@@ -25,8 +25,7 @@ int main() {
     printf("String:    %s\\n", "Hello");
     printf("Hex:       %x\\n", 255);
     printf("Octal:     %o\\n", 255);
-    printf("Pointer:   %p\\n", (void*)0);
-    printf("Long:      %ld\\n", 1234567890L);
+    printf("Long:      %d\\n", 1234567890);
     printf("Percent:   %%\\n");
 
     return 0;
@@ -39,11 +38,10 @@ Char:      A
 String:    Hello
 Hex:       ff
 Octal:     377
-Pointer:   (nil)
 Long:      1234567890
 Percent:   %`,
-      explanation: '%d 정수, %f 실수, %c 문자, %s 문자열, %x 16진수, %o 8진수, %p 포인터, %% 퍼센트 기호.',
-      explanationEn: '%d integer, %f float, %c char, %s string, %x hex, %o octal, %p pointer, %% percent sign.'
+      explanation: '%d 정수, %f 실수, %c 문자, %s 문자열, %x 16진수, %o 8진수, %% 퍼센트 기호.',
+      explanationEn: '%d integer, %f float, %c char, %s string, %x hex, %o octal, %% percent sign.'
     },
     {
       id: 's4e2',

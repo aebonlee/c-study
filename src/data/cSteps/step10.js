@@ -22,8 +22,6 @@ int main() {
 
     printf("=== Pointer Basics ===\\n");
     printf("num value:     %d\\n", num);
-    printf("num address:   %p\\n", (void*)&num);
-    printf("ptr value:     %p (stores address)\\n", (void*)ptr);
     printf("ptr deref:     %d (*ptr = value at address)\\n", *ptr);
 
     // Modify through pointer
@@ -32,30 +30,26 @@ int main() {
     printf("num = %d\\n", num); // num is changed!
     printf("*ptr = %d\\n", *ptr);
 
-    // Pointer size
-    printf("\\nPointer sizes:\\n");
-    printf("sizeof(int*):    %lu bytes\\n", sizeof(int*));
-    printf("sizeof(double*): %lu bytes\\n", sizeof(double*));
-    printf("sizeof(char*):   %lu bytes\\n", sizeof(char*));
+    // Pointer size (all pointer types have same size)
+    printf("\\nsizeof(int):    %d bytes\\n", (int)sizeof(int));
+    printf("sizeof(double): %d bytes\\n", (int)sizeof(double));
+    printf("sizeof(char):   %d bytes\\n", (int)sizeof(char));
 
     return 0;
 }`,
       expectedOutput: `=== Pointer Basics ===
 num value:     42
-num address:   0x7ffee1234568
-ptr value:     0x7ffee1234568 (stores address)
 ptr deref:     42 (*ptr = value at address)
 
 After *ptr = 100:
 num = 100
 *ptr = 100
 
-Pointer sizes:
-sizeof(int*):    8 bytes
-sizeof(double*): 8 bytes
-sizeof(char*):   8 bytes`,
-      explanation: '&는 주소를 구하고, *는 주소에 저장된 값을 읽습니다. 포인터 크기는 시스템의 주소 크기와 같습니다.',
-      explanationEn: '& gets the address, * reads the value at the address. Pointer size equals the system address size.'
+sizeof(int):    4 bytes
+sizeof(double): 8 bytes
+sizeof(char):   1 bytes`,
+      explanation: '&는 주소를 구하고, *는 주소에 저장된 값을 읽습니다. 포인터를 통해 원본 변수를 수정할 수 있습니다.',
+      explanationEn: '& gets the address, * reads the value at the address. You can modify the original variable through a pointer.'
     },
     {
       id: 's10e2',
@@ -64,7 +58,6 @@ sizeof(char*):   8 bytes`,
       description: '초기화되지 않은 포인터와 NULL 포인터입니다.',
       descriptionEn: 'Uninitialized pointers and NULL pointers.',
       code: `#include <stdio.h>
-#include <stdlib.h>
 
 int main() {
     // Always initialize pointers
@@ -94,17 +87,12 @@ int main() {
         printf("Shorthand check: *ptr = %d\\n", *ptr);
     }
 
-    // NULL is typically defined as ((void*)0) or 0
-    printf("\\nNULL value: %p\\n", (void*)NULL);
-
     return 0;
 }`,
       expectedOutput: `ptr is NULL - cannot dereference
 ptr is valid: *ptr = 42
 ptr set back to NULL
-Shorthand check: *ptr = 42
-
-NULL value: (nil)`,
+Shorthand check: *ptr = 42`,
       explanation: 'NULL 포인터를 역참조하면 프로그램이 크래시합니다. 항상 NULL 확인 후 사용하세요.',
       explanationEn: 'Dereferencing NULL causes a crash. Always check for NULL before use.'
     },
@@ -140,7 +128,7 @@ int main() {
 
     // Multiple return values via pointers
     int arr[] = {34, 12, 67, 5, 89, 23};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    int n = 6;
     int min, max;
 
     getMinMax(arr, n, &min, &max);
@@ -167,11 +155,6 @@ int main() {
     int arr[] = {10, 20, 30, 40, 50};
     int *ptr = arr; // array name = address of first element
 
-    printf("=== Array-Pointer Relationship ===\\n");
-    printf("arr = %p\\n", (void*)arr);
-    printf("&arr[0] = %p\\n", (void*)&arr[0]);
-    printf("ptr = %p\\n\\n", (void*)ptr);
-
     // Access via array indexing
     printf("Array indexing: ");
     for (int i = 0; i < 5; i++) printf("%d ", arr[i]);
@@ -197,12 +180,7 @@ int main() {
 
     return 0;
 }`,
-      expectedOutput: `=== Array-Pointer Relationship ===
-arr = 0x7ffee1234560
-&arr[0] = 0x7ffee1234560
-ptr = 0x7ffee1234560
-
-Array indexing: 10 20 30 40 50
+      expectedOutput: `Array indexing: 10 20 30 40 50
 Pointer arith:  10 20 30 40 50
 Pointer incr:   10 20 30 40 50
 
@@ -224,43 +202,34 @@ int main() {
     int *ptr = arr;
 
     printf("Pointer arithmetic:\\n");
-    printf("ptr     -> %d (at %p)\\n", *ptr, (void*)ptr);
-    printf("ptr + 1 -> %d (at %p)\\n", *(ptr + 1), (void*)(ptr + 1));
-    printf("ptr + 2 -> %d (at %p)\\n", *(ptr + 2), (void*)(ptr + 2));
+    printf("ptr     -> %d\\n", *ptr);
+    printf("ptr + 1 -> %d\\n", *(ptr + 1));
+    printf("ptr + 2 -> %d\\n", *(ptr + 2));
 
     // Pointer difference
     int *start = &arr[0];
     int *end = &arr[4];
-    printf("\\nDistance: %ld elements\\n", end - start);
+    printf("\\nDistance: %d elements\\n", (int)(end - start));
 
     // Different types have different step sizes
     printf("\\nStep sizes:\\n");
-    printf("sizeof(int) = %lu -> int* moves %lu bytes\\n",
-           sizeof(int), sizeof(int));
-
-    char str[] = "Hello";
-    char *cp = str;
-    printf("sizeof(char) = %lu -> char* moves %lu byte\\n",
-           sizeof(char), sizeof(char));
-
-    double darr[] = {1.0, 2.0, 3.0};
-    double *dp = darr;
-    printf("sizeof(double) = %lu -> double* moves %lu bytes\\n",
-           sizeof(double), sizeof(double));
+    printf("sizeof(int) = %d bytes\\n", (int)sizeof(int));
+    printf("sizeof(char) = %d byte\\n", (int)sizeof(char));
+    printf("sizeof(double) = %d bytes\\n", (int)sizeof(double));
 
     return 0;
 }`,
       expectedOutput: `Pointer arithmetic:
-ptr     -> 100 (at 0x7ffee1234560)
-ptr + 1 -> 200 (at 0x7ffee1234564)
-ptr + 2 -> 300 (at 0x7ffee1234568)
+ptr     -> 100
+ptr + 1 -> 200
+ptr + 2 -> 300
 
 Distance: 4 elements
 
 Step sizes:
-sizeof(int) = 4 -> int* moves 4 bytes
-sizeof(char) = 1 -> char* moves 1 byte
-sizeof(double) = 8 -> double* moves 8 bytes`,
+sizeof(int) = 4 bytes
+sizeof(char) = 1 byte
+sizeof(double) = 8 bytes`,
       explanation: '포인터 +1은 자료형 크기만큼 주소가 증가합니다. int*는 4바이트, double*는 8바이트씩 이동합니다.',
       explanationEn: 'Pointer +1 advances by the data type size. int* moves 4 bytes, double* moves 8 bytes.'
     },
@@ -271,12 +240,13 @@ sizeof(double) = 8 -> double* moves 8 bytes`,
       description: '문자열을 포인터로 다루는 방법입니다.',
       descriptionEn: 'Working with strings using pointers.',
       code: `#include <stdio.h>
+#include <string.h>
 
 // Custom strlen using pointer
 int my_strlen(const char *str) {
     const char *p = str;
     while (*p != '\\0') p++;
-    return p - str;
+    return (int)(p - str);
 }
 
 // Custom strcpy using pointer
@@ -302,8 +272,8 @@ int main() {
     printf("Modified arr: %s\\n", arr);
 
     // Custom functions
-    printf("\\nmy_strlen(\\\"Hello\\\"): %d\\n", my_strlen("Hello"));
-    printf("my_strlen(\\\"\\\"): %d\\n", my_strlen(""));
+    printf("\\nmy_strlen(\\"Hello\\"): %d\\n", my_strlen("Hello"));
+    printf("my_strlen(\\"\\"): %d\\n", my_strlen(""));
 
     char buffer[20];
     my_strcpy(buffer, "Copied!");
@@ -337,14 +307,6 @@ Chars: 'A' 'B' 'C' `,
       description: '포인터의 포인터(이중 포인터)입니다.',
       descriptionEn: 'Pointer to pointer (double pointer).',
       code: `#include <stdio.h>
-#include <stdlib.h>
-
-void allocateArray(int **ptr, int n) {
-    *ptr = (int *)malloc(n * sizeof(int));
-    for (int i = 0; i < n; i++) {
-        (*ptr)[i] = (i + 1) * 10;
-    }
-}
 
 int main() {
     int value = 42;
@@ -360,16 +322,19 @@ int main() {
     **dptr = 99;
     printf("\\nAfter **dptr = 99: value = %d\\n", value);
 
-    // Practical: function that allocates memory
-    int *arr = NULL;
-    int n = 5;
-    allocateArray(&arr, n);
+    // Practical: 2D array simulation with pointer array
+    int row1[] = {1, 2, 3};
+    int row2[] = {4, 5, 6};
+    int row3[] = {7, 8, 9};
+    int *matrix[] = {row1, row2, row3};
 
-    printf("\\nDynamically allocated: ");
-    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
-    printf("\\n");
-
-    free(arr);
+    printf("\\nMatrix via pointer array:\\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%d ", matrix[i][j]);
+        }
+        printf("\\n");
+    }
 
     return 0;
 }`,
@@ -380,7 +345,10 @@ value = 42
 
 After **dptr = 99: value = 99
 
-Dynamically allocated: 10 20 30 40 50 `,
+Matrix via pointer array:
+1 2 3
+4 5 6
+7 8 9 `,
       explanation: '이중 포인터(**ptr)는 포인터의 주소를 저장합니다. 함수에서 포인터 자체를 변경할 때 필요합니다.',
       explanationEn: 'Double pointer (**ptr) stores a pointer address. Needed when a function modifies the pointer itself.'
     },
@@ -436,134 +404,121 @@ Practical usage:
     },
     {
       id: 's10e9',
-      title: '포인터로 연결 리스트 맛보기',
-      titleEn: 'Linked List Preview with Pointers',
-      description: '포인터로 간단한 연결 리스트를 만들어봅니다.',
-      descriptionEn: 'Build a simple linked list with pointers.',
+      title: '함수 포인터 기초',
+      titleEn: 'Function Pointer Basics',
+      description: '함수를 가리키는 포인터의 기초입니다.',
+      descriptionEn: 'Basics of pointers that point to functions.',
       code: `#include <stdio.h>
-#include <stdlib.h>
 
-typedef struct Node {
-    int data;
-    struct Node *next;
-} Node;
+int add(int a, int b) { return a + b; }
+int subtract(int a, int b) { return a - b; }
+int multiply(int a, int b) { return a * b; }
 
-Node* createNode(int data) {
-    Node *node = (Node *)malloc(sizeof(Node));
-    node->data = data;
-    node->next = NULL;
-    return node;
-}
-
-void printList(Node *head) {
-    Node *curr = head;
-    while (curr != NULL) {
-        printf("%d", curr->data);
-        if (curr->next) printf(" -> ");
-        curr = curr->next;
-    }
-    printf(" -> NULL\\n");
-}
-
-void freeList(Node *head) {
-    while (head) {
-        Node *temp = head;
-        head = head->next;
-        free(temp);
-    }
+int operate(int a, int b, int (*func)(int, int)) {
+    return func(a, b);
 }
 
 int main() {
-    // Create nodes
-    Node *head = createNode(10);
-    head->next = createNode(20);
-    head->next->next = createNode(30);
-    head->next->next->next = createNode(40);
+    // Function pointer declaration
+    int (*op)(int, int);
 
-    printf("Linked List: ");
-    printList(head);
+    op = add;
+    printf("add(10, 3) = %d\\n", op(10, 3));
 
-    // Count nodes
-    int count = 0;
-    for (Node *p = head; p != NULL; p = p->next) count++;
-    printf("Node count: %d\\n", count);
+    op = subtract;
+    printf("subtract(10, 3) = %d\\n", op(10, 3));
 
-    // Sum values
-    int sum = 0;
-    for (Node *p = head; p != NULL; p = p->next) sum += p->data;
-    printf("Sum: %d\\n", sum);
+    op = multiply;
+    printf("multiply(10, 3) = %d\\n", op(10, 3));
 
-    freeList(head);
-    printf("Memory freed.\\n");
+    // Using operate function with function pointer
+    printf("\\nUsing operate():\\n");
+    printf("operate(5, 3, add) = %d\\n", operate(5, 3, add));
+    printf("operate(5, 3, subtract) = %d\\n", operate(5, 3, subtract));
+    printf("operate(5, 3, multiply) = %d\\n", operate(5, 3, multiply));
 
     return 0;
 }`,
-      expectedOutput: `Linked List: 10 -> 20 -> 30 -> 40 -> NULL
-Node count: 4
-Sum: 100
-Memory freed.`,
-      explanation: '연결 리스트는 포인터의 대표적인 활용 사례입니다. 각 노드가 다음 노드의 주소를 가리킵니다.',
-      explanationEn: 'Linked lists are a classic pointer application. Each node points to the next node address.'
+      expectedOutput: `add(10, 3) = 13
+subtract(10, 3) = 7
+multiply(10, 3) = 30
+
+Using operate():
+operate(5, 3, add) = 8
+operate(5, 3, subtract) = 2
+operate(5, 3, multiply) = 15`,
+      explanation: '함수 포인터는 함수의 주소를 저장합니다. 콜백 패턴이나 전략 패턴에 유용합니다.',
+      explanationEn: 'Function pointers store the address of a function. Useful for callback and strategy patterns.'
     },
     {
       id: 's10e10',
-      title: 'void 포인터와 동적 메모리',
-      titleEn: 'Void Pointers & Dynamic Memory',
-      description: '범용 포인터 void*와 malloc/free 기초입니다.',
-      descriptionEn: 'Generic void* pointers and malloc/free basics.',
+      title: '포인터 종합 예제',
+      titleEn: 'Comprehensive Pointer Example',
+      description: '포인터의 다양한 활용을 종합합니다.',
+      descriptionEn: 'Comprehensive use of various pointer techniques.',
       code: `#include <stdio.h>
-#include <stdlib.h>
+#include <string.h>
 
-void printValue(void *ptr, char type) {
-    switch (type) {
-        case 'i': printf("%d", *(int*)ptr); break;
-        case 'd': printf("%.2f", *(double*)ptr); break;
-        case 'c': printf("%c", *(char*)ptr); break;
+void reverseArray(int *arr, int n) {
+    int *left = arr;
+    int *right = arr + n - 1;
+    while (left < right) {
+        int temp = *left;
+        *left = *right;
+        *right = temp;
+        left++;
+        right--;
     }
 }
 
-int main() {
-    // void* can point to any type
-    int i = 42;
-    double d = 3.14;
-    char c = 'X';
-
-    void *vp;
-    vp = &i; printf("int: ");    printValue(vp, 'i'); printf("\\n");
-    vp = &d; printf("double: "); printValue(vp, 'd'); printf("\\n");
-    vp = &c; printf("char: ");   printValue(vp, 'c'); printf("\\n");
-
-    // Dynamic memory allocation
-    printf("\\n=== Dynamic Memory ===\\n");
-    int n = 5;
-    int *arr = (int *)malloc(n * sizeof(int));
-
-    if (arr == NULL) {
-        printf("Memory allocation failed!\\n");
-        return 1;
+int sumArray(const int *arr, int n) {
+    int sum = 0;
+    for (const int *p = arr; p < arr + n; p++) {
+        sum += *p;
     }
+    return sum;
+}
 
-    for (int j = 0; j < n; j++) arr[j] = (j + 1) * (j + 1);
+int main() {
+    int arr[] = {1, 2, 3, 4, 5};
+    int n = 5;
 
-    printf("Dynamic array: ");
-    for (int j = 0; j < n; j++) printf("%d ", arr[j]);
+    printf("Original: ");
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
     printf("\\n");
 
-    free(arr);
-    arr = NULL; // prevent dangling pointer
-    printf("Memory freed and pointer set to NULL.\\n");
+    printf("Sum: %d\\n", sumArray(arr, n));
+
+    reverseArray(arr, n);
+    printf("Reversed: ");
+    for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+    printf("\\n");
+
+    printf("Sum after reverse: %d\\n", sumArray(arr, n));
+
+    // String manipulation with pointers
+    char str[] = "Hello, Pointers!";
+    char *p = str;
+    int vowels = 0;
+    while (*p) {
+        if (*p == 'a' || *p == 'e' || *p == 'i' || *p == 'o' || *p == 'u' ||
+            *p == 'A' || *p == 'E' || *p == 'I' || *p == 'O' || *p == 'U') {
+            vowels++;
+        }
+        p++;
+    }
+    printf("\\n\\"%s\\" has %d vowels\\n", str, vowels);
 
     return 0;
 }`,
-      expectedOutput: `int: 42
-double: 3.14
-char: X
+      expectedOutput: `Original: 1 2 3 4 5
+Sum: 15
+Reversed: 5 4 3 2 1
+Sum after reverse: 15
 
-=== Dynamic Memory ===
-Dynamic array: 1 4 9 16 25
-Memory freed and pointer set to NULL.`,
-      explanation: 'void*는 어떤 자료형이든 가리킬 수 있지만, 역참조 시 캐스팅이 필요합니다. malloc으로 할당한 메모리는 반드시 free해야 합니다.',
-      explanationEn: 'void* can point to any type but needs casting for dereferencing. Always free() memory allocated with malloc().'
+"Hello, Pointers!" has 5 vowels`,
+      explanation: '포인터를 사용한 배열 뒤집기, 합계 구하기, 문자열 순회 등 실전에서 자주 사용하는 패턴입니다.',
+      explanationEn: 'Practical patterns: array reversal, sum calculation, and string traversal using pointers.'
     }
   ]
 }

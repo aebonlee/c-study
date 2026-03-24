@@ -192,8 +192,8 @@ x %= 3  -> 1`,
       code: `#include <stdio.h>
 
 int main() {
-    unsigned char a = 0b11001010; // 202
-    unsigned char b = 0b10110101; // 181
+    unsigned char a = 202; // 0xCA = 11001010
+    unsigned char b = 181; // 0xB5 = 10110101
 
     printf("a      = %3d (0x%02X)\\n", a, a);
     printf("b      = %3d (0x%02X)\\n", b, b);
@@ -329,14 +329,14 @@ int main() {
     printf("After loop: a=%d, b=%d\\n", a, b);
 
     // sizeof with expressions
-    printf("sizeof(int): %lu\\n", sizeof(int));
-    printf("sizeof(x): %lu\\n", sizeof(x));
-    printf("sizeof(3.14): %lu\\n", sizeof(3.14));
-    printf("sizeof('A'): %lu\\n", sizeof('A')); // int in C!
+    printf("sizeof(int): %d\\n", (int)sizeof(int));
+    printf("sizeof(x): %d\\n", (int)sizeof(x));
+    printf("sizeof(3.14): %d\\n", (int)sizeof(3.14));
+    printf("sizeof(char): %d\\n", (int)sizeof(char));
 
     int arr[10];
-    printf("sizeof(arr): %lu\\n", sizeof(arr));
-    printf("Array elements: %lu\\n", sizeof(arr) / sizeof(arr[0]));
+    printf("sizeof(arr): %d\\n", (int)sizeof(arr));
+    printf("Array elements: %d\\n", (int)sizeof(arr) / (int)sizeof(arr[0]));
 
     return 0;
 }`,
@@ -345,7 +345,7 @@ After loop: a=5, b=5
 sizeof(int): 4
 sizeof(x): 4
 sizeof(3.14): 8
-sizeof('A'): 4
+sizeof(char): 1
 sizeof(arr): 40
 Array elements: 10`,
       explanation: '콤마 연산자는 왼쪽부터 평가하고 마지막 값을 반환합니다. sizeof는 컴파일 시 크기를 결정합니다.',

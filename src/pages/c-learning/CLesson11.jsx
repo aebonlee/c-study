@@ -17,6 +17,13 @@ export default function CLesson11() {
         {lang === 'en' ? 'Step 11: Final Project - Student Grade Management System' : '11단계: 종합 프로젝트 - 학생 성적 관리 시스템'}
       </h1>
 
+      <div className="c-lesson-warning" style={{ padding: '12px 16px', margin: '0 0 20px', background: 'var(--warning-bg, #fff3cd)', color: 'var(--warning-text, #856404)', borderRadius: '8px', fontSize: '0.9rem', border: '1px solid var(--warning-border, #ffc107)', lineHeight: 1.6 }}>
+        <i className="fa-solid fa-triangle-exclamation" style={{ marginRight: '8px' }} />
+        {lang === 'en'
+          ? 'This project uses struct, malloc, FILE, and other advanced features not supported by the browser compiler (JSCPP). Please use a local compiler like GCC to run these examples.'
+          : '이 프로젝트는 struct, malloc, FILE 등 브라우저 컴파일러(JSCPP)에서 지원하지 않는 고급 기능을 사용합니다. GCC 등 로컬 컴파일러에서 실행해 주세요.'}
+      </div>
+
       <section className="c-lesson-section">
         <h2>{lang === 'en' ? 'Project Overview' : '프로젝트 개요'}</h2>
         <p>{lang === 'en'

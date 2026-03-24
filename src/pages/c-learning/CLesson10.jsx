@@ -17,6 +17,13 @@ export default function CLesson10() {
         {lang === 'en' ? 'Step 10: Basic Data Structures' : '10단계: 자료구조 기초'}
       </h1>
 
+      <div className="c-lesson-warning" style={{ padding: '12px 16px', margin: '0 0 20px', background: 'var(--warning-bg, #fff3cd)', color: 'var(--warning-text, #856404)', borderRadius: '8px', fontSize: '0.9rem', border: '1px solid var(--warning-border, #ffc107)', lineHeight: 1.6 }}>
+        <i className="fa-solid fa-triangle-exclamation" style={{ marginRight: '8px' }} />
+        {lang === 'en'
+          ? 'This lesson uses struct, malloc, free, and other features not supported by the browser compiler (JSCPP). Please use a local compiler like GCC to run these examples.'
+          : '이 레슨은 struct, malloc, free 등 브라우저 컴파일러(JSCPP)에서 지원하지 않는 기능을 사용합니다. GCC 등 로컬 컴파일러에서 실행해 주세요.'}
+      </div>
+
       <section className="c-lesson-section">
         <h2>{lang === 'en' ? 'Linked List' : '연결 리스트'}</h2>
         <p>{lang === 'en'

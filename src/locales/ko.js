@@ -138,6 +138,8 @@ export default {
     inputHeader: '입력값',
     inputPlaceholder: '값을 입력하세요',
     errorPrefix: '오류',
+    unsupportedWarning: '이 코드는 브라우저 컴파일러(JSCPP)에서 지원하지 않는 기능을 사용합니다.',
+    localCompilerNote: 'GCC 등 로컬 컴파일러에서 실행해 주세요.',
   },
   quiz: {
     title: '퀴즈 센터',
