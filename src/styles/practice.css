@@ -1,24 +1,45 @@
-/* === Practice Page === */
-.practice-page { padding: 40px 0 80px; }
-
-.practice-page h1 {
-  font-size: 28px;
-  margin-bottom: 8px;
+/* === C Practice Page === */
+.c-practice-page {
+  padding: 40px 0 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
-.practice-page > .container > p {
-  color: var(--text-secondary);
-  margin-bottom: 24px;
-}
-
-.practice-steps {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+/* Practice Header */
+.practice-header {
   margin-bottom: 32px;
 }
 
-.practice-step-btn {
+.practice-header h1 {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.practice-subtitle {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+/* Step Selector */
+.practice-steps {
+  margin-bottom: 32px;
+}
+
+.steps-scroll {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.step-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 8px 18px;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
@@ -27,92 +48,145 @@
   color: var(--text-secondary);
   background: var(--bg-card);
   transition: all 0.2s;
+  white-space: nowrap;
 }
 
-.practice-step-btn:hover {
+.step-btn:hover {
   border-color: var(--accent-blue);
   color: var(--accent-blue);
 }
 
-.practice-step-btn.active {
+.step-btn.active {
   background: var(--primary-color);
   color: white;
   border-color: var(--primary-color);
 }
 
-/* Practice Examples */
-.practice-example {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  margin-bottom: 24px;
-  overflow: hidden;
-}
-
-.practice-example-header {
+.step-number {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--border-light);
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
 }
 
-.practice-example-header h3 {
-  font-size: 15px;
-  font-weight: 600;
+.step-btn:not(.active) .step-number {
+  background: var(--bg-secondary);
+  color: var(--text-muted);
 }
 
-.practice-example-body {
-  padding: 0;
+.step-title {
+  font-size: 13px;
 }
 
-.practice-explanation {
-  padding: 14px 20px;
+/* Practice Content */
+.practice-content {
+  margin-bottom: 32px;
+}
+
+.practice-content-header {
+  margin-bottom: 20px;
+}
+
+.practice-content-header h2 {
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.practice-content-header p {
   font-size: 14px;
   color: var(--text-secondary);
-  line-height: 1.6;
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border-light);
 }
 
-/* Practice Runner */
-.practice-runner-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 16px;
-  background: var(--primary-dark);
+.step-badge {
+  display: inline-flex;
+  padding: 2px 10px;
+  background: var(--accent-blue);
   color: white;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+/* Example Tabs */
+.example-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.example-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
   font-size: 13px;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  transition: all 0.2s;
+}
+
+.example-tab:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.example-tab.active {
+  background: rgba(79, 195, 247, 0.1);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
   font-weight: 600;
 }
 
-.practice-toolbar {
+/* Editor Section */
+.practice-editor-section {
+  margin-bottom: 24px;
+}
+
+/* Navigation */
+.practice-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border-light);
+  gap: 16px;
 }
 
-.practice-output {
-  border-top: 1px solid var(--border-light);
-  padding: 12px 16px;
-  max-height: 200px;
-  overflow: auto;
-}
-
-.practice-output pre {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  line-height: 1.6;
-  white-space: pre-wrap;
-}
-
-.practice-input-form {
-  padding: 12px 16px;
+.practice-nav-btn {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 8px;
+  padding: 10px 20px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  transition: all 0.2s;
+}
+
+.practice-nav-btn:hover:not(:disabled) {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.practice-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.practice-nav-info {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
 }

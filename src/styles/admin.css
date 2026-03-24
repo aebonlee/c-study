@@ -1,11 +1,41 @@
 /* === Admin Page === */
-.admin-page { padding: 40px 0 80px; }
+.admin-page {
+  padding: 40px 0 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
 
-.admin-page h1 {
-  font-size: 28px;
+.admin-loading {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.admin-loading p {
+  margin-top: 16px;
+  color: var(--text-secondary);
+}
+
+/* Admin Header */
+.admin-header {
   margin-bottom: 24px;
 }
 
+.admin-header h1 {
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.admin-header p {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+/* Tabs */
 .admin-tabs {
   display: flex;
   gap: 4px;
@@ -14,6 +44,9 @@
 }
 
 .admin-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 10px 20px;
   font-size: 14px;
   font-weight: 500;
@@ -31,12 +64,122 @@
   font-weight: 600;
 }
 
-.admin-card {
+/* Dashboard */
+.admin-dashboard {
+  margin-bottom: 32px;
+}
+
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.admin-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+}
+
+.admin-stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.admin-stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-stat-value {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--primary-color);
+  line-height: 1.2;
+}
+
+.admin-stat-label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.admin-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 20px;
+  background: rgba(79, 195, 247, 0.06);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: var(--radius-md);
+}
+
+.admin-notice i {
+  color: var(--accent-blue);
+  margin-top: 2px;
+}
+
+.admin-notice p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Users Section */
+.admin-users {
+  margin-bottom: 32px;
+}
+
+.admin-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.admin-section-header h2 {
+  font-size: 20px;
+}
+
+.admin-refresh-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  transition: all 0.2s;
+}
+
+.admin-refresh-btn:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.admin-refresh-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.admin-table-wrapper {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 24px;
-  margin-bottom: 16px;
+  overflow-x: auto;
 }
 
 .admin-table {
@@ -45,7 +188,7 @@
 }
 
 .admin-table th, .admin-table td {
-  padding: 10px 14px;
+  padding: 12px 16px;
   text-align: left;
   border-bottom: 1px solid var(--border-light);
   font-size: 14px;
@@ -56,15 +199,138 @@
   color: var(--text-secondary);
   font-size: 12px;
   text-transform: uppercase;
+  background: var(--bg-secondary);
 }
 
-.role-badge {
+.user-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-avatar-small {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.user-avatar-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.provider-badge {
   padding: 2px 8px;
   border-radius: 4px;
   font-size: 11px;
   font-weight: 600;
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
 }
 
-.role-badge.admin { background: rgba(239, 83, 80, 0.1); color: var(--accent-red); }
-.role-badge.teacher { background: rgba(79, 195, 247, 0.1); color: var(--accent-blue); }
-.role-badge.student { background: rgba(102, 187, 106, 0.1); color: var(--accent-green); }
+.role-select {
+  padding: 4px 10px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  outline: none;
+  background: var(--bg-card);
+}
+
+.role-select:focus {
+  border-color: var(--accent-blue);
+}
+
+.role-updated {
+  color: var(--accent-green);
+  margin-left: 6px;
+  animation: fadeIn 0.3s ease;
+}
+
+.date-cell {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.admin-action-btn {
+  padding: 6px 10px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.admin-action-btn:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.admin-empty {
+  text-align: center;
+  padding: 48px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+}
+
+.admin-empty i {
+  font-size: 36px;
+  color: var(--text-muted);
+  opacity: 0.5;
+  margin-bottom: 10px;
+}
+
+.admin-empty p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Content Section */
+.admin-content {
+  margin-bottom: 32px;
+}
+
+.admin-content-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.admin-content-card {
+  padding: 28px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.admin-content-card:hover {
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.admin-content-card i {
+  font-size: 28px;
+  color: var(--accent-blue);
+  margin-bottom: 12px;
+}
+
+.admin-content-card h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.admin-content-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+}

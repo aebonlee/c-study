@@ -324,3 +324,36 @@ src/styles/
 - **수정**: 양쪽 locale 파일에 키 추가
   - ko: `'레슨을 찾을 수 없습니다'`, `'홈으로 돌아가기'`
   - en: `'Lesson not found'`, `'Back to Home'`
+
+---
+
+## 2026-03-25 (Day 1) - CSS 클래스명 전면 수정
+
+### 문제 발견
+배포 사이트에서 디자인이 전면 깨짐 확인. 원인: JSX 컴포넌트의 className과 CSS 파일의 선택자명이 대규모 불일치.
+
+### 수정 범위 (13개 CSS 파일, +3,456줄)
+
+| CSS 파일 | 대응 컴포넌트 | 변경량 |
+|---------|-------------|--------|
+| hero.css | Home.jsx | +397줄 (히어로, 터미널, 통계, 특징, 학습경로, CTA) |
+| base.css | App.jsx | +10줄 (container, 유틸리티) |
+| course.css | LevelPage, LessonPage | +481줄 (레벨 페이지, 레슨 상세) |
+| community.css | Community, Post, Write | +714줄 (게시판, 글쓰기, 댓글) |
+| teacher.css | TeacherPage | +415줄 (교사 대시보드) |
+| mypage.css | MyPage | +372줄 (사용자 대시보드) |
+| c-learning.css | CLearning, CLesson | +301줄 (커리큘럼, 강의) |
+| admin.css | AdminPage | +288줄 (관리자 패널) |
+| quiz.css | QuizCenter | +271줄 (퀴즈 센터) |
+| guide.css | Guide | +218줄 (이용 가이드) |
+| practice.css | CPractice | +188줄 (실습) |
+| auth.css | Login | +190줄 (로그인) |
+| badge.css | BadgeCollection | +149줄 (배지 컬렉션) |
+
+### 주요 패턴 수정 예시
+- `.hero` → `.hero-section`
+- `.hero-description` → `.hero-subtitle`
+- `.hero-buttons` → `.hero-actions`
+- `.path-section` → `.learning-path-section`
+- `.overview-section` → `.progress-overview-section`
+- 터미널 UI, 배지 그리드, 퀴즈 카드 등 누락 CSS 전량 추가

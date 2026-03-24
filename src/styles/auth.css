@@ -9,47 +9,129 @@
 
 .login-container {
   width: 100%;
-  max-width: 420px;
-  text-align: center;
-}
-
-.login-logo {
-  font-size: 48px;
-  font-weight: 900;
-  margin-bottom: 8px;
-}
-
-.login-logo .brand-c { color: var(--accent-blue); }
-.login-logo .brand-master { color: var(--primary-dark); }
-
-.login-subtitle {
-  font-size: 15px;
-  color: var(--text-secondary);
-  margin-bottom: 32px;
-}
-
-.login-card {
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 40px 32px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
 }
 
-.login-card h2 {
-  font-size: 22px;
+/* Left - Branding */
+.login-branding {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+  color: white;
+  padding: 48px 36px;
+  display: flex;
+  align-items: center;
+}
+
+.login-branding-content {
+  width: 100%;
+}
+
+.login-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.login-logo i {
+  font-size: 28px;
+  color: var(--accent-blue);
+}
+
+.login-logo span {
+  font-size: 28px;
+  font-weight: 900;
+  color: white;
+}
+
+.login-branding h2 {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.login-branding p {
+  font-size: 14px;
+  opacity: 0.85;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.login-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.login-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.login-feature-item i {
+  color: var(--accent-green);
+  font-size: 14px;
+}
+
+.login-code-snippet {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  overflow: hidden;
+}
+
+.login-code-snippet pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: rgba(224, 231, 239, 0.8);
+  line-height: 1.6;
+  white-space: pre;
+  margin: 0;
+}
+
+/* Right - Login Form */
+.login-form-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 36px;
+}
+
+.login-form-content {
+  width: 100%;
+  max-width: 320px;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-header h1 {
+  font-size: 24px;
   margin-bottom: 8px;
 }
 
-.login-card p {
+.login-header p {
   font-size: 14px;
   color: var(--text-secondary);
-  margin-bottom: 28px;
 }
 
 .login-buttons {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-bottom: 20px;
 }
 
 .login-btn {
@@ -63,6 +145,8 @@
   font-size: 15px;
   font-weight: 600;
   transition: all 0.2s;
+  border: none;
+  cursor: pointer;
 }
 
 .google-btn {
@@ -85,9 +169,53 @@
   background: #FDD835;
 }
 
-.login-footer {
-  margin-top: 20px;
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-light);
+}
+
+.login-divider span {
   font-size: 12px;
+  color: var(--text-muted);
+}
+
+.login-guest-info {
+  display: flex;
+  gap: 10px;
+  padding: 14px 16px;
+  background: rgba(79, 195, 247, 0.06);
+  border-radius: var(--radius-md);
+  margin-bottom: 16px;
+}
+
+.login-guest-info i {
+  color: var(--accent-blue);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.login-guest-info p {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.login-terms {
+  text-align: center;
+}
+
+.login-terms p {
+  font-size: 11px;
   color: var(--text-muted);
   line-height: 1.5;
 }
@@ -165,4 +293,24 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-container {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
+  .login-branding {
+    padding: 32px 24px;
+  }
+
+  .login-code-snippet {
+    display: none;
+  }
+
+  .login-form-section {
+    padding: 32px 24px;
+  }
 }

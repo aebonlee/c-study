@@ -1,31 +1,159 @@
 /* === Badge Collection Page === */
-.badge-page { padding: 40px 0 80px; }
+.badge-collection-page {
+  padding: 40px 0 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
 
-.badge-section { margin-bottom: 48px; }
+/* Badge Header */
+.badge-header {
+  margin-bottom: 40px;
+}
 
-.badge-section-header {
+.badge-header-content {
+  margin-bottom: 24px;
+}
+
+.badge-header-content h1 {
+  font-size: 28px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.badge-subtitle {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.badge-overall-progress {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
   margin-bottom: 20px;
 }
 
-.badge-section-header h2 {
+.badge-progress-stats {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.badge-earned-count {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--primary-color);
+}
+
+.badge-total-count {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.badge-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-left: 8px;
+}
+
+/* Tier Summary */
+.tier-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.tier-summary-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+}
+
+.tier-summary-card i {
   font-size: 20px;
 }
 
-.badge-section-count {
+.tier-name {
   font-size: 13px;
-  color: var(--text-muted);
-  background: var(--bg-secondary);
-  padding: 2px 10px;
-  border-radius: 99px;
+  color: var(--text-secondary);
+  font-weight: 500;
 }
 
-.badge-grid {
+.tier-count {
+  font-size: 15px;
+  font-weight: 700;
+  margin-left: auto;
+}
+
+/* Badge Tier Section */
+.badge-tier-section {
+  margin-bottom: 40px;
+}
+
+.tier-header {
+  margin-bottom: 20px;
+}
+
+.tier-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.tier-title-row i {
+  font-size: 22px;
+}
+
+.tier-title-row h2 {
+  font-size: 20px;
+}
+
+.tier-badge-count {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-left: auto;
+  font-weight: 600;
+}
+
+/* Badges Grid */
+.badges-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
+}
+
+/* No Badges */
+.no-badges {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+}
+
+.no-badges i {
+  font-size: 48px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+
+.no-badges h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.no-badges p {
+  font-size: 14px;
+  color: var(--text-secondary);
 }
 
 /* === Badge Card === */
@@ -141,7 +269,6 @@
   justify-content: center;
   font-size: 22px;
   color: var(--accent-gold);
-  animation: badgeEarn 0.5s ease 0.2s both;
 }
 
 .badge-notification-text {

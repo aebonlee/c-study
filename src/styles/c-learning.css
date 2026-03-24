@@ -1,80 +1,313 @@
-/* === C Learning Pages === */
-.c-learning-page { padding: 40px 0 80px; }
+/* === C Learning Page === */
+.c-learning-page {
+  padding: 40px 0 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
 
-.c-learning-page h1 {
+/* Header */
+.c-learning-header {
+  margin-bottom: 40px;
+}
+
+.c-learning-header-content {
+  margin-bottom: 24px;
+}
+
+.c-learning-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(79, 195, 247, 0.1);
+  border: 1px solid rgba(79, 195, 247, 0.2);
+  border-radius: 99px;
+  color: var(--accent-blue);
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.c-learning-header-content h1 {
   font-size: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 8px;
 }
 
-.c-learning-page > .container > p {
+.c-learning-subtitle {
+  font-size: 15px;
   color: var(--text-secondary);
-  margin-bottom: 32px;
 }
 
-.week-grid {
+/* Info Cards */
+.c-learning-info-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
 }
 
-.week-card {
+.info-card {
   display: flex;
-  gap: 16px;
-  padding: 24px;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+}
+
+.info-card i {
+  font-size: 18px;
+  color: var(--accent-blue);
+}
+
+.info-card span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Curriculum Timeline */
+.c-learning-curriculum {
+  margin-bottom: 40px;
+}
+
+.curriculum-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+/* Vertical line */
+.curriculum-timeline::before {
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-light);
+}
+
+.curriculum-card {
+  display: flex;
+  gap: 20px;
+  padding: 16px 0;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.curriculum-card:hover .curriculum-card-content {
+  border-color: var(--accent-blue);
+  box-shadow: var(--shadow-sm);
+}
+
+.curriculum-timeline-dot {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.curriculum-timeline-dot span {
+  color: white;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.curriculum-card-content {
+  flex: 1;
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  transition: all var(--transition);
+  padding: 24px;
+  transition: all 0.2s;
 }
 
-.week-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--accent-blue);
+.curriculum-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
 }
 
-.week-number {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  background: rgba(79, 195, 247, 0.1);
-  color: var(--accent-blue);
+.curriculum-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  font-weight: 800;
   flex-shrink: 0;
 }
 
-.week-info h3 {
+.curriculum-card-header h3 {
   font-size: 16px;
-  margin-bottom: 6px;
+  font-weight: 700;
 }
 
-.week-info p {
+.curriculum-desc {
   font-size: 13px;
   color: var(--text-secondary);
   line-height: 1.5;
+  margin-bottom: 12px;
 }
 
-.week-topics {
+.curriculum-topics {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-top: 8px;
+  margin-bottom: 12px;
 }
 
-.week-topic-tag {
-  padding: 2px 8px;
-  background: var(--bg-secondary);
-  color: var(--text-muted);
-  border-radius: 4px;
+.curriculum-topic-tag {
+  padding: 3px 10px;
+  border-radius: 99px;
   font-size: 11px;
+  font-weight: 600;
 }
 
-/* Lesson Detail */
-.c-lesson-page { padding: 40px 0 80px; }
+.curriculum-card-footer {
+  margin-top: 4px;
+}
+
+.curriculum-link {
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity 0.2s;
+}
+
+.curriculum-link:hover {
+  opacity: 0.8;
+}
+
+/* CTA Section */
+.c-learning-cta {
+  text-align: center;
+  padding: 48px 24px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+  border-radius: var(--radius-lg);
+}
+
+.c-learning-cta-content h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 8px;
+}
+
+.c-learning-cta-content p {
+  font-size: 15px;
+  color: rgba(224, 231, 239, 0.85);
+  margin-bottom: 20px;
+}
+
+.cta-start-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  background: var(--accent-blue);
+  color: var(--primary-dark);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.2s;
+}
+
+.cta-start-btn:hover {
+  background: #81D4FA;
+  transform: translateY(-2px);
+}
+
+/* === C Lesson Detail Page === */
+.c-lesson-page {
+  padding: 40px 0 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* CLesson specific classes */
+.lesson-header {
+  margin-bottom: 32px;
+}
+
+.lesson-week {
+  display: inline-block;
+  padding: 4px 14px;
+  background: rgba(79, 195, 247, 0.1);
+  color: var(--accent-blue);
+  border-radius: 99px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.lesson-subtitle {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.lesson-section {
+  margin-bottom: 32px;
+}
+
+.lesson-section h2 {
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  color: var(--primary-dark);
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border-light);
+}
+
+.c-lesson-info-box {
+  padding: 20px 24px;
+  background: rgba(79, 195, 247, 0.04);
+  border: 1px solid rgba(79, 195, 247, 0.15);
+  border-radius: var(--radius-md);
+  margin: 16px 0;
+}
+
+.c-lesson-info-box h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.c-lesson-info-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.c-lesson-info-box li {
+  padding: 4px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
 
 .c-lesson-nav {
   display: flex;
@@ -247,7 +480,7 @@
 }
 
 .lesson-objectives li::before {
-  content: '✓';
+  content: '\2713';
   position: absolute;
   left: 0;
   color: var(--accent-green);
