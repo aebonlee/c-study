@@ -1,4 +1,4 @@
-import{u as y,b as T,f as A,r as d,i as u,s as g,T as b,l as _,j as e,d as D,L as S}from"./index-D6XkwUg3.js";function F(){const{lang:a}=y(),{user:E,isTeacher:k,isAdmin:C,loading:h}=T(),m=A(),[c,w]=d.useState([]),[l,o]=d.useState("overview"),[j,x]=d.useState(!1),n=k||C;d.useEffect(()=>{!h&&!n&&m("/",{replace:!0})},[h,n,m]),d.useEffect(()=>{n&&u()&&N()},[n]);const N=async()=>{if(u()){x(!0);try{const{data:s,error:t}=await g.from(b.USER_PROGRESS).select(`
+import{u as y,b as T,f as A,r as d,i as u,s as g,T as b,l as _,j as e,d as D,L as S}from"./index-3BMh-7Pe.js";function F(){const{lang:a}=y(),{user:E,isTeacher:k,isAdmin:C,loading:h}=T(),m=A(),[c,w]=d.useState([]),[l,o]=d.useState("overview"),[j,x]=d.useState(!1),n=k||C;d.useEffect(()=>{!h&&!n&&m("/",{replace:!0})},[h,n,m]),d.useEffect(()=>{n&&u()&&N()},[n]);const N=async()=>{if(u()){x(!0);try{const{data:s,error:t}=await g.from(b.USER_PROGRESS).select(`
           user_id,
           completed_lessons,
           code_runs,
