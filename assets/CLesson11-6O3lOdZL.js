@@ -1,4 +1,4 @@
-import{u as i,j as e,L as s}from"./index-1JnIhsU7.js";import{C as n}from"./CodeEditor-DGAM68dL.js";function a(){const{lang:t}=i();return e.jsxs("div",{className:"c-lesson-page",children:[e.jsxs("div",{className:"c-lesson-nav-top",children:[e.jsxs(s,{to:"/c-learning",children:[e.jsx("i",{className:"fa-solid fa-arrow-left"})," ",t==="en"?"Back to Curriculum":"커리큘럼으로 돌아가기"]}),e.jsx("span",{className:"c-lesson-week",children:"Week 11"})]}),e.jsxs("h1",{className:"c-lesson-title",children:[e.jsx("i",{className:"fa-solid fa-rocket"}),t==="en"?"Week 11: Final Project - Student Grade Management System":"11주차: 종합 프로젝트 - 학생 성적 관리 시스템"]}),e.jsxs("section",{className:"c-lesson-section",children:[e.jsx("h2",{children:t==="en"?"Project Overview":"프로젝트 개요"}),e.jsx("p",{children:t==="en"?"In this final project, we combine everything learned throughout the course to build a Student Grade Management System. This project uses structs, arrays, pointers, functions, file I/O, and dynamic memory allocation.":"이 종합 프로젝트에서는 과정 전체에서 배운 모든 내용을 결합하여 학생 성적 관리 시스템을 구현합니다. 구조체, 배열, 포인터, 함수, 파일 입출력, 동적 메모리 할당을 사용합니다."}),e.jsxs("div",{className:"c-lesson-info-box",children:[e.jsxs("h3",{children:[e.jsx("i",{className:"fa-solid fa-list-check"})," ",t==="en"?"Features to Implement":"구현할 기능"]}),e.jsxs("ul",{children:[e.jsx("li",{children:t==="en"?"Add new students with name, ID, and grades":"이름, 학번, 성적으로 학생 추가"}),e.jsx("li",{children:t==="en"?"Display all students and their grades":"전체 학생 및 성적 표시"}),e.jsx("li",{children:t==="en"?"Search students by name or ID":"이름 또는 학번으로 학생 검색"}),e.jsx("li",{children:t==="en"?"Calculate average, min, max grades":"평균, 최소, 최대 성적 계산"}),e.jsx("li",{children:t==="en"?"Sort students by grade":"성적순 정렬"}),e.jsx("li",{children:t==="en"?"Save/Load data from file":"파일에 데이터 저장/불러오기"}),e.jsx("li",{children:t==="en"?"Delete student records":"학생 기록 삭제"})]})]})]}),e.jsxs("section",{className:"c-lesson-section",children:[e.jsx("h2",{children:t==="en"?"Part 1: Data Structure Design":"파트 1: 자료구조 설계"}),e.jsx("p",{children:t==="en"?"First, we define the data structures and constants for our system:":"먼저, 시스템에 필요한 자료구조와 상수를 정의합니다:"}),e.jsx(n,{initialCode:`#include <stdio.h>
+import{u as i,j as t,L as s}from"./index-D6XkwUg3.js";import{C as n}from"./CodeEditor-CfyPsYsa.js";function a(){const{lang:e}=i();return t.jsxs("div",{className:"c-lesson-page",children:[t.jsxs("div",{className:"c-lesson-nav-top",children:[t.jsxs(s,{to:"/c-learning",children:[t.jsx("i",{className:"fa-solid fa-arrow-left"})," ",e==="en"?"Back to Curriculum":"커리큘럼으로 돌아가기"]}),t.jsx("span",{className:"c-lesson-week",children:"Step 11"})]}),t.jsxs("h1",{className:"c-lesson-title",children:[t.jsx("i",{className:"fa-solid fa-rocket"}),e==="en"?"Step 11: Final Project - Student Grade Management System":"11단계: 종합 프로젝트 - 학생 성적 관리 시스템"]}),t.jsxs("section",{className:"c-lesson-section",children:[t.jsx("h2",{children:e==="en"?"Project Overview":"프로젝트 개요"}),t.jsx("p",{children:e==="en"?"In this final project, we combine everything learned throughout the course to build a Student Grade Management System. This project uses structs, arrays, pointers, functions, file I/O, and dynamic memory allocation.":"이 종합 프로젝트에서는 과정 전체에서 배운 모든 내용을 결합하여 학생 성적 관리 시스템을 구현합니다. 구조체, 배열, 포인터, 함수, 파일 입출력, 동적 메모리 할당을 사용합니다."}),t.jsxs("div",{className:"c-lesson-info-box",children:[t.jsxs("h3",{children:[t.jsx("i",{className:"fa-solid fa-list-check"})," ",e==="en"?"Features to Implement":"구현할 기능"]}),t.jsxs("ul",{children:[t.jsx("li",{children:e==="en"?"Add new students with name, ID, and grades":"이름, 학번, 성적으로 학생 추가"}),t.jsx("li",{children:e==="en"?"Display all students and their grades":"전체 학생 및 성적 표시"}),t.jsx("li",{children:e==="en"?"Search students by name or ID":"이름 또는 학번으로 학생 검색"}),t.jsx("li",{children:e==="en"?"Calculate average, min, max grades":"평균, 최소, 최대 성적 계산"}),t.jsx("li",{children:e==="en"?"Sort students by grade":"성적순 정렬"}),t.jsx("li",{children:e==="en"?"Save/Load data from file":"파일에 데이터 저장/불러오기"}),t.jsx("li",{children:e==="en"?"Delete student records":"학생 기록 삭제"})]})]})]}),t.jsxs("section",{className:"c-lesson-section",children:[t.jsx("h2",{children:e==="en"?"Part 1: Data Structure Design":"파트 1: 자료구조 설계"}),t.jsx("p",{children:e==="en"?"First, we define the data structures and constants for our system:":"먼저, 시스템에 필요한 자료구조와 상수를 정의합니다:"}),t.jsx(n,{initialCode:`#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -53,7 +53,7 @@ int main() {
     printf("\\n");
     freeDB(&db);
     return 0;
-}`,expectedOutput:"Student DB initialized (capacity: 10)",lessonId:"c-lesson-11-struct"})]}),e.jsxs("section",{className:"c-lesson-section",children:[e.jsx("h2",{children:t==="en"?"Part 2: Core Functions (Add & Display)":"파트 2: 핵심 함수 (추가 및 표시)"}),e.jsx(n,{initialCode:`#include <stdio.h>
+}`,expectedOutput:"Student DB initialized (capacity: 10)",lessonId:"c-lesson-11-struct"})]}),t.jsxs("section",{className:"c-lesson-section",children:[t.jsx("h2",{children:e==="en"?"Part 2: Core Functions (Add & Display)":"파트 2: 핵심 함수 (추가 및 표시)"}),t.jsx(n,{initialCode:`#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -148,7 +148,7 @@ int main() {
 
     free(db.students);
     return 0;
-}`,expectedOutput:"ID     Name           Korean English ...",lessonId:"c-lesson-11-core"})]}),e.jsxs("section",{className:"c-lesson-section",children:[e.jsx("h2",{children:t==="en"?"Part 3: Search & Statistics":"파트 3: 검색 및 통계"}),e.jsx(n,{initialCode:`#include <stdio.h>
+}`,expectedOutput:"ID     Name           Korean English ...",lessonId:"c-lesson-11-core"})]}),t.jsxs("section",{className:"c-lesson-section",children:[t.jsx("h2",{children:e==="en"?"Part 3: Search & Statistics":"파트 3: 검색 및 통계"}),t.jsx(n,{initialCode:`#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -279,7 +279,7 @@ int main() {
 
     free(db.students);
     return 0;
-}`,expectedOutput:"Found: Park (avg: 96.4, grade: A)",lessonId:"c-lesson-11-search"})]}),e.jsxs("section",{className:"c-lesson-section",children:[e.jsx("h2",{children:t==="en"?"Part 4: File Save & Load":"파트 4: 파일 저장 및 불러오기"}),e.jsx(n,{initialCode:`#include <stdio.h>
+}`,expectedOutput:"Found: Park (avg: 96.4, grade: A)",lessonId:"c-lesson-11-search"})]}),t.jsxs("section",{className:"c-lesson-section",children:[t.jsx("h2",{children:e==="en"?"Part 4: File Save & Load":"파트 4: 파일 저장 및 불러오기"}),t.jsx(n,{initialCode:`#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -368,7 +368,7 @@ int main() {
 
     free(db.students);
     return 0;
-}`,expectedOutput:"Saved 3 students to students.dat\\nReport saved to report.txt",lessonId:"c-lesson-11-file"})]}),e.jsxs("section",{className:"c-lesson-section",children:[e.jsx("h2",{children:t==="en"?"Part 5: Complete Menu System":"파트 5: 완성된 메뉴 시스템"}),e.jsx(n,{initialCode:`#include <stdio.h>
+}`,expectedOutput:"Saved 3 students to students.dat\\nReport saved to report.txt",lessonId:"c-lesson-11-file"})]}),t.jsxs("section",{className:"c-lesson-section",children:[t.jsx("h2",{children:e==="en"?"Part 5: Complete Menu System":"파트 5: 완성된 메뉴 시스템"}),t.jsx(n,{initialCode:`#include <stdio.h>
 #include <stdlib.h>
 
 void printMenu() {
@@ -394,22 +394,22 @@ int main() {
     printf("================================\\n\\n");
 
     printf("This project combines ALL C concepts:\\n\\n");
-    printf("  [Week 2]  Variables & Data Types\\n");
-    printf("  [Week 3]  Control Flow\\n");
-    printf("  [Week 4]  Functions & Scope\\n");
-    printf("  [Week 5]  Arrays & Strings\\n");
-    printf("  [Week 6]  Pointer Basics\\n");
-    printf("  [Week 7]  Dynamic Memory\\n");
-    printf("  [Week 8]  Structs & Unions\\n");
-    printf("  [Week 9]  File I/O\\n");
-    printf("  [Week 10] Data Structures\\n\\n");
+    printf("  [Step 2]  Variables & Data Types\\n");
+    printf("  [Step 3]  Control Flow\\n");
+    printf("  [Step 4]  Functions & Scope\\n");
+    printf("  [Step 5]  Arrays & Strings\\n");
+    printf("  [Step 6]  Pointer Basics\\n");
+    printf("  [Step 7]  Dynamic Memory\\n");
+    printf("  [Step 8]  Structs & Unions\\n");
+    printf("  [Step 9]  File I/O\\n");
+    printf("  [Step 10] Data Structures\\n\\n");
 
     printMenu();
     printf("\\n");
 
     printf("=== Congratulations! ===\\n");
-    printf("You completed the 11-week\\n");
+    printf("You completed the 11-step\\n");
     printf("C Programming curriculum!\\n");
 
     return 0;
-}`,lessonId:"c-lesson-11-menu"}),e.jsxs("div",{className:"c-lesson-tip",children:[e.jsx("i",{className:"fa-solid fa-lightbulb"}),e.jsx("p",{children:t==="en"?"Challenge: Combine all parts into a single program with a working do-while menu loop. Add input validation and error handling for production quality.":"도전 과제: 모든 파트를 do-while 메뉴 루프가 동작하는 하나의 프로그램으로 결합해 보세요. 프로덕션 품질을 위해 입력 검증과 오류 처리를 추가하세요."})]})]}),e.jsxs("section",{className:"c-lesson-section",children:[e.jsx("h2",{children:t==="en"?"Course Summary":"과정 요약"}),e.jsxs("div",{className:"c-lesson-info-box",children:[e.jsxs("h3",{children:[e.jsx("i",{className:"fa-solid fa-graduation-cap"})," ",t==="en"?"11 Weeks of C Mastery":"11주간의 C 마스터 과정"]}),e.jsxs("table",{className:"c-lesson-table",children:[e.jsx("thead",{children:e.jsxs("tr",{children:[e.jsx("th",{children:t==="en"?"Week":"주차"}),e.jsx("th",{children:t==="en"?"Topic":"주제"})]})}),e.jsxs("tbody",{children:[e.jsxs("tr",{children:[e.jsx("td",{children:"1"}),e.jsx("td",{children:t==="en"?"Introduction, IDE Setup, Hello World":"C언어 소개, 개발환경, Hello World"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:"2"}),e.jsx("td",{children:t==="en"?"Variables, Data Types, Operators":"변수, 자료형, 연산자"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:"3"}),e.jsx("td",{children:t==="en"?"Control Flow (if, switch, loops)":"제어문 (if, switch, 반복문)"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:"4"}),e.jsx("td",{children:t==="en"?"Functions & Scope":"함수와 스코프"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:"5"}),e.jsx("td",{children:t==="en"?"Arrays & Strings":"배열과 문자열"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:"6"}),e.jsx("td",{children:t==="en"?"Pointer Basics":"포인터 기초"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:"7"}),e.jsx("td",{children:t==="en"?"Advanced Pointers & Dynamic Memory":"포인터 심화와 동적 메모리"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:"8"}),e.jsx("td",{children:t==="en"?"Structs & Unions":"구조체와 공용체"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:"9"}),e.jsx("td",{children:t==="en"?"File I/O":"파일 입출력"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:"10"}),e.jsx("td",{children:t==="en"?"Data Structures (List, Stack, Queue)":"자료구조 (리스트, 스택, 큐)"})]}),e.jsxs("tr",{children:[e.jsx("td",{children:"11"}),e.jsx("td",{children:t==="en"?"Final Project":"종합 프로젝트"})]})]})]})]})]}),e.jsxs("div",{className:"c-lesson-nav-bottom",children:[e.jsxs(s,{to:"/c-learning/10",className:"c-lesson-nav-btn prev",children:[e.jsx("i",{className:"fa-solid fa-arrow-left"}),t==="en"?"Prev: Data Structures":"이전: 자료구조 기초"]}),e.jsxs(s,{to:"/c-learning",className:"c-lesson-nav-btn next",children:[t==="en"?"Back to Curriculum":"커리큘럼으로 돌아가기",e.jsx("i",{className:"fa-solid fa-arrow-right"})]})]})]})}export{a as default};
+}`,lessonId:"c-lesson-11-menu"}),t.jsxs("div",{className:"c-lesson-tip",children:[t.jsx("i",{className:"fa-solid fa-lightbulb"}),t.jsx("p",{children:e==="en"?"Challenge: Combine all parts into a single program with a working do-while menu loop. Add input validation and error handling for production quality.":"도전 과제: 모든 파트를 do-while 메뉴 루프가 동작하는 하나의 프로그램으로 결합해 보세요. 프로덕션 품질을 위해 입력 검증과 오류 처리를 추가하세요."})]})]}),t.jsxs("section",{className:"c-lesson-section",children:[t.jsx("h2",{children:e==="en"?"Course Summary":"과정 요약"}),t.jsxs("div",{className:"c-lesson-info-box",children:[t.jsxs("h3",{children:[t.jsx("i",{className:"fa-solid fa-graduation-cap"})," ",e==="en"?"11 Steps of C Mastery":"11단계 C 마스터 과정"]}),t.jsxs("table",{className:"c-lesson-table",children:[t.jsx("thead",{children:t.jsxs("tr",{children:[t.jsx("th",{children:e==="en"?"Step":"단계"}),t.jsx("th",{children:e==="en"?"Topic":"주제"})]})}),t.jsxs("tbody",{children:[t.jsxs("tr",{children:[t.jsx("td",{children:"1"}),t.jsx("td",{children:e==="en"?"Introduction, IDE Setup, Hello World":"C언어 소개, 개발환경, Hello World"})]}),t.jsxs("tr",{children:[t.jsx("td",{children:"2"}),t.jsx("td",{children:e==="en"?"Variables, Data Types, Operators":"변수, 자료형, 연산자"})]}),t.jsxs("tr",{children:[t.jsx("td",{children:"3"}),t.jsx("td",{children:e==="en"?"Control Flow (if, switch, loops)":"제어문 (if, switch, 반복문)"})]}),t.jsxs("tr",{children:[t.jsx("td",{children:"4"}),t.jsx("td",{children:e==="en"?"Functions & Scope":"함수와 스코프"})]}),t.jsxs("tr",{children:[t.jsx("td",{children:"5"}),t.jsx("td",{children:e==="en"?"Arrays & Strings":"배열과 문자열"})]}),t.jsxs("tr",{children:[t.jsx("td",{children:"6"}),t.jsx("td",{children:e==="en"?"Pointer Basics":"포인터 기초"})]}),t.jsxs("tr",{children:[t.jsx("td",{children:"7"}),t.jsx("td",{children:e==="en"?"Advanced Pointers & Dynamic Memory":"포인터 심화와 동적 메모리"})]}),t.jsxs("tr",{children:[t.jsx("td",{children:"8"}),t.jsx("td",{children:e==="en"?"Structs & Unions":"구조체와 공용체"})]}),t.jsxs("tr",{children:[t.jsx("td",{children:"9"}),t.jsx("td",{children:e==="en"?"File I/O":"파일 입출력"})]}),t.jsxs("tr",{children:[t.jsx("td",{children:"10"}),t.jsx("td",{children:e==="en"?"Data Structures (List, Stack, Queue)":"자료구조 (리스트, 스택, 큐)"})]}),t.jsxs("tr",{children:[t.jsx("td",{children:"11"}),t.jsx("td",{children:e==="en"?"Final Project":"종합 프로젝트"})]})]})]})]})]}),t.jsxs("div",{className:"c-lesson-nav-bottom",children:[t.jsxs(s,{to:"/c-learning/10",className:"c-lesson-nav-btn prev",children:[t.jsx("i",{className:"fa-solid fa-arrow-left"}),e==="en"?"Prev: Data Structures":"이전: 자료구조 기초"]}),t.jsxs(s,{to:"/c-learning",className:"c-lesson-nav-btn next",children:[e==="en"?"Back to Curriculum":"커리큘럼으로 돌아가기",t.jsx("i",{className:"fa-solid fa-arrow-right"})]})]})]})}export{a as default};
