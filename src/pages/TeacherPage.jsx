@@ -303,7 +303,7 @@ export default function TeacherPage() {
           </div>
 
           <div className="teacher-section" style={{ marginTop: '2rem' }}>
-            <h3>{lang === 'en' ? '11-Week C Learning Curriculum' : '11주 C언어 커리큘럼'}</h3>
+            <h3>{lang === 'en' ? '11-Step C Learning Curriculum' : '11단계 C언어 커리큘럼'}</h3>
             <Link to="/c-learning" className="teacher-link-btn">
               <i className="fa-solid fa-book-open" />
               {lang === 'en' ? 'View Full Curriculum' : '전체 커리큘럼 보기'}

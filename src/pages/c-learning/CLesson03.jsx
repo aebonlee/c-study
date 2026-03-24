@@ -11,7 +11,7 @@ export default function CLesson03() {
       <div className="container">
         {/* Lesson Header */}
         <div className="lesson-header">
-          <span className="lesson-week">Week 3</span>
+          <span className="lesson-week">Step 3</span>
           <h1>{lang === 'en' ? 'Operators & Expressions' : '연산자와 표현식'}</h1>
           <p className="lesson-subtitle">
             {lang === 'en'

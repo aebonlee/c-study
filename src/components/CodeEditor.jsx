@@ -1,7 +1,8 @@
-import { useState, useRef, useMemo, useCallback } from 'react'
+import { useState, useRef, useCallback } from 'react'
 import { useProgress } from '../contexts/ProgressContext'
 import { useAuth } from '../contexts/AuthContext'
 import { useLanguage } from '../contexts/LanguageContext'
+import JSCPP from 'JSCPP'
 
 export default function CodeEditor({ initialCode = '', expectedOutput = '', lessonId = '' }) {
   const [code, setCode] = useState(initialCode)
@@ -20,12 +21,24 @@ export default function CodeEditor({ initialCode = '', expectedOutput = '', less
     setOutput('')
     incrementCodeRuns()
 
-    // C code cannot be executed in browser - show simulation message
     setTimeout(() => {
-      setOutput(t('editor.cSimulationMsg') || 'C 코드는 브라우저에서 직접 실행할 수 없습니다.\n로컬 환경(GCC, Clang 등)에서 컴파일 후 실행해 주세요.\n\n[컴파일 명령어]\ngcc -o program main.c\n./program')
-      setStatus('done')
-    }, 500)
-  }, [incrementCodeRuns, t])
+      try {
+        let outputText = ''
+        const config = {
+          stdio: {
+            write: (s) => { outputText += s }
+          }
+        }
+        JSCPP.run(code, '', config)
+        setOutput(outputText || t('editor.noOutput'))
+        setStatus('done')
+      } catch (err) {
+        const msg = err.message || String(err)
+        setOutput(`${t('editor.errorPrefix')}: ${msg}`)
+        setStatus('error')
+      }
+    }, 50)
+  }, [code, incrementCodeRuns, t])
 
   const handleReset = useCallback(() => {
     setCode(initialCode)
@@ -60,6 +73,7 @@ export default function CodeEditor({ initialCode = '', expectedOutput = '', less
 
   const lineCount = code.split('\n').length
   const hasOutput = output !== ''
+  const isError = status === 'error'
 
   return (
     <div className="code-editor">
@@ -125,7 +139,7 @@ export default function CodeEditor({ initialCode = '', expectedOutput = '', less
             {t('editor.result')}
           </div>
           <div className="editor-output-content">
-            <pre className="editor-stdout">{output}</pre>
+            <pre className={isError ? 'editor-stderr' : 'editor-stdout'}>{output}</pre>
           </div>
         </div>
       )}

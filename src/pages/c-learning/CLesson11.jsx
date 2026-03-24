@@ -9,12 +9,12 @@ export default function CLesson11() {
     <div className="c-lesson-page">
       <div className="c-lesson-nav-top">
         <Link to="/c-learning"><i className="fa-solid fa-arrow-left" /> {lang === 'en' ? 'Back to Curriculum' : '커리큘럼으로 돌아가기'}</Link>
-        <span className="c-lesson-week">Week 11</span>
+        <span className="c-lesson-week">Step 11</span>
       </div>
 
       <h1 className="c-lesson-title">
         <i className="fa-solid fa-rocket" />
-        {lang === 'en' ? 'Week 11: Final Project - Student Grade Management System' : '11주차: 종합 프로젝트 - 학생 성적 관리 시스템'}
+        {lang === 'en' ? 'Step 11: Final Project - Student Grade Management System' : '11단계: 종합 프로젝트 - 학생 성적 관리 시스템'}
       </h1>
 
       <section className="c-lesson-section">
@@ -474,21 +474,21 @@ int main() {
     printf("================================\\n\\n");
 
     printf("This project combines ALL C concepts:\\n\\n");
-    printf("  [Week 2]  Variables & Data Types\\n");
-    printf("  [Week 3]  Control Flow\\n");
-    printf("  [Week 4]  Functions & Scope\\n");
-    printf("  [Week 5]  Arrays & Strings\\n");
-    printf("  [Week 6]  Pointer Basics\\n");
-    printf("  [Week 7]  Dynamic Memory\\n");
-    printf("  [Week 8]  Structs & Unions\\n");
-    printf("  [Week 9]  File I/O\\n");
-    printf("  [Week 10] Data Structures\\n\\n");
+    printf("  [Step 2]  Variables & Data Types\\n");
+    printf("  [Step 3]  Control Flow\\n");
+    printf("  [Step 4]  Functions & Scope\\n");
+    printf("  [Step 5]  Arrays & Strings\\n");
+    printf("  [Step 6]  Pointer Basics\\n");
+    printf("  [Step 7]  Dynamic Memory\\n");
+    printf("  [Step 8]  Structs & Unions\\n");
+    printf("  [Step 9]  File I/O\\n");
+    printf("  [Step 10] Data Structures\\n\\n");
 
     printMenu();
     printf("\\n");
 
     printf("=== Congratulations! ===\\n");
-    printf("You completed the 11-week\\n");
+    printf("You completed the 11-step\\n");
     printf("C Programming curriculum!\\n");
 
     return 0;
@@ -506,11 +506,11 @@ int main() {
       <section className="c-lesson-section">
         <h2>{lang === 'en' ? 'Course Summary' : '과정 요약'}</h2>
         <div className="c-lesson-info-box">
-          <h3><i className="fa-solid fa-graduation-cap" /> {lang === 'en' ? '11 Weeks of C Mastery' : '11주간의 C 마스터 과정'}</h3>
+          <h3><i className="fa-solid fa-graduation-cap" /> {lang === 'en' ? '11 Steps of C Mastery' : '11단계 C 마스터 과정'}</h3>
           <table className="c-lesson-table">
             <thead>
               <tr>
-                <th>{lang === 'en' ? 'Week' : '주차'}</th>
+                <th>{lang === 'en' ? 'Step' : '단계'}</th>
                 <th>{lang === 'en' ? 'Topic' : '주제'}</th>
               </tr>
             </thead>

@@ -9,12 +9,12 @@ export default function CLesson10() {
     <div className="c-lesson-page">
       <div className="c-lesson-nav-top">
         <Link to="/c-learning"><i className="fa-solid fa-arrow-left" /> {lang === 'en' ? 'Back to Curriculum' : '커리큘럼으로 돌아가기'}</Link>
-        <span className="c-lesson-week">Week 10</span>
+        <span className="c-lesson-week">Step 10</span>
       </div>
 
       <h1 className="c-lesson-title">
         <i className="fa-solid fa-diagram-project" />
-        {lang === 'en' ? 'Week 10: Basic Data Structures' : '10주차: 자료구조 기초'}
+        {lang === 'en' ? 'Step 10: Basic Data Structures' : '10단계: 자료구조 기초'}
       </h1>
 
       <section className="c-lesson-section">

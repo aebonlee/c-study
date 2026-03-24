@@ -11,7 +11,7 @@ export default function CLesson05() {
       <div className="container">
         {/* Lesson Header */}
         <div className="lesson-header">
-          <span className="lesson-week">Week 5</span>
+          <span className="lesson-week">Step 5</span>
           <h1>{lang === 'en' ? 'Control Flow - Loops' : '제어문 - 반복문'}</h1>
           <p className="lesson-subtitle">
             {lang === 'en'

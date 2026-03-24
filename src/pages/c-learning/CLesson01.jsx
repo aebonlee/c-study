@@ -11,7 +11,7 @@ export default function CLesson01() {
       <div className="container">
         {/* Lesson Header */}
         <div className="lesson-header">
-          <span className="lesson-week">Week 1</span>
+          <span className="lesson-week">Step 1</span>
           <h1>{lang === 'en' ? 'Introduction to C & Development Environment' : 'C언어 소개와 개발환경'}</h1>
           <p className="lesson-subtitle">
             {lang === 'en'
@@ -224,7 +224,7 @@ int main() {
     // 여러 줄 출력 (Multiple lines)
     printf("\\n===========================\\n");
     printf("  C Programming Language\\n");
-    printf("  Welcome to Week 1!\\n");
+    printf("  Welcome to Step 1!\\n");
     printf("===========================\\n");
 
     // 서식 지정자 미리보기 (Format specifier preview)

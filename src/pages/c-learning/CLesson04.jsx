@@ -11,7 +11,7 @@ export default function CLesson04() {
       <div className="container">
         {/* Lesson Header */}
         <div className="lesson-header">
-          <span className="lesson-week">Week 4</span>
+          <span className="lesson-week">Step 4</span>
           <h1>{lang === 'en' ? 'Control Flow - Conditionals' : '제어문 - 조건문'}</h1>
           <p className="lesson-subtitle">
             {lang === 'en'

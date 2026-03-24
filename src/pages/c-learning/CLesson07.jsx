@@ -9,12 +9,12 @@ export default function CLesson07() {
     <div className="c-lesson-page">
       <div className="c-lesson-nav-top">
         <Link to="/c-learning"><i className="fa-solid fa-arrow-left" /> {lang === 'en' ? 'Back to Curriculum' : '커리큘럼으로 돌아가기'}</Link>
-        <span className="c-lesson-week">Week 07</span>
+        <span className="c-lesson-week">Step 07</span>
       </div>
 
       <h1 className="c-lesson-title">
         <i className="fa-solid fa-memory" />
-        {lang === 'en' ? 'Week 7: Advanced Pointers & Dynamic Memory' : '7주차: 포인터 심화와 동적 메모리'}
+        {lang === 'en' ? 'Step 7: Advanced Pointers & Dynamic Memory' : '7단계: 포인터 심화와 동적 메모리'}
       </h1>
 
       <section className="c-lesson-section">

@@ -9,12 +9,12 @@ export default function CLesson09() {
     <div className="c-lesson-page">
       <div className="c-lesson-nav-top">
         <Link to="/c-learning"><i className="fa-solid fa-arrow-left" /> {lang === 'en' ? 'Back to Curriculum' : '커리큘럼으로 돌아가기'}</Link>
-        <span className="c-lesson-week">Week 09</span>
+        <span className="c-lesson-week">Step 09</span>
       </div>
 
       <h1 className="c-lesson-title">
         <i className="fa-solid fa-file-lines" />
-        {lang === 'en' ? 'Week 9: File I/O' : '9주차: 파일 입출력'}
+        {lang === 'en' ? 'Step 9: File I/O' : '9단계: 파일 입출력'}
       </h1>
 
       <section className="c-lesson-section">

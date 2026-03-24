@@ -94,6 +94,7 @@
   line-height: 1.7;
   tab-size: 4;
   min-height: 120px;
+  overflow: hidden;
 }
 
 .code-input::placeholder {

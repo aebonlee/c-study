@@ -34,10 +34,10 @@ const faqData = [
     answerEn: 'Badges are automatically awarded when you meet various conditions such as completing lessons, passing quizzes, running code, and maintaining learning streaks. Check the Badge Collection page for all badges and their requirements.',
   },
   {
-    questionKo: '11주차 커리큘럼은 무엇인가요?',
-    questionEn: 'What is the 11-week curriculum?',
-    answerKo: 'C언어를 11주에 걸쳐 체계적으로 학습하는 커리큘럼입니다. 기초부터 자료구조까지 단계별로 진행하며, 마지막 주에는 종합 프로젝트를 수행합니다.',
-    answerEn: 'It is a systematic 11-week curriculum for learning C. It progresses from basics to data structures, with a comprehensive final project in the last week.',
+    questionKo: '11단계 커리큘럼은 무엇인가요?',
+    questionEn: 'What is the 11-step curriculum?',
+    answerKo: 'C언어를 11단계에 걸쳐 체계적으로 학습하는 커리큘럼입니다. 기초부터 자료구조까지 단계별로 진행하며, 마지막 단계에서는 종합 프로젝트를 수행합니다.',
+    answerEn: 'It is a systematic 11-step curriculum for learning C. It progresses from basics to data structures, with a comprehensive final project in the last step.',
   },
 ]
 
@@ -127,8 +127,8 @@ export default function Guide() {
           </div>
           <div className="guide-feature">
             <i className="fa-solid fa-calendar-days" />
-            <h3>{lang === 'en' ? '11-Week Curriculum' : '11주 커리큘럼'}</h3>
-            <p>{lang === 'en' ? 'Follow a structured 11-week C language course from basics to advanced projects.' : '기초부터 고급 프로젝트까지 체계적인 11주 C언어 과정을 따라하세요.'}</p>
+            <h3>{lang === 'en' ? '11-Step Curriculum' : '11단계 커리큘럼'}</h3>
+            <p>{lang === 'en' ? 'Follow a structured 11-step C language course from basics to advanced projects.' : '기초부터 고급 프로젝트까지 체계적인 11단계 C언어 과정을 따라하세요.'}</p>
           </div>
           <div className="guide-feature">
             <i className="fa-solid fa-users" />
@@ -174,7 +174,7 @@ export default function Guide() {
           </Link>
           <Link to="/c-learning" className="quick-link-card">
             <i className="fa-solid fa-book-open" />
-            <span>{lang === 'en' ? '11-Week Curriculum' : '11주 커리큘럼'}</span>
+            <span>{lang === 'en' ? '11-Step Curriculum' : '11단계 커리큘럼'}</span>
           </Link>
           <Link to="/practice" className="quick-link-card">
             <i className="fa-solid fa-dumbbell" />

@@ -287,6 +287,9 @@ src/styles/
 | 2026-03-25 | `2307aef` | Initial commit: CMaster - C언어 전문 학습 플랫폼 (93 files) |
 | 2026-03-25 | `afebbad` | Merge: CNAME + README.md 통합 |
 | 2026-03-25 | `600abde` | 개발일지 상세화 및 최종 배포 |
+| 2026-03-25 | `4e565df` | 코드 감사 - 4개 크리티컬 버그 수정 |
+| 2026-03-25 | `2a538e9` | CNAME을 public/에 추가 |
+| 2026-03-25 | `b2ee26c` | CSS 클래스명 전면 수정 |
 
 ---
 
@@ -357,3 +360,44 @@ src/styles/
 - `.path-section` → `.learning-path-section`
 - `.overview-section` → `.progress-overview-section`
 - 터미널 UI, 배지 그리드, 퀴즈 카드 등 누락 CSS 전량 추가
+
+---
+
+## 2026-03-25 (Day 1) - 대규모 기능 개선 패치
+
+### 1. 로케일 키 전면 보수 (52개 누락 + 8개 불일치 수정)
+JSX 컴포넌트가 참조하는 로케일 키와 실제 locale 파일의 키 간 대규모 불일치 발견 및 수정.
+
+**영향 범위:**
+- Home.jsx: 21개 누락 키 (`heroBadge`, `heroTitle`, `heroSubtitle`, `curriculum`, `statsLessons/Hours/Projects/Levels`, `featuresTitle/Subtitle`, `pathTitle`, `progressTitle`, `streakDays`, `codeRuns`, `badgesEarned`, `ctaSubtitle/SignUp/Continue/Guide`)
+- LevelPage.jsx: 8개 누락 키 (`notFound`, `backHome`, `progress`, `lessonsTotal`, `completedBanner`, `noLessons`, `prevLevel`, `nextLevel`)
+- LessonPage.jsx: 7개 누락 키 (`topicsCovered`, `contentComingSoon/Desc`, `markComplete/Incomplete`, `prevLesson`, `nextLesson`)
+- QuizCenter.jsx: 10개 누락 키 (`notAttempted`, `perfect`, `passed`, `failed`, `backToList`, `totalQuizzes`, `attempted`, `perfectScore`, `noQuizzes/Desc`)
+- BadgeCollection.jsx: 3개 누락 키 (`collected`, `noBadges/Desc`)
+- CPractice.jsx: 3개 누락 키 (`step`, `prevStep`, `nextStep`)
+- `nav.home` 키 추가
+
+**수정**: `ko.js`, `en.js` 양쪽 파일 전면 재작성
+
+### 2. C 코드 브라우저 실행 기능 추가 (JSCPP 통합)
+- **문제**: 코드 에디터에서 "C 코드는 브라우저에서 직접 실행할 수 없습니다" 메시지만 표시
+- **해결**: JSCPP (JavaScript C++ Interpreter) 라이브러리 통합
+  - `npm install JSCPP` (v2.0.9)
+  - CodeEditor.jsx에 JSCPP.run() 연동
+  - printf, scanf, 변수, 제어문, 함수, 배열, 포인터, 문자열, 구조체 등 기본 C 문법 지원
+  - 실행 오류 시 에러 메시지 한글/영어 표시
+- **번들 크기**: CodeEditor chunk 384KB (gzip 75KB)
+
+### 3. "주차" → "단계" 전면 전환
+사용자 요청에 따라 커리큘럼 단위를 "주차(Week)"에서 "단계(Step)"로 전환.
+
+**변경 파일:**
+- `CLearning.jsx`: 전체 11개 항목 `N주차` → `N단계`, `Week N` → `Step N`
+- `CLesson01~11.jsx`: 각 레슨 헤더 및 코드 예제
+- `Guide.jsx`: FAQ 및 퀵링크 텍스트
+- `TeacherPage.jsx`: 교사 페이지 커리큘럼 제목
+- `ko.js`, `en.js`: `cLearning.subtitle` 업데이트 ("11단계 커리큘럼")
+
+### 4. 더블 스크롤 수정
+- **문제**: 코드 에디터 영역에서 textarea와 부모 컨테이너 모두 스크롤바 표시
+- **수정**: `.code-input`에 `overflow: hidden` 추가, 부모 `.editor-body`만 스크롤 담당

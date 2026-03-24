@@ -11,7 +11,7 @@ export default function CLesson02() {
       <div className="container">
         {/* Lesson Header */}
         <div className="lesson-header">
-          <span className="lesson-week">Week 2</span>
+          <span className="lesson-week">Step 2</span>
           <h1>{lang === 'en' ? 'Variables & Data Types' : '변수와 자료형'}</h1>
           <p className="lesson-subtitle">
             {lang === 'en'
