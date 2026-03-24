@@ -6,6 +6,13 @@ export default defineConfig({
   base: '/',
   build: {
     outDir: 'dist',
-    sourcemap: false
+    sourcemap: false,
+    commonjsOptions: {
+      requireReturnsDefault: 'auto',
+      transformMixedEsModules: true,
+    }
+  },
+  optimizeDeps: {
+    include: ['JSCPP'],
   }
 })

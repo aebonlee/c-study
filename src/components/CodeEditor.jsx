@@ -2,7 +2,10 @@ import { useState, useRef, useCallback } from 'react'
 import { useProgress } from '../contexts/ProgressContext'
 import { useAuth } from '../contexts/AuthContext'
 import { useLanguage } from '../contexts/LanguageContext'
-import JSCPP from 'JSCPP'
+import JSCPPModule from 'JSCPP'
+
+// CJS/ESM interop — works regardless of how the module is bundled
+const JSCPP = JSCPPModule.default || JSCPPModule
 
 const UNSUPPORTED_PATTERNS = [
   { pattern: /\bmalloc\s*\(/, label: 'malloc' },
@@ -83,7 +86,8 @@ export default function CodeEditor({ initialCode = '', expectedOutput = '', less
         const config = {
           stdio: {
             write: (s) => { outputText += s }
-          }
+          },
+          includes: JSCPP.includes
         }
         JSCPP.run(code, '', config)
         setOutput(outputText || t('editor.noOutput'))

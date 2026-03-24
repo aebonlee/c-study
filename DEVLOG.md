@@ -457,3 +457,31 @@ JSCPP(브라우저 C 인터프리터)가 지원하지 않는 기능(`malloc`, `s
 ### 빌드 검증
 - `npm run build` 성공 (171 modules, 33 chunks, 4.34s)
 - 에러/경고 없음 (JSCPP eval 경고는 라이브러리 내부 → 무시)
+
+---
+
+## 2026-03-25 (Day 1) - JSCPP 런타임 오류 수정
+
+### 문제
+배포 사이트에서 코드 에디터 "실행" 버튼 클릭 시 `Right-hand side of 'instanceof' is not an object` 오류 발생.
+
+### 원인 분석
+- JSCPP는 순수 CommonJS 패키지(`module.exports`)
+- 프로젝트는 ES 모듈(`"type": "module"`) 사용
+- Vite 프로덕션 빌드 시 Rollup의 `@rollup/plugin-commonjs`가 CJS→ESM 변환 과정에서 `instanceof` 체크에 필요한 생성자 참조를 망가뜨림
+
+### 수정 내역
+
+#### 1. vite.config.js — CommonJS 호환성 설정 추가
+- `build.commonjsOptions.requireReturnsDefault: 'auto'`: CJS 모듈의 default export를 올바르게 처리
+- `build.commonjsOptions.transformMixedEsModules: true`: import/require 혼합 사용하는 JSCPP 의존성 처리
+- `optimizeDeps.include: ['JSCPP']`: Vite가 JSCPP를 명시적으로 사전 번들링
+
+#### 2. CodeEditor.jsx — JSCPP 호출 방식 개선
+- `import JSCPP from 'JSCPP'` → `import JSCPPModule from 'JSCPP'` + `const JSCPP = JSCPPModule.default || JSCPPModule`
+- CJS/ESM 어떤 방식으로 번들되든 동작하는 인터옵 패턴 적용
+- `JSCPP.run()` config에 `includes: JSCPP.includes` 명시적 전달 (this 컨텍스트 의존 제거)
+
+### 빌드 검증
+- `npm run build` 성공 (171 modules, 33 chunks, 3.94s)
+- 에러 없음
