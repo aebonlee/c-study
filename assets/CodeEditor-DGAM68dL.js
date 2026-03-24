@@ -1,4 +1,4 @@
-import{r as n,a as R,b as K,u as T,j as e}from"./index-C8a8tVZm.js";function O({initialCode:d="",expectedOutput:c="",lessonId:A=""}){const[a,u]=n.useState(d),[h,b]=n.useState(!1),[m,r]=n.useState(""),[p,l]=n.useState("idle"),C=n.useRef(null),{incrementCodeRuns:x}=R(),{requireAuth:N}=K(),{t:s}=T(),o=p==="running",g=n.useCallback(()=>{l("running"),r(""),x(),setTimeout(()=>{r(s("editor.cSimulationMsg")||`C 코드는 브라우저에서 직접 실행할 수 없습니다.
+import{r as n,a as R,b as K,u as T,j as e}from"./index-1JnIhsU7.js";function O({initialCode:d="",expectedOutput:c="",lessonId:A=""}){const[a,u]=n.useState(d),[h,b]=n.useState(!1),[m,r]=n.useState(""),[p,l]=n.useState("idle"),C=n.useRef(null),{incrementCodeRuns:x}=R(),{requireAuth:N}=K(),{t:s}=T(),o=p==="running",g=n.useCallback(()=>{l("running"),r(""),x(),setTimeout(()=>{r(s("editor.cSimulationMsg")||`C 코드는 브라우저에서 직접 실행할 수 없습니다.
 로컬 환경(GCC, Clang 등)에서 컴파일 후 실행해 주세요.
 
 [컴파일 명령어]
