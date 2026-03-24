@@ -5,188 +5,285 @@
 - **기반 프로젝트**: PyMaster (D:\python-study) 아키텍처 참조
 - **생성일**: 2026-03-25
 - **기술 스택**: React 19 + Vite 7 + Supabase + PrismJS
+- **배포 URL**: https://c-study.dreamitbiz.com
+- **저장소**: https://github.com/aebonlee/c-study
 
 ---
 
-## 기술 아키텍처
+## 2026-03-25 (Day 1) - 프로젝트 초기 구축
 
-### Frontend
-- **프레임워크**: React 19.2.0 + Vite 7.3.1
-- **라우팅**: React Router DOM 7.13.0 (SPA + Lazy Loading)
-- **코드 에디터**: react-simple-code-editor + PrismJS (C 문법 하이라이팅)
-- **스타일링**: CSS Custom Properties + Dark Mode 지원
-- **다국어**: 한국어/영어 지원 (LanguageContext)
+### 1단계: 프로젝트 분석 및 설계
+- PyMaster (D:\python-study) 프로젝트 전체 분석 완료
+  - React 19 + Vite 7 + Supabase 기반 Python 학습 플랫폼
+  - Context 기반 상태 관리 (Auth, Progress, Badge, Theme, Language)
+  - Lazy Loading + Code Splitting 라우팅 패턴
+  - Supabase 인증 (Google/Kakao OAuth) + RLS 정책
+- C언어 학습 사이트로 아키텍처 변환 설계
+  - Python → C 언어 전환 (코드 에디터, 문법 하이라이팅, 실습 내용)
+  - Pyodide 제거 → C 코드 시뮬레이션 방식 전환
+  - 테이블 접두사: `pymaster_` → `cmaster_`
+  - localStorage 키: `pymaster-*` → `cmaster-*`
 
-### Backend
-- **인증**: Supabase Auth (Google OAuth + Kakao OAuth)
-- **데이터베이스**: Supabase PostgreSQL
-- **테이블 접두사**: `cmaster_` (공유 DB에서 격리)
-- **RLS**: Row Level Security 정책 적용
+### 2단계: 프로젝트 초기화 (Infrastructure)
+- **package.json**: React 19.2.0, Vite 7.3.1, React Router DOM 7.13.0, Supabase, PrismJS, gh-pages
+- **vite.config.js**: SPA 라우팅, 빌드 최적화 설정
+- **index.html**: OG 메타 태그 (Kakao 공유 지원), Google Fonts, Font Awesome
+- **.env**: Supabase URL + Anon Key + Service Role Key
+- **favicon.svg**: 다크 블루 C 로고
+- **404.html**: GitHub Pages SPA 리다이렉트 핸들러
 
-### 컬러 스킴
-| 용도 | 색상 코드 |
-|------|----------|
-| Primary Dark | #0A1628 |
-| Primary | #1B3A5C |
-| Accent Blue | #4FC3F7 |
-| Accent Teal | #26C6DA |
-| Accent Gold | #FFD54F |
+### 3단계: 핵심 시스템 구축
 
----
+#### Supabase 설정 (`src/config/supabase.js`)
+- `cmaster_` 접두사 테이블 매핑 (8개 테이블)
+- Supabase 클라이언트 초기화 (persistSession, autoRefreshToken)
 
-## 커리큘럼 구성
+#### Context 시스템 (5개)
+| Context | 파일 | 기능 |
+|---------|------|------|
+| ThemeContext | `src/contexts/ThemeContext.jsx` | 라이트/다크 모드 토글, `cmaster-theme` 키 |
+| LanguageContext | `src/contexts/LanguageContext.jsx` | 한국어/영어 전환, 중첩 키 지원, `cmaster-lang` 키 |
+| AuthContext | `src/contexts/AuthContext.jsx` | Google/Kakao OAuth, 30분 세션 타이머, 로그인 모달, 사용자 upsert |
+| ProgressContext | `src/contexts/ProgressContext.jsx` | 레슨 완료 추적, 퀴즈 점수, 스트릭, Supabase 동기화 (2초 debounce) |
+| BadgeContext | `src/contexts/BadgeContext.jsx` | 40개 배지 자동 평가, 획득 알림 팝업, 4단계 티어 |
 
-### 학습 단계 (4단계, 32개 레슨)
-1. **기초 (Basics)** - 9개 레슨: C 소개, 변수, 연산자, 조건문, 반복문, 함수, 배열, 문자열, 포인터 입문
-2. **중급 (Intermediate)** - 9개 레슨: 포인터 심화, 동적 메모리, 구조체, 파일 입출력, 전처리기, 비트 연산, 열거형, 다중 파일 프로젝트, 디버깅
-3. **고급 (Advanced)** - 7개 레슨: 연결 리스트, 스택/큐, 트리, 정렬, 검색, 해시 테이블, 그래프 기초
-4. **응용 (Applied)** - 7개 레슨: 시스템 프로그래밍, 프로세스, 소켓, 임베디드, 최적화, 보안, 종합 프로젝트
+#### 라우팅 (`src/App.jsx`)
+- Lazy Loading으로 26개 페이지 로드
+- AdminRoute / TeacherRoute 역할 기반 접근 제어
+- ErrorBoundary + Suspense 래핑
+- 404 NotFound 페이지
 
-### 11주 체계적 학습 과정 (C-Learning)
-- Week 1: C언어 소개와 개발환경
-- Week 2: 변수와 자료형
-- Week 3: 연산자와 표현식
-- Week 4: 제어문 - 조건문
-- Week 5: 제어문 - 반복문
-- Week 6: 함수
-- Week 7: 고급 포인터와 동적 메모리
-- Week 8: 구조체와 공용체
-- Week 9: 파일 입출력
-- Week 10: 기초 자료구조
-- Week 11: 종합 프로젝트
+### 4단계: UI 컴포넌트 구축 (10개)
 
-### C 실습 (10단계)
-- Step 1-3: 기초 (Hello World, 변수, 조건문)
-- Step 4-7: 중급 (함수/재귀, 포인터, 배열, 문자열)
-- Step 8-10: 고급 (구조체, 동적 메모리, 연결 리스트)
+| 컴포넌트 | 기능 |
+|----------|------|
+| Navbar | 네비게이션, 사용자 메뉴, 테마/언어 토글 |
+| Footer | 사이트맵, 법적 고지, 브랜딩 |
+| CodeEditor | C 코드 편집기 (PrismJS prism-c 하이라이팅) |
+| PracticeEditor | 실습용 코드 편집기 (react-simple-code-editor) |
+| QuizComponent | 퀴즈 UI (셔플 옵션, 타이머, 결과 표시) |
+| LessonCard | 레슨 카드 (완료 상태, 난이도 표시) |
+| BadgeCard | 배지 카드 (티어 색상, 잠금/해제 상태) |
+| ProgressBar | 진도율 시각화 바 |
+| Certificate | 과정 수료증 컴포넌트 |
+| ErrorBoundary | 에러 경계 (충돌 시 복구 UI) |
 
----
-
-## 주요 기능
-
-### 1. 학습 시스템
-- 단계별 레슨 페이지 (32개)
-- 11주 체계적 커리큘럼
-- 코드 에디터 (C 문법 하이라이팅)
-- 레슨 완료 추적 및 진도율 표시
-
-### 2. 퀴즈 시스템
-- 단계별 퀴즈 (기초/중급/고급/응용)
-- 타이머 기반 문제 풀이
-- 점수 기록 및 통계
-
-### 3. 배지 시스템
-- 30+ 배지 (브론즈/실버/골드/플래티넘 4단계)
-- 학습 진도, 퀴즈 성적, 스트릭 등 기반 자동 평가
-- 배지 획득 알림 팝업
-
-### 4. 커뮤니티
-- 게시판 (질문답변/자유/코드공유/코드리뷰)
-- 댓글, 좋아요, 조회수
-- 태그 기반 검색
-
-### 5. 인증 & 권한
-- Google / Kakao OAuth 로그인
-- 30분 세션 타이머 (5분 전 경고)
-- 역할 기반 접근 (학생/교사/관리자)
-
-### 6. OG 메타 태그
-- Kakao 공유 미리보기 지원
-- Sharp 기반 OG 이미지 자동 생성 (1200x630)
-
----
-
-## 파일 구조
+### 5단계: 스타일시트 (19개 CSS 파일)
 
 ```
-D:\c-study\
-├── index.html              # OG 메타 태그 포함
-├── package.json
-├── vite.config.js
-├── .env                    # Supabase 자격증명
-├── .gitignore
-├── scripts/
-│   ├── generate-og.js      # OG 이미지 생성
-│   └── setup-supabase.sql  # DB 스키마 + RLS
-├── public/
-│   ├── favicon.svg
-│   └── og-image.png
-└── src/
-    ├── main.jsx
-    ├── App.jsx
-    ├── index.css
-    ├── config/
-    │   └── supabase.js
-    ├── contexts/
-    │   ├── ThemeContext.jsx
-    │   ├── LanguageContext.jsx
-    │   ├── AuthContext.jsx
-    │   ├── ProgressContext.jsx
-    │   └── BadgeContext.jsx
-    ├── hooks/
-    │   └── useCommunity.js
-    ├── components/
-    │   ├── layout/ (Navbar, Footer)
-    │   ├── ErrorBoundary.jsx
-    │   ├── ProgressBar.jsx
-    │   ├── LessonCard.jsx
-    │   ├── BadgeCard.jsx
-    │   ├── CodeEditor.jsx
-    │   ├── PracticeEditor.jsx
-    │   ├── QuizComponent.jsx
-    │   └── Certificate.jsx
-    ├── data/
-    │   ├── lessons.js
-    │   ├── badges.js
-    │   ├── quizzes.js
-    │   ├── lessonContents.js
-    │   └── cSteps/ (step1-10 + index)
-    ├── locales/
-    │   ├── ko.js
-    │   └── en.js
-    ├── styles/ (19 CSS 파일)
-    └── pages/
-        ├── Home, LevelPage, LessonPage ...
-        ├── c-learning/ (CLesson01-11)
-        └── community/ (Community, Post, Write)
+src/styles/
+├── base.css          # CSS 변수, 리셋, 유틸리티
+├── animations.css    # 키프레임 애니메이션
+├── navbar.css        # 네비게이션
+├── hero.css          # 히어로, 통계, 특징, 학습 경로
+├── course.css        # 레벨 페이지, 레슨 그리드
+├── badge.css         # 배지 카드, 티어 구분
+├── quiz.css          # 퀴즈 UI
+├── editor.css        # 코드 에디터
+├── auth.css          # 로그인 페이지
+├── mypage.css        # 마이페이지 대시보드
+├── admin.css         # 관리자 패널
+├── teacher.css       # 교사 대시보드
+├── practice.css      # 실습 모드
+├── c-learning.css    # 주차별 강의 페이지
+├── community.css     # 커뮤니티 게시판
+├── guide.css         # 이용 가이드
+├── footer.css        # 푸터
+├── dark-mode.css     # 다크 모드 오버라이드
+└── responsive.css    # 반응형 (모바일/태블릿)
 ```
 
+#### 컬러 스킴 (다크 블루 테마)
+| 용도 | 색상 코드 | 사용처 |
+|------|----------|--------|
+| Primary Dark | #0A1628 | 배경, 네비게이션 |
+| Primary | #1B3A5C | 카드, 섹션 배경 |
+| Accent Blue | #4FC3F7 | 주요 강조, 버튼, 링크 |
+| Accent Teal | #26C6DA | 보조 강조, 그라데이션 |
+| Accent Gold | #FFD54F | 배지, 성과, 경고 |
+
+### 6단계: 데이터 파일 구축
+
+#### 레슨 데이터 (`src/data/lessons.js`)
+- 4개 레벨 정보 (basics, intermediate, advanced, applied)
+- 32개 레슨 메타데이터 (제목, 설명, 난이도, 아이콘)
+- 한국어/영어 이중 지원
+
+#### 배지 데이터 (`src/data/badges.js`)
+- 40개 배지 정의
+- 4단계 티어: 브론즈(10), 실버(9), 골드(11), 플래티넘(10)
+- 조건 타입: lesson_count, quiz_score, streak, code_runs, level_complete 등
+
+#### 퀴즈 데이터 (`src/data/quizzes.js`)
+- 4개 레벨별 퀴즈 (각 10문항 = 총 40문항)
+- 주제: printf, 자료형, 포인터, malloc, 구조체, 파일 I/O, 연결 리스트, 정렬 등
+- 한국어/영어 이중 지원
+
+#### 레슨 콘텐츠 (`src/data/lessonContents.js`)
+- 32개 레슨 상세 설명 (요약 + 핵심 개념 5가지)
+- 한국어/영어 이중 지원
+
+#### C 실습 단계 (`src/data/cSteps/`)
+- 10단계 실습 파일 (step1.js ~ step10.js)
+- 각 단계 8~10개 코드 예제
+- 난이도 점진적 상승 (Hello World → 연결 리스트)
+
+| Step | 주제 | 난이도 |
+|------|------|--------|
+| 1 | Hello World & printf | ★☆☆☆☆ |
+| 2 | 변수와 자료형 | ★☆☆☆☆ |
+| 3 | 연산자 | ★★☆☆☆ |
+| 4 | 함수와 재귀 | ★★☆☆☆ |
+| 5 | 포인터 기초 | ★★★☆☆ |
+| 6 | 배열과 포인터 | ★★★☆☆ |
+| 7 | 문자열 처리 | ★★★☆☆ |
+| 8 | 구조체 | ★★★★☆ |
+| 9 | 동적 메모리 | ★★★★☆ |
+| 10 | 연결 리스트 | ★★★★★ |
+
+### 7단계: 페이지 컴포넌트 구축 (26개)
+
+#### 메인 페이지 (12개)
+| 페이지 | 경로 | 기능 |
+|--------|------|------|
+| Home | `/` | 히어로, 통계, 특징, 학습 경로, 진도 미리보기, CTA |
+| LevelPage | `/:level` | 레벨별 레슨 그리드, 진도율, 필터링 |
+| LessonPage | `/:level/:lessonId` | 레슨 상세 (콘텐츠, 코드 에디터, 완료 토글) |
+| BadgeCollection | `/badges` | 배지 쇼케이스 (티어별 그룹, 진도 바) |
+| QuizCenter | `/quiz` | 퀴즈 대시보드 (점수 배지, QuizComponent 연동) |
+| CLearning | `/c-learning` | 11주 커리큘럼 타임라인 |
+| CPractice | `/c-practice` | 10단계 실습 (단계 선택 + 코드 에디터) |
+| Guide | `/guide` | 이용 가이드 (시작하기, FAQ, 빠른 링크) |
+| Login | `/login` | OAuth 로그인 (Google + Kakao) |
+| MyPage | `/my` | 사용자 대시보드 (프로필, 통계, 진도, 배지) |
+| AdminPage | `/admin` | 관리자 패널 (대시보드/사용자/콘텐츠 탭) |
+| TeacherPage | `/teacher` | 교사 대시보드 (개요/학생/커리큘럼 탭) |
+
+#### 커뮤니티 페이지 (3개)
+| 페이지 | 경로 | 기능 |
+|--------|------|------|
+| Community | `/community` | 게시판 목록 (카테고리 필터, 검색, 정렬) |
+| CommunityPost | `/community/:postId` | 게시글 상세 (본문, 좋아요, 댓글) |
+| CommunityWrite | `/community/write` | 글쓰기 (카테고리, 제목, 내용, 태그) |
+
+#### 11주 커리큘럼 강의 (11개)
+| 파일 | 주차 | 주제 | 코드 예제 |
+|------|------|------|----------|
+| CLesson01 | Week 1 | C언어 소개와 개발환경 | Hello World, printf |
+| CLesson02 | Week 2 | 변수와 자료형 | int/float/char, sizeof |
+| CLesson03 | Week 3 | 연산자와 표현식 | 산술/논리/형변환 |
+| CLesson04 | Week 4 | 제어문 - 조건문 | if-else, switch, BMI 계산기 |
+| CLesson05 | Week 5 | 제어문 - 반복문 | for/while, 구구단, 별찍기 |
+| CLesson06 | Week 6 | 함수 | 정의/호출, 재귀, 수학 라이브러리 |
+| CLesson07 | Week 7 | 고급 포인터와 동적 메모리 | 이중 포인터, malloc/free |
+| CLesson08 | Week 8 | 구조체와 공용체 | typedef, 화살표 연산자, 열거형 |
+| CLesson09 | Week 9 | 파일 입출력 | fopen/fprintf/fscanf, 바이너리 I/O |
+| CLesson10 | Week 10 | 기초 자료구조 | 연결 리스트, 스택, 큐 |
+| CLesson11 | Week 11 | 종합 프로젝트 | 학생 성적 관리 시스템 |
+
+### 8단계: 다국어 지원
+- **한국어** (`src/locales/ko.js`): 전체 UI 텍스트 한국어 번역
+- **영어** (`src/locales/en.js`): 전체 UI 텍스트 영어 번역
+- 네비게이션, 페이지 제목, 버튼, 안내 메시지, 에러 메시지 등 전체 커버
+
+### 9단계: Supabase 데이터베이스
+
+#### SQL 스키마 (`scripts/setup-supabase.sql`)
+- 8개 테이블 (`cmaster_` 접두사)
+- RLS 정책 (Row Level Security)
+- 인덱스 6개 (성능 최적화)
+- RPC 함수 (조회수 증가)
+
+| 테이블 | 용도 | RLS |
+|--------|------|-----|
+| cmaster_users | 사용자 프로필 | SELECT: 전체, UPDATE/INSERT: 본인만 |
+| cmaster_user_progress | 학습 진행 | 본인만 CRUD |
+| cmaster_quiz_scores | 퀴즈 점수 | 본인만 CRUD |
+| cmaster_community_posts | 게시글 | SELECT: 전체, INSERT: 인증, UPDATE/DELETE: 작성자 |
+| cmaster_community_comments | 댓글 | SELECT: 전체, INSERT: 인증, DELETE: 작성자 |
+| cmaster_community_likes | 좋아요 | SELECT: 전체, INSERT/DELETE: 본인 |
+| cmaster_classes | 반 | SELECT: 전체, INSERT/UPDATE: 교사 |
+| cmaster_class_members | 반 멤버 | SELECT: 전체, INSERT: 본인 |
+
+### 10단계: OG 이미지 & 메타 태그
+
+#### OG 메타 태그 (index.html)
+```html
+<meta property="og:url" content="https://c-study.dreamitbiz.com/" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="CMaster - C언어 전문 학습 플랫폼" />
+<meta property="og:description" content="C언어 기초부터 고급 시스템 프로그래밍까지..." />
+<meta property="og:image" content="https://c-study.dreamitbiz.com/og-image.png" />
+<meta property="og:site_name" content="CMaster" />
+<meta property="og:locale" content="ko_KR" />
+```
+
+#### OG 이미지 생성 (`scripts/generate-og.js`)
+- Sharp 라이브러리 사용
+- SVG → PNG 변환 (1200 x 630px)
+- 다크 블루 그라데이션 배경
+- C 코드 장식 텍스트 (#include, printf, malloc 등)
+- CMaster 로고 + 설명 + 기능 태그
+
+### 11단계: 빌드 & 배포
+
+#### 빌드 결과
+- **137 모듈** 트랜스폼 완료
+- **33개 청크** 생성 (코드 스플리팅)
+- 메인 번들: 485KB (gzip: 145KB)
+- CSS: 55.5KB (gzip: 9.6KB)
+- 빌드 시간: ~5초
+
+#### 배포
+- GitHub Pages (`gh-pages` 브랜치)
+- CNAME: `c-study.dreamitbiz.com`
+- SPA 라우팅: 404.html 리다이렉트 핸들러
+
 ---
 
-## Supabase 테이블
+## 전체 파일 통계
 
-| 테이블명 | 용도 |
-|---------|------|
-| cmaster_users | 사용자 프로필 |
-| cmaster_user_progress | 학습 진행 데이터 |
-| cmaster_quiz_scores | 퀴즈 점수 |
-| cmaster_community_posts | 커뮤니티 게시글 |
-| cmaster_community_comments | 댓글 |
-| cmaster_community_likes | 좋아요 |
-| cmaster_classes | 반 (교사용) |
-| cmaster_class_members | 반 멤버 |
+| 카테고리 | 파일 수 | 설명 |
+|----------|---------|------|
+| 설정 파일 | 5 | package.json, vite.config.js, .env, .gitignore, index.html |
+| 퍼블릭 | 3 | favicon.svg, og-image.png, 404.html |
+| 스크립트 | 2 | generate-og.js, setup-supabase.sql |
+| 컨텍스트 | 5 | Auth, Progress, Badge, Theme, Language |
+| 컴포넌트 | 10 | Navbar, Footer, CodeEditor, Quiz 등 |
+| 스타일 | 20 | index.css + 19개 모듈별 CSS |
+| 데이터 | 15 | lessons, badges, quizzes, contents, steps |
+| 페이지 | 26 | Home, Level, Lesson, Quiz, Community 등 |
+| 다국어 | 2 | ko.js, en.js |
+| 훅 | 1 | useCommunity.js |
+| 설정 | 1 | supabase.js |
+| 문서 | 2 | DEVLOG.md, README.md |
+| **합계** | **93+** | |
 
 ---
 
-## PyMaster → CMaster 변경사항
+## PyMaster → CMaster 변환 상세
 
 | 항목 | PyMaster | CMaster |
 |------|---------|---------|
-| 언어 | Python | C |
+| 학습 언어 | Python | C |
 | 테이블 접두사 | pymaster_ | cmaster_ |
 | localStorage 키 | pymaster-* | cmaster-* |
-| 코드 실행 | Pyodide (브라우저) | 시뮬레이션 메시지 |
+| 코드 실행 방식 | Pyodide (브라우저 내 실행) | 시뮬레이션 메시지 (컴파일 안내) |
 | 문법 하이라이팅 | prism-python | prism-c |
-| 퀴즈 수 | 8개 | 5개 |
-| 컬러 | 블루/그린 | 다크 블루 |
-| 레슨 수 | 32 | 32 |
-| 실습 단계 | Python 기반 | C 기반 |
+| 퀴즈 레벨 수 | 8개 | 4개 (기초/중급/고급/응용) |
+| 컬러 테마 | 블루/그린 | 다크 블루 (#0A1628, #1B3A5C) |
+| 레슨 수 | 32개 | 32개 |
+| 배지 수 | 30+ | 40개 |
+| 실습 단계 | Python 기반 | C 기반 (10단계) |
+| 커리큘럼 | 없음 | 11주 체계적 학습 과정 |
+| 대상 | Python 입문자 | C언어 입문자, 시스템 프로그래밍 지망생 |
 
 ---
 
-## 빌드 & 배포
+## 커밋 이력
 
-- **빌드 명령어**: `npm run build`
-- **배포 방식**: GitHub Pages (`gh-pages` 브랜치)
-- **배포 명령어**: `npm run deploy`
-- **도메인**: c-study.dreamitbiz.com
+| 날짜 | 커밋 | 내용 |
+|------|------|------|
+| 2026-03-25 | `2307aef` | Initial commit: CMaster - C언어 전문 학습 플랫폼 (93 files) |
+| 2026-03-25 | `afebbad` | Merge: CNAME + README.md 통합 |
+| 2026-03-25 | - | 개발일지 상세화 및 최종 배포 |
