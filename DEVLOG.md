@@ -297,6 +297,7 @@ src/styles/
 | 2026-03-25 | `67dcad4` | 히어로 섹션 2단 레이아웃 + 터미널 위젯 |
 | 2026-03-25 | `ff72056` | 실습 예제 탭 클릭 시 코드 미갱신 버그 수정 |
 | 2026-03-25 | `3eb2132` | 히어로 터미널 소스코드 뷰 + OG 이미지 재생성 |
+| 2026-03-25 | `a9e90ba` | OG 이미지 URL 캐시 무효화 파라미터 추가 |
 
 ---
 
@@ -724,4 +725,25 @@ OG 이미지가 이전 "CMaster" 브랜딩으로 되어 있어 카카오톡/SNS 
 - 카카오 디버거에서 캐시 초기화 필요: https://developers.kakao.com/tool/debugger/sharing
 
 - 커밋: `3eb2132`
+- GitHub Pages 배포 완료
+
+---
+
+## 2026-03-25 (Day 1) - OG 이미지 캐시 무효화
+
+### 문제
+OG 이미지를 "C Programming Tutorial" 브랜딩으로 재생성하여 배포했으나, 카카오톡 등 SNS에서 이전 캐시된 이미지가 계속 표시됨.
+
+### 원인
+카카오/페이스북/트위터 등 SNS 플랫폼은 OG 이미지를 서버 측에서 캐싱. 동일 URL의 이미지가 변경되어도 캐시 만료 전까지 이전 이미지를 표시.
+
+### 수정
+`index.html`의 OG/Twitter 이미지 URL에 버전 쿼리 파라미터 추가:
+- `og-image.png` → `og-image.png?v=2`
+- SNS 크롤러가 새 URL로 인식하여 이미지를 다시 가져옴
+
+### 확인 방법
+- 카카오 디버거: https://developers.kakao.com/tool/debugger/sharing → URL 입력 → **캐시 초기화** 클릭
+
+- 커밋: `a9e90ba`
 - GitHub Pages 배포 완료
