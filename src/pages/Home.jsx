@@ -76,48 +76,53 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="hero-content">
-          <div className="hero-badge">
-            <i className="fa-solid fa-terminal" />
-            <span>{t('home.heroBadge')}</span>
-          </div>
-
-          <h1 className="hero-title">
-            {t('home.heroTitle')}
-            <span className="hero-highlight"> C Programming Tutorial</span>
-          </h1>
-
-          <p className="hero-subtitle">{t('home.heroSubtitle')}</p>
-
-          <div className="hero-actions">
-            <Link to="/beginner" className="hero-btn primary-btn">
-              <i className="fa-solid fa-rocket" />
-              {t('home.startLearning')}
-            </Link>
-            <Link to="/c-learning" className="hero-btn secondary-btn">
-              <i className="fa-solid fa-book-open" />
-              {t('home.curriculum')}
-            </Link>
-          </div>
-
-          <div className="hero-terminal">
-            <div className="terminal-header">
-              <span className="terminal-dot red" />
-              <span className="terminal-dot yellow" />
-              <span className="terminal-dot green" />
-              <span className="terminal-title">terminal</span>
+        <div className="hero-content hero-two-col">
+          <div className="hero-text-col">
+            <div className="hero-badge">
+              <i className="fa-solid fa-terminal" />
+              <span>{t('home.heroBadge')}</span>
             </div>
-            <div className="terminal-body">
-              <div className="terminal-line">
-                <span className="terminal-prompt">$</span>
-                <span className="terminal-command"> gcc -o hello hello.c</span>
+
+            <h1 className="hero-title">
+              {t('home.heroTitle1')}<br />
+              <span className="hero-highlight">C Programming Tutorial</span><br />
+              <span className="hero-title-sub">{t('home.heroTitle3')}</span>
+            </h1>
+
+            <p className="hero-subtitle">{t('home.heroSubtitle')}</p>
+
+            <div className="hero-actions">
+              <Link to="/basics" className="hero-btn primary-btn">
+                <i className="fa-solid fa-rocket" />
+                {t('home.startLearning')}
+              </Link>
+              <Link to="/c-learning" className="hero-btn secondary-btn">
+                <i className="fa-solid fa-book-open" />
+                {t('home.curriculum')}
+              </Link>
+            </div>
+          </div>
+
+          <div className="hero-terminal-col">
+            <div className="hero-terminal">
+              <div className="terminal-header">
+                <span className="terminal-dot red" />
+                <span className="terminal-dot yellow" />
+                <span className="terminal-dot green" />
+                <span className="terminal-title">terminal</span>
               </div>
-              <div className="terminal-line">
-                <span className="terminal-prompt">$</span>
-                <span className="terminal-command"> ./hello</span>
-              </div>
-              <div className="terminal-line terminal-output">
-                Hello, C Programming!
+              <div className="terminal-body">
+                <div className="terminal-line">
+                  <span className="terminal-prompt">$</span>
+                  <span className="terminal-command"> gcc -o hello hello.c</span>
+                </div>
+                <div className="terminal-line">
+                  <span className="terminal-prompt">$</span>
+                  <span className="terminal-command"> ./hello</span>
+                </div>
+                <div className="terminal-line terminal-output">
+                  Hello, C Programming!
+                </div>
               </div>
             </div>
           </div>
