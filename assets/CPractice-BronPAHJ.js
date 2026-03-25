@@ -1,4 +1,4 @@
-import{h as Xn,k as qn,m as Ln,_ as Jn,u as ne,r as Fn,j as v}from"./index-BkBpsU7U.js";import{C as ee}from"./CodeEditor-DpgBDXlC.js";var T={},Rn;function te(){if(Rn)return T;Rn=1;var x=T&&T.__assign||function(){return x=Object.assign||function(i){for(var n,o=1,u=arguments.length;o<u;o++){n=arguments[o];for(var l in n)Object.prototype.hasOwnProperty.call(n,l)&&(i[l]=n[l])}return i},x.apply(this,arguments)},H=T&&T.__createBinding||(Object.create?(function(i,n,o,u){u===void 0&&(u=o);var l=Object.getOwnPropertyDescriptor(n,o);(!l||("get"in l?!n.__esModule:l.writable||l.configurable))&&(l={enumerable:!0,get:function(){return n[o]}}),Object.defineProperty(i,u,l)}):(function(i,n,o,u){u===void 0&&(u=o),i[u]=n[o]})),s=T&&T.__setModuleDefault||(Object.create?(function(i,n){Object.defineProperty(i,"default",{enumerable:!0,value:n})}):function(i,n){i.default=n}),p=T&&T.__importStar||function(i){if(i&&i.__esModule)return i;var n={};if(i!=null)for(var o in i)o!=="default"&&Object.prototype.hasOwnProperty.call(i,o)&&H(n,i,o);return s(n,i),n},b=T&&T.__rest||function(i,n){var o={};for(var u in i)Object.prototype.hasOwnProperty.call(i,u)&&n.indexOf(u)<0&&(o[u]=i[u]);if(i!=null&&typeof Object.getOwnPropertySymbols=="function")for(var l=0,u=Object.getOwnPropertySymbols(i);l<u.length;l++)n.indexOf(u[l])<0&&Object.prototype.propertyIsEnumerable.call(i,u[l])&&(o[u[l]]=i[u[l]]);return o};Object.defineProperty(T,"__esModule",{value:!0});var h=p(Xn()),C=89,d=90,A=77,E=57,L=219,W=222,I=192,V=100,Y=3e3,F=typeof window<"u"&&"navigator"in window&&/Win/i.test(navigator.platform),g=typeof window<"u"&&"navigator"in window&&/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform),S="npm__react-simple-code-editor__textarea",t=`
+import{h as Xn,k as qn,m as Ln,_ as Jn,u as ne,r as Fn,j as v}from"./index-DDobmuBI.js";import{C as ee}from"./CodeEditor-C_GHahwa.js";var T={},Rn;function te(){if(Rn)return T;Rn=1;var x=T&&T.__assign||function(){return x=Object.assign||function(i){for(var n,o=1,u=arguments.length;o<u;o++){n=arguments[o];for(var l in n)Object.prototype.hasOwnProperty.call(n,l)&&(i[l]=n[l])}return i},x.apply(this,arguments)},H=T&&T.__createBinding||(Object.create?(function(i,n,o,u){u===void 0&&(u=o);var l=Object.getOwnPropertyDescriptor(n,o);(!l||("get"in l?!n.__esModule:l.writable||l.configurable))&&(l={enumerable:!0,get:function(){return n[o]}}),Object.defineProperty(i,u,l)}):(function(i,n,o,u){u===void 0&&(u=o),i[u]=n[o]})),s=T&&T.__setModuleDefault||(Object.create?(function(i,n){Object.defineProperty(i,"default",{enumerable:!0,value:n})}):function(i,n){i.default=n}),p=T&&T.__importStar||function(i){if(i&&i.__esModule)return i;var n={};if(i!=null)for(var o in i)o!=="default"&&Object.prototype.hasOwnProperty.call(i,o)&&H(n,i,o);return s(n,i),n},b=T&&T.__rest||function(i,n){var o={};for(var u in i)Object.prototype.hasOwnProperty.call(i,u)&&n.indexOf(u)<0&&(o[u]=i[u]);if(i!=null&&typeof Object.getOwnPropertySymbols=="function")for(var l=0,u=Object.getOwnPropertySymbols(i);l<u.length;l++)n.indexOf(u[l])<0&&Object.prototype.propertyIsEnumerable.call(i,u[l])&&(o[u[l]]=i[u[l]]);return o};Object.defineProperty(T,"__esModule",{value:!0});var h=p(Xn()),C=89,d=90,A=77,E=57,L=219,W=222,I=192,V=100,Y=3e3,F=typeof window<"u"&&"navigator"in window&&/Win/i.test(navigator.platform),g=typeof window<"u"&&"navigator"in window&&/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform),S="npm__react-simple-code-editor__textarea",t=`
 /**
  * Reset the text fill color so that placeholder is visible
  */
@@ -1830,7 +1830,10 @@ Transposed (3x2):
 
 int main() {
     int rows = 6;
-    int tri[6][6] = {0};
+    int tri[6][6];
+    for (int r = 0; r < 6; r++)
+        for (int c = 0; c < 6; c++)
+            tri[r][c] = 0;
 
     printf("Pascal's Triangle:\\n");
     for (int i = 0; i < rows; i++) {
@@ -1970,7 +1973,7 @@ Found 72 at index 8
 int main() {
     int A[2][2] = {{1, 2}, {3, 4}};
     int B[2][2] = {{5, 6}, {7, 8}};
-    int C[2][2] = {{0}};
+    int C[2][2] = {{0, 0}, {0, 0}};
 
     for (int i = 0; i < 2; i++)
         for (int j = 0; j < 2; j++)
