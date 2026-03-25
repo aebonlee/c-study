@@ -485,3 +485,66 @@ JSCPP(브라우저 C 인터프리터)가 지원하지 않는 기능(`malloc`, `s
 ### 빌드 검증
 - `npm run build` 성공 (171 modules, 33 chunks, 3.94s)
 - 에러 없음
+
+---
+
+## 2026-03-25 (Day 1) - JSCPP esbuild 사전 번들링 + 32개 레슨 상세 콘텐츠 추가
+
+### JSCPP instanceof 오류 근본 해결
+
+#### 문제
+이전 수정(commonjsOptions)으로도 프로덕션 빌드에서 `Right-hand side of 'instanceof' is not an object` 오류가 지속됨.
+
+#### 근본 원인
+Rollup의 CJS→ESM 변환이 JSCPP 내부의 `instanceof` 체크에 필요한 생성자 참조를 분리된 모듈로 만들어 깨뜨림. Vite의 `commonjsOptions` 조정만으로는 해결 불가.
+
+#### 해결: esbuild 사전 번들링
+1. **`src/lib/jscpp-bundle.js`** (985KB) - esbuild로 JSCPP를 ESM 형식 단일 번들로 사전 빌드
+   - 명령: `npx esbuild node_modules/JSCPP/lib/launcher.js --bundle --format=esm --outfile=src/lib/jscpp-bundle.js --platform=browser --define:global=globalThis --alias:util=./src/lib/util-shim.js --alias:stream=./src/lib/stream-shim.js`
+   - 모든 생성자가 동일 모듈 스코프 내에 존재하여 `instanceof` 정상 동작
+2. **`src/lib/util-shim.js`** - 최소 util 폴리필 (inspect만 제공)
+3. **`src/lib/stream-shim.js`** - 최소 stream 폴리필 (Stream 클래스만 제공)
+4. **`src/components/CodeEditor.jsx`** 수정 - `import JSCPPModule from '../lib/jscpp-bundle.js'`
+
+### 32개 레슨 상세 sections 콘텐츠 추가
+
+#### 문제
+`lessonContents.js`의 32개 레슨에 `title`, `summary`, `keyConcepts`만 있고 `sections` 배열이 없어 LessonPage.jsx에서 상세 학습 콘텐츠를 렌더링할 수 없었음.
+
+#### 해결: 4개 레벨별 섹션 파일 생성
+| 파일 | 레슨 수 | 섹션 수 | 설명 |
+|------|---------|---------|------|
+| `src/data/lessonSections/basics.js` | 9 | 35 | hello-c ~ functions-basic |
+| `src/data/lessonSections/intermediate.js` | 10 | 32 | pointers-basic ~ scope-storage |
+| `src/data/lessonSections/advanced.js` | 7 | 25 | linked-list ~ bitwise |
+| `src/data/lessonSections/applied.js` | 7 | 20 | memory-management ~ mini-project |
+| **합계** | **33** | **112** | |
+
+#### 각 섹션 구조
+```js
+{
+  heading / headingEn,     // 소제목 (한/영)
+  text / textEn,           // 설명 텍스트 배열 (한/영)
+  code,                    // C 코드 예제
+  expectedOutput,          // 예상 출력
+  tip / tipEn,             // 팁 (선택)
+  warning / warningEn      // 경고 (선택, JSCPP 미지원 코드)
+}
+```
+
+#### JSCPP 호환성 분류
+- **기초 9개 레슨**: 모두 JSCPP 호환 (브라우저 실행 가능)
+- **중급 10개 레슨**: pointers-basic/pointers-advanced 일부 호환, 나머지 경고 표시
+- **고급 7개 레슨**: sorting/recursion/bitwise JSCPP 호환, 나머지 경고 표시
+- **응용 7개 레슨**: 모두 경고 표시 (시스템 호출, 파일 I/O 등)
+
+#### 통합 방식
+- `src/data/lessonSections/index.js`: 4개 파일을 통합 export
+- `src/data/lessonContents.js`: `allSections`를 import하여 각 레슨에 sections 병합
+
+### 빌드 & 배포 결과
+- `npm run build` 성공 (143 modules)
+- `LessonPage` 청크: 266.84KB (32개 레슨 sections 포함)
+- `CodeEditor` 청크: 386.66KB (JSCPP 사전 번들 포함)
+- 커밋: `2bfc7ea`
+- GitHub Pages 배포 완료
