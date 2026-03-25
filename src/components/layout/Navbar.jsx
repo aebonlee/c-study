@@ -61,9 +61,8 @@ export default function Navbar() {
       <div className="container nav-wrapper">
         <Link to="/" className="logo">
           <h1>
-            <span className="brand-c">C</span><span className="brand-pt">-PT</span>
+            <span className="brand-c">C</span> <span className="brand-pt">Programming</span>
           </h1>
-          <span className="brand-subtitle">C Programming Tutorial</span>
         </Link>
 
         <ul className={`nav-menu${mobileOpen ? ' active' : ''}`}>

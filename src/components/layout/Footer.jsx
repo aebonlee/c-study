@@ -9,8 +9,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <h3><span className="brand-c">C</span><span className="brand-pt">-PT</span></h3>
-            <span className="brand-subtitle">C Programming Tutorial</span>
+            <h3><span className="brand-c">C</span> <span className="brand-pt">Programming</span></h3>
             <p>{t('footer.description')}</p>
           </div>
           <div className="footer-col">

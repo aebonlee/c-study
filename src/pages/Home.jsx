@@ -84,7 +84,7 @@ export default function Home() {
 
           <h1 className="hero-title">
             {t('home.heroTitle')}
-            <span className="hero-highlight"> C-PT</span>
+            <span className="hero-highlight"> C Programming Tutorial</span>
           </h1>
 
           <p className="hero-subtitle">{t('home.heroSubtitle')}</p>
@@ -117,7 +117,7 @@ export default function Home() {
                 <span className="terminal-command"> ./hello</span>
               </div>
               <div className="terminal-line terminal-output">
-                Hello, C-PT!
+                Hello, C Programming!
               </div>
             </div>
           </div>

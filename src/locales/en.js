@@ -27,7 +27,7 @@ export default {
     heroBadge: 'C Language Learning Platform',
     heroTitle: 'Master C Language with',
     heroTitle1: 'Master C Language',
-    heroTitle2: 'C-PT',
+    heroTitle2: 'C Programming Tutorial',
     heroTitle3: ' is your guide',
     heroSubtitle: 'From C basics to pointers, memory management, data structures, and system programming. Master C with structured curriculum and hands-on practice.',
     heroDesc: 'From C basics to pointers, memory management, data structures, and system programming. Master C with structured curriculum and hands-on practice.',
@@ -42,9 +42,9 @@ export default {
     statsHours: 'Hours',
     statsProjects: 'Projects',
     statsLevels: 'Levels',
-    whyCMaster: 'Why C-PT?',
+    whyCMaster: 'Why C Programming Tutorial?',
     whySubtitle: 'Master C with our systematic learning approach',
-    featuresTitle: 'Why C-PT?',
+    featuresTitle: 'Why C Programming Tutorial?',
     featuresSubtitle: 'Master C with our systematic learning approach',
     feature1Title: 'Core Syntax',
     feature1Desc: 'Build strong foundations from variables to functions',
@@ -198,7 +198,7 @@ export default {
   },
   guide: {
     title: 'User Guide',
-    subtitle: 'Learn how to use the C-PT platform',
+    subtitle: 'Learn how to use C Programming Tutorial',
   },
   community: {
     title: 'Community',
@@ -233,7 +233,7 @@ export default {
   },
   login: {
     title: 'Login',
-    subtitle: 'Log in to C-PT and start learning',
+    subtitle: 'Log in to C Programming Tutorial and start learning',
     withGoogle: 'Sign in with Google',
     withKakao: 'Sign in with Kakao',
     footer: 'Your learning progress and quiz scores will be saved',
@@ -249,6 +249,6 @@ export default {
     learning: 'Learning',
     support: 'Support',
     legal: 'Legal',
-    copyright: '© 2025 C-PT. All rights reserved.',
+    copyright: '© 2025 C Programming Tutorial. All rights reserved.',
   },
 }

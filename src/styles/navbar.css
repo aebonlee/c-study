@@ -41,15 +41,6 @@
   font-weight: 700;
 }
 
-.brand-subtitle {
-  font-size: 10px;
-  color: var(--text-secondary);
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  line-height: 1;
-  margin-top: -2px;
-}
-
 /* Nav Menu */
 .nav-menu {
   display: flex;
