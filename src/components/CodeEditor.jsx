@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { useProgress } from '../contexts/ProgressContext'
 import { useAuth } from '../contexts/AuthContext'
 import { useLanguage } from '../contexts/LanguageContext'
@@ -60,6 +60,15 @@ export default function CodeEditor({ initialCode = '', expectedOutput = '', less
   const { t, lang } = useLanguage()
 
   const isRunning = status === 'running'
+
+  // Auto-resize textarea to fit content
+  useEffect(() => {
+    const ta = textareaRef.current
+    if (ta) {
+      ta.style.height = 'auto'
+      ta.style.height = ta.scrollHeight + 'px'
+    }
+  }, [code])
 
   const handleRun = useCallback(() => {
     setStatus('running')

@@ -266,7 +266,7 @@ const steps6to10 = [
       {
         titleKo: '파스칼의 삼각형',
         titleEn: "Pascal's Triangle",
-        code: '#include <stdio.h>\n\nint main() {\n    int rows = 6;\n    int tri[6][6] = {0};\n\n    printf("Pascal\'s Triangle:\\n");\n    for (int i = 0; i < rows; i++) {\n        tri[i][0] = 1;\n        for (int j = 1; j <= i; j++) {\n            tri[i][j] = tri[i - 1][j - 1] + tri[i - 1][j];\n        }\n\n        // Print leading spaces for alignment\n        for (int s = 0; s < rows - i - 1; s++) printf("  ");\n\n        for (int j = 0; j <= i; j++) {\n            printf("%3d ", tri[i][j]);\n        }\n        printf("\\n");\n    }\n    return 0;\n}',
+        code: '#include <stdio.h>\n\nint main() {\n    int rows = 6;\n    int tri[6][6];\n    for (int r = 0; r < 6; r++)\n        for (int c = 0; c < 6; c++)\n            tri[r][c] = 0;\n\n    printf("Pascal\'s Triangle:\\n");\n    for (int i = 0; i < rows; i++) {\n        tri[i][0] = 1;\n        for (int j = 1; j <= i; j++) {\n            tri[i][j] = tri[i - 1][j - 1] + tri[i - 1][j];\n        }\n\n        // Print leading spaces for alignment\n        for (int s = 0; s < rows - i - 1; s++) printf("  ");\n\n        for (int j = 0; j <= i; j++) {\n            printf("%3d ", tri[i][j]);\n        }\n        printf("\\n");\n    }\n    return 0;\n}',
         expected: "Pascal's Triangle:\n            1 \n          1   1 \n        1   2   1 \n      1   3   3   1 \n    1   4   6   4   1 \n  1   5  10  10   5   1 ",
       },
       {
@@ -306,7 +306,7 @@ const steps6to10 = [
       {
         titleKo: '행렬 곱셈',
         titleEn: 'Matrix Multiplication',
-        code: '#include <stdio.h>\n\nint main() {\n    int A[2][2] = {{1, 2}, {3, 4}};\n    int B[2][2] = {{5, 6}, {7, 8}};\n    int C[2][2] = {{0}};\n\n    for (int i = 0; i < 2; i++)\n        for (int j = 0; j < 2; j++)\n            for (int k = 0; k < 2; k++)\n                C[i][j] += A[i][k] * B[k][j];\n\n    printf("Result:\\n");\n    for (int i = 0; i < 2; i++) {\n        for (int j = 0; j < 2; j++) {\n            printf("%3d ", C[i][j]);\n        }\n        printf("\\n");\n    }\n    return 0;\n}',
+        code: '#include <stdio.h>\n\nint main() {\n    int A[2][2] = {{1, 2}, {3, 4}};\n    int B[2][2] = {{5, 6}, {7, 8}};\n    int C[2][2] = {{0, 0}, {0, 0}};\n\n    for (int i = 0; i < 2; i++)\n        for (int j = 0; j < 2; j++)\n            for (int k = 0; k < 2; k++)\n                C[i][j] += A[i][k] * B[k][j];\n\n    printf("Result:\\n");\n    for (int i = 0; i < 2; i++) {\n        for (int j = 0; j < 2; j++) {\n            printf("%3d ", C[i][j]);\n        }\n        printf("\\n");\n    }\n    return 0;\n}',
         expected: 'Result:\n 19  22 \n 43  50 ',
       },
       {
