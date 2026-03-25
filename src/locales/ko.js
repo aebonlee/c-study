@@ -246,9 +246,14 @@ export default {
   },
   footer: {
     description: 'C언어 기초부터 시스템 프로그래밍까지, 체계적인 학습 플랫폼',
-    learning: '학습',
-    support: '지원',
-    legal: '법적 고지',
-    copyright: '© 2025 C Programming Tutorial. All rights reserved.',
+    quickLinks: '바로가기',
+    contact: '연락처',
+    kakao: '카카오톡',
+    hours: '평일 09:00 ~ 18:00',
+    company: '드림아이티비즈(DreamIT Biz). All rights reserved.',
+    ceo: '대표이사: 이애본',
+    bizNo: '사업자등록번호: 601-45-20154',
+    salesNo: '통신판매신고번호: 제2024-수원팔달-0584호',
+    publishNo: '출판사 신고번호: 제2026-000026호',
   },
 }

@@ -246,9 +246,14 @@ export default {
   },
   footer: {
     description: 'Structured learning platform from C basics to system programming',
-    learning: 'Learning',
-    support: 'Support',
-    legal: 'Legal',
-    copyright: '© 2025 C Programming Tutorial. All rights reserved.',
+    quickLinks: 'Quick Links',
+    contact: 'Contact',
+    kakao: 'KakaoTalk',
+    hours: 'Weekdays 09:00 ~ 18:00',
+    company: 'DreamIT Biz. All rights reserved.',
+    ceo: 'CEO: Aebon Lee',
+    bizNo: 'Biz No: 601-45-20154',
+    salesNo: 'Sales No: 2024-Suwon Paldal-0584',
+    publishNo: 'Publisher No: 2026-000026',
   },
 }
