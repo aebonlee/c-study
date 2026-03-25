@@ -27,7 +27,7 @@ export default {
     heroBadge: 'C언어 학습 플랫폼',
     heroTitle: 'C언어의 모든 것,',
     heroTitle1: 'C언어의 모든 것,',
-    heroTitle2: 'CMaster',
+    heroTitle2: 'C-PT',
     heroTitle3: '로 시작하세요',
     heroSubtitle: 'C언어 기초부터 포인터, 메모리 관리, 자료구조, 시스템 프로그래밍까지. 체계적인 커리큘럼과 실습으로 C언어를 완벽하게 마스터하세요.',
     heroDesc: 'C언어 기초부터 포인터, 메모리 관리, 자료구조, 시스템 프로그래밍까지. 체계적인 커리큘럼과 실습으로 C언어를 완벽하게 마스터하세요.',
@@ -42,9 +42,9 @@ export default {
     statsHours: '학습 시간',
     statsProjects: '프로젝트',
     statsLevels: '단계',
-    whyCMaster: '왜 CMaster인가요?',
+    whyCMaster: '왜 C-PT인가요?',
     whySubtitle: '체계적인 학습 시스템으로 C언어를 완벽하게 마스터하세요',
-    featuresTitle: '왜 CMaster인가요?',
+    featuresTitle: '왜 C-PT인가요?',
     featuresSubtitle: '체계적인 학습 시스템으로 C언어를 완벽하게 마스터하세요',
     feature1Title: '기초 문법',
     feature1Desc: '변수, 연산자, 제어문부터 함수까지 기초를 탄탄하게',
@@ -198,7 +198,7 @@ export default {
   },
   guide: {
     title: '이용 가이드',
-    subtitle: 'CMaster 플랫폼 사용법을 알아보세요',
+    subtitle: 'C-PT 플랫폼 사용법을 알아보세요',
   },
   community: {
     title: '커뮤니티',
@@ -233,7 +233,7 @@ export default {
   },
   login: {
     title: '로그인',
-    subtitle: 'CMaster에 로그인하고 학습을 시작하세요',
+    subtitle: 'C-PT에 로그인하고 학습을 시작하세요',
     withGoogle: 'Google로 로그인',
     withKakao: 'Kakao로 로그인',
     footer: '로그인하면 학습 진행률과 퀴즈 기록이 저장됩니다',
@@ -249,6 +249,6 @@ export default {
     learning: '학습',
     support: '지원',
     legal: '법적 고지',
-    copyright: '© 2025 CMaster. All rights reserved.',
+    copyright: '© 2025 C-PT. All rights reserved.',
   },
 }

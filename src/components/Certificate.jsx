@@ -12,7 +12,7 @@ export default function Certificate({ level, completedDate }) {
         <p>has successfully completed the</p>
         <h3>{level} Course</h3>
         <p className="certificate-date">{completedDate || new Date().toLocaleDateString()}</p>
-        <p className="certificate-brand">CMaster - C Language Learning Platform</p>
+        <p className="certificate-brand">C-PT - C Programming Tutorial</p>
       </div>
     </div>
   )

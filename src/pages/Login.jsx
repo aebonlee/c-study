@@ -22,10 +22,10 @@ export default function Login() {
           <div className="login-branding-content">
             <div className="login-logo">
               <i className="fa-solid fa-terminal" />
-              <span>CMaster</span>
+              <span>C-PT</span>
             </div>
-            <h2>{lang === 'en' ? 'Master C Programming' : 'C 프로그래밍 마스터'}</h2>
-            <p>{lang === 'en' ? 'Join CMaster and start your journey to becoming a C programming expert.' : 'CMaster에 가입하고 C 프로그래밍 전문가가 되는 여정을 시작하세요.'}</p>
+            <h2>{lang === 'en' ? 'C Programming Tutorial' : 'C Programming Tutorial'}</h2>
+            <p>{lang === 'en' ? 'Join C-PT and start your journey to becoming a C programming expert.' : 'C-PT에 가입하고 C 프로그래밍 전문가가 되는 여정을 시작하세요.'}</p>
 
             <div className="login-features">
               <div className="login-feature-item">
@@ -50,7 +50,7 @@ export default function Login() {
               <pre>{`#include <stdio.h>
 
 int main() {
-    printf("Welcome to CMaster!\\n");
+    printf("Welcome to C-PT!\\n");
     return 0;
 }`}</pre>
             </div>
@@ -92,8 +92,8 @@ int main() {
               <i className="fa-solid fa-info-circle" />
               <p>
                 {lang === 'en'
-                  ? 'You can use CMaster without logging in. Logging in enables progress sync across devices and community features.'
-                  : '로그인 없이도 CMaster를 사용할 수 있습니다. 로그인하면 기기 간 진행 상황 동기화와 커뮤니티 기능을 이용할 수 있습니다.'}
+                  ? 'You can use C-PT without logging in. Logging in enables progress sync across devices and community features.'
+                  : '로그인 없이도 C-PT를 사용할 수 있습니다. 로그인하면 기기 간 진행 상황 동기화와 커뮤니티 기능을 이용할 수 있습니다.'}
               </p>
             </div>
 

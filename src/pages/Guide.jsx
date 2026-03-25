@@ -4,10 +4,10 @@ import { useLanguage } from '../contexts/LanguageContext'
 
 const faqData = [
   {
-    questionKo: 'CMaster는 무엇인가요?',
-    questionEn: 'What is CMaster?',
-    answerKo: 'CMaster는 C언어를 체계적으로 학습할 수 있는 온라인 학습 플랫폼입니다. 초보자부터 고급 사용자까지 단계별로 학습할 수 있으며, 코드 에디터, 퀴즈, 배지 시스템 등 다양한 기능을 제공합니다.',
-    answerEn: 'CMaster is an online learning platform for systematically learning the C language. It supports learners from beginner to advanced levels with features like a code editor, quizzes, and a badge system.',
+    questionKo: 'C-PT는 무엇인가요?',
+    questionEn: 'What is C-PT?',
+    answerKo: 'C-PT(C Programming Tutorial)는 C언어를 체계적으로 학습할 수 있는 온라인 학습 플랫폼입니다. 초보자부터 고급 사용자까지 단계별로 학습할 수 있으며, 코드 에디터, 퀴즈, 배지 시스템 등 다양한 기능을 제공합니다.',
+    answerEn: 'C-PT (C Programming Tutorial) is an online learning platform for systematically learning the C language. It supports learners from beginner to advanced levels with features like a code editor, quizzes, and a badge system.',
   },
   {
     questionKo: '어떻게 시작하나요?',
