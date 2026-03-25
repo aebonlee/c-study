@@ -104,7 +104,21 @@ export default function Home() {
           </div>
 
           <div className="hero-terminal-col">
+            {/* Source Code */}
             <div className="hero-terminal">
+              <div className="terminal-header">
+                <span className="terminal-dot red" />
+                <span className="terminal-dot yellow" />
+                <span className="terminal-dot green" />
+                <span className="terminal-title">hello.c</span>
+              </div>
+              <div className="terminal-body">
+                <pre className="terminal-code"><code><span className="code-preprocessor">#include</span> <span className="code-string">&lt;stdio.h&gt;</span>{'\n'}{'\n'}<span className="code-type">int</span> <span className="code-fn">main</span>() {'{'}{'\n'}{'    '}<span className="code-fn">printf</span>(<span className="code-string">"Hello, C Programming!\n"</span>);{'\n'}{'    '}<span className="code-keyword">return</span> <span className="code-number">0</span>;{'\n'}{'}'}</code></pre>
+              </div>
+            </div>
+
+            {/* Terminal Output */}
+            <div className="hero-terminal hero-terminal-run">
               <div className="terminal-header">
                 <span className="terminal-dot red" />
                 <span className="terminal-dot yellow" />
@@ -113,12 +127,12 @@ export default function Home() {
               </div>
               <div className="terminal-body">
                 <div className="terminal-line">
-                  <span className="terminal-prompt">$</span>
-                  <span className="terminal-command"> gcc -o hello hello.c</span>
+                  <span className="terminal-prompt">$ </span>
+                  <span className="terminal-command">gcc -o hello hello.c</span>
                 </div>
                 <div className="terminal-line">
-                  <span className="terminal-prompt">$</span>
-                  <span className="terminal-command"> ./hello</span>
+                  <span className="terminal-prompt">$ </span>
+                  <span className="terminal-command">./hello</span>
                 </div>
                 <div className="terminal-line terminal-output">
                   Hello, C Programming!

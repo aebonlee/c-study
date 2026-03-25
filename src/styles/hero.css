@@ -213,6 +213,30 @@
   padding-left: 0;
 }
 
+.hero-terminal-run {
+  margin-top: 8px;
+}
+
+.terminal-code {
+  margin: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(224, 231, 239, 0.85);
+  white-space: pre;
+}
+
+.terminal-code code {
+  display: block;
+}
+
+.code-preprocessor { color: #C792EA; }
+.code-string { color: #C3E88D; }
+.code-type { color: #FFCB6B; }
+.code-keyword { color: #C792EA; }
+.code-fn { color: #82AAFF; }
+.code-number { color: #F78C6C; }
+
 /* === Stats Section === */
 .stats-section {
   padding: 48px 24px;

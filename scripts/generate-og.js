@@ -46,31 +46,31 @@ const svg = `
   <text x="850" y="580" font-family="monospace" font-size="14" fill="rgba(79,195,247,0.15)">printf("Hello, C!");</text>
 
   <!-- Accent line -->
-  <rect x="100" y="220" width="80" height="4" rx="2" fill="url(#accent)"/>
+  <rect x="100" y="200" width="80" height="4" rx="2" fill="url(#accent)"/>
 
   <!-- Main title -->
-  <text x="100" y="290" font-family="Arial, sans-serif" font-size="72" font-weight="900" fill="#4FC3F7">C</text>
-  <text x="158" y="290" font-family="Arial, sans-serif" font-size="72" font-weight="900" fill="white">Master</text>
+  <text x="100" y="270" font-family="Arial, sans-serif" font-size="64" font-weight="900" fill="#4FC3F7">C</text>
+  <text x="152" y="270" font-family="Arial, sans-serif" font-size="64" font-weight="900" fill="white"> Programming</text>
 
   <!-- Subtitle -->
-  <text x="100" y="340" font-family="Arial, sans-serif" font-size="28" fill="rgba(224,231,239,0.9)">C언어 전문 학습 플랫폼</text>
+  <text x="100" y="320" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="rgba(79,195,247,0.8)">Tutorial</text>
 
   <!-- Description -->
-  <text x="100" y="400" font-family="Arial, sans-serif" font-size="18" fill="rgba(224,231,239,0.6)">기초 문법부터 포인터, 메모리 관리, 자료구조, 시스템 프로그래밍까지</text>
-  <text x="100" y="430" font-family="Arial, sans-serif" font-size="18" fill="rgba(224,231,239,0.6)">체계적인 커리큘럼과 실습으로 C언어를 완벽하게 마스터하세요</text>
+  <text x="100" y="380" font-family="Arial, sans-serif" font-size="20" fill="rgba(224,231,239,0.7)">C언어 기초부터 고급 시스템 프로그래밍까지</text>
+  <text x="100" y="415" font-family="Arial, sans-serif" font-size="20" fill="rgba(224,231,239,0.7)">체계적인 커리큘럼과 브라우저 실습으로 학습하세요</text>
 
   <!-- Feature tags -->
   <rect x="100" y="470" width="100" height="32" rx="16" fill="rgba(79,195,247,0.15)"/>
-  <text x="120" y="491" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#4FC3F7">기초 문법</text>
+  <text x="120" y="491" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#4FC3F7">32+ 레슨</text>
 
-  <rect x="215" y="470" width="80" height="32" rx="16" fill="rgba(79,195,247,0.15)"/>
-  <text x="230" y="491" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#4FC3F7">포인터</text>
+  <rect x="225" y="470" width="110" height="32" rx="16" fill="rgba(79,195,247,0.15)"/>
+  <text x="244" y="491" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#4FC3F7">100+ 실습</text>
 
-  <rect x="310" y="470" width="110" height="32" rx="16" fill="rgba(79,195,247,0.15)"/>
-  <text x="325" y="491" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#4FC3F7">메모리 관리</text>
+  <rect x="350" y="470" width="120" height="32" rx="16" fill="rgba(79,195,247,0.15)"/>
+  <text x="365" y="491" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#4FC3F7">브라우저 실행</text>
 
-  <rect x="435" y="470" width="100" height="32" rx="16" fill="rgba(79,195,247,0.15)"/>
-  <text x="450" y="491" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#4FC3F7">자료구조</text>
+  <rect x="485" y="470" width="100" height="32" rx="16" fill="rgba(79,195,247,0.15)"/>
+  <text x="499" y="491" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#4FC3F7">한/영 지원</text>
 
   <!-- Bottom accent bar -->
   <rect x="0" y="620" width="1200" height="10" fill="url(#accent)"/>
