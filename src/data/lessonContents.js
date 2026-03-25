@@ -1,7 +1,8 @@
 // Short content descriptions for each lesson
 // Used for lesson overview and navigation
+import allSections from './lessonSections/index.js'
 
-export const lessonContents = {
+const _lessonContents = {
   // === BASICS ===
   'hello-c': {
     title: 'Hello C!',
@@ -266,3 +267,11 @@ export const lessonContents = {
     keyConceptsEn: ['Program design', 'Menu system implementation', 'Data CRUD', 'File save/load', 'Testing and debugging']
   }
 }
+
+// Merge sections from lessonSections into each lesson
+export const lessonContents = Object.fromEntries(
+  Object.entries(_lessonContents).map(([key, value]) => [
+    key,
+    allSections[key] ? { ...value, ...allSections[key] } : value
+  ])
+)

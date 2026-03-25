@@ -2,9 +2,8 @@ import { useState, useRef, useCallback } from 'react'
 import { useProgress } from '../contexts/ProgressContext'
 import { useAuth } from '../contexts/AuthContext'
 import { useLanguage } from '../contexts/LanguageContext'
-import JSCPPModule from 'JSCPP'
-
-// CJS/ESM interop — works regardless of how the module is bundled
+// Pre-bundled with esbuild to avoid Rollup CJS→ESM instanceof breakage
+import JSCPPModule from '../lib/jscpp-bundle.js'
 const JSCPP = JSCPPModule.default || JSCPPModule
 
 const UNSUPPORTED_PATTERNS = [
