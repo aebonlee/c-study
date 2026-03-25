@@ -79,6 +79,7 @@ export default function CPractice() {
         {currentExample && (
           <div className="practice-editor-section">
             <CodeEditor
+              key={`practice-${selectedStep}-${selectedExample}`}
               initialCode={currentExample.code}
               expectedOutput={currentExample.expected}
               lessonId={`practice-${selectedStep}-${selectedExample}`}
