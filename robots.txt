@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://c-study.dreamitbiz.com/sitemap.xml
