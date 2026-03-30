@@ -6,6 +6,8 @@
   <title>C Programming Tutorial</title>
   <meta name="description" content="C언어 기초부터 고급 시스템 프로그래밍까지. 도장깨기 배지 시스템과 퀴즈로 체계적으로 학습하세요." />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://c-study.dreamitbiz.com/" />
 
   <!-- Open Graph -->
   <meta property="og:url" content="https://c-study.dreamitbiz.com/" />
@@ -15,6 +17,8 @@
   <meta property="og:image" content="https://c-study.dreamitbiz.com/og-image.png?v=2" />
   <meta property="og:site_name" content="C Programming Tutorial" />
   <meta property="og:locale" content="ko_KR" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -28,15 +32,17 @@
 </head>
 <body>
   <div id="root"></div>
-  <script>
-    // GitHub Pages SPA redirect handler
-    (function(){
-      var redirect = sessionStorage.redirect;
-      delete sessionStorage.redirect;
-      if (redirect && redirect !== location.href) {
-        history.replaceState(null, null, redirect);
+  <script type="text/javascript">
+    (function(l) {
+      if (l.search[1] === '/') {
+        var decoded = l.search.slice(1).split('&').map(function(s) {
+          return s.replace(/~and~/g, '&')
+        }).join('?');
+        window.history.replaceState(null, null,
+          l.pathname.slice(0, -1) + decoded + l.hash
+        );
       }
-    })();
+    }(window.location))
   </script>
   <script type="module" src="/src/main.jsx"></script>
 </body>
