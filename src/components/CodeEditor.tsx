@@ -100,7 +100,7 @@ export default function CodeEditor({ initialCode = '', expectedOutput = '', less
         JSCPP.run(code, '', config)
         setOutput(outputText || t('editor.noOutput'))
         setStatus('done')
-      } catch (err) {
+      } catch (err: any) {
         const msg = err.message || String(err)
         const friendly = friendlyError(msg, lang)
         setOutput(`${t('editor.errorPrefix')}: ${friendly}`)

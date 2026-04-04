@@ -16,10 +16,10 @@ export default function CommunityPost() {
   const { lang } = useLanguage()
   const { user, requireAuth } = useAuth()
   const navigate = useNavigate()
-  const { getPost, addComment, likePost, deletePost } = useCommunity()
+  const { fetchPost, fetchComments, createComment, toggleLike, deletePost } = useCommunity()
 
-  const [post, setPost] = useState(null)
-  const [comments, setComments] = useState([])
+  const [post, setPost] = useState<any>(null)
+  const [comments, setComments] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
   const [commentText, setCommentText] = useState('')
   const [submitting, setSubmitting] = useState(false)
@@ -32,11 +32,8 @@ export default function CommunityPost() {
   const loadPost = async () => {
     setLoading(true)
     try {
-      const result = await getPost(postId)
-      if (result) {
-        setPost(result.post || result)
-        setComments(result.comments || [])
-      }
+      await fetchPost(postId)
+      await fetchComments(postId)
     } catch (err) {
       console.error('Failed to load post:', err)
     }
@@ -46,7 +43,7 @@ export default function CommunityPost() {
   const handleLike = () => {
     requireAuth(async () => {
       try {
-        await likePost(postId)
+        await toggleLike(postId)
         setLiked(true)
         setPost(prev => prev ? { ...prev, likes: (prev.likes || 0) + 1 } : prev)
       } catch (err) {
@@ -62,7 +59,7 @@ export default function CommunityPost() {
     requireAuth(async () => {
       setSubmitting(true)
       try {
-        const newComment = await addComment(postId, commentText.trim())
+        const newComment = await createComment(postId, commentText.trim())
         if (newComment) {
           setComments(prev => [...prev, newComment])
           setCommentText('')

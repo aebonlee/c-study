@@ -1,21 +1,38 @@
-import { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react'
 import { badges } from '../data/badges'
 import { useProgress } from './ProgressContext'
 import { useLanguage } from './LanguageContext'
 import { lessons } from '../data/lessons'
 
-const BadgeContext = createContext()
+interface Badge {
+  id: string
+  icon: string
+  name: string
+  nameEn?: string
+  description: string
+  descriptionEn?: string
+  condition: any
+  [key: string]: any
+}
+
+interface BadgeContextType {
+  earnedBadges: string[]
+  newBadge: Badge | null
+  dismissBadgeNotification: () => void
+}
+
+const BadgeContext = createContext<BadgeContextType | null>(null)
 
 const STORAGE_KEY = 'cmaster-badges'
 
-export function BadgeProvider({ children }) {
-  const [earnedBadges, setEarnedBadges] = useState(() => {
+export function BadgeProvider({ children }: { children: ReactNode }) {
+  const [earnedBadges, setEarnedBadges] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY)
       return saved ? JSON.parse(saved) : []
     } catch { return [] }
   })
-  const [newBadge, setNewBadge] = useState(null)
+  const [newBadge, setNewBadge] = useState<Badge | null>(null)
 
   const { completedLessons, quizScores, codeRuns, streak, isLevelCompleted, getQuizBestScore } = useProgress()
   const { lang, localizedField } = useLanguage()
@@ -25,7 +42,7 @@ export function BadgeProvider({ children }) {
   }, [earnedBadges])
 
   useEffect(() => {
-    const newlyEarned = []
+    const newlyEarned: string[] = []
 
     for (const badge of badges) {
       if (earnedBadges.includes(badge.id)) continue
@@ -38,7 +55,7 @@ export function BadgeProvider({ children }) {
           earned = completedLessons.has(condition.lessonId)
           break
         case 'lessons_complete':
-          earned = condition.lessonIds.every(id => completedLessons.has(id))
+          earned = condition.lessonIds.every((id: string) => completedLessons.has(id))
           break
         case 'level_complete':
           earned = isLevelCompleted(condition.level)
@@ -47,19 +64,19 @@ export function BadgeProvider({ children }) {
           earned = Object.keys(lessons).every(level => isLevelCompleted(level))
           break
         case 'quiz_complete_count':
-          earned = Object.keys(quizScores).length >= condition.count
+          earned = Object.keys(quizScores).length >= (condition.count || 0)
           break
         case 'quiz_perfect_score':
           earned = Object.values(quizScores).some(s => s?.bestScore === 100)
           break
         case 'practice_complete_count':
-          earned = codeRuns >= condition.count
+          earned = codeRuns >= (condition.count || 0)
           break
         case 'code_runs':
-          earned = codeRuns >= condition.count
+          earned = codeRuns >= (condition.count || 0)
           break
         case 'streak':
-          earned = streak.count >= condition.days
+          earned = streak.count >= ((condition as any).days || 0)
           break
         default:
           break
@@ -71,7 +88,7 @@ export function BadgeProvider({ children }) {
     if (newlyEarned.length > 0) {
       setEarnedBadges(prev => [...prev, ...newlyEarned])
       const badgeData = badges.find(b => b.id === newlyEarned[0])
-      if (badgeData) setNewBadge(badgeData)
+      if (badgeData) setNewBadge(badgeData as unknown as Badge)
     }
   }, [completedLessons, quizScores, codeRuns, streak, earnedBadges, isLevelCompleted, getQuizBestScore])
 

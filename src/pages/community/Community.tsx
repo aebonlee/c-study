@@ -44,7 +44,7 @@ export default function Community() {
     }
 
     if (sortBy === 'latest') {
-      filtered = [...filtered].sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      filtered = [...filtered].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
     } else if (sortBy === 'popular') {
       filtered = [...filtered].sort((a, b) => (b.likes || 0) - (a.likes || 0))
     } else if (sortBy === 'comments') {
@@ -62,7 +62,7 @@ export default function Community() {
     if (!dateStr) return ''
     const date = new Date(dateStr)
     const now = new Date()
-    const diff = now - date
+    const diff = now.getTime() - date.getTime()
     const minutes = Math.floor(diff / 60000)
     const hours = Math.floor(diff / 3600000)
     const days = Math.floor(diff / 86400000)

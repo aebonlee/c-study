@@ -1,26 +1,54 @@
-import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useRef, ReactNode } from 'react'
 import { lessons } from '../data/lessons'
 import { supabase, isSupabaseEnabled, TABLES } from '../config/supabase'
 import { useAuth } from './AuthContext'
 
-const ProgressContext = createContext()
+interface QuizScore {
+  attempts: { score: number; date: string }[]
+  bestScore: number
+}
+
+interface ProgressState {
+  completedLessons: Set<string>
+  quizScores: Record<string, QuizScore>
+  codeRuns: number
+  streak: { count: number; lastDate: string | null }
+}
+
+interface ProgressContextType {
+  completedLessons: Set<string>
+  quizScores: Record<string, QuizScore>
+  codeRuns: number
+  streak: { count: number; lastDate: string | null }
+  completeLesson: (lessonId: string) => void
+  uncompleteLesson: (lessonId: string) => void
+  saveQuizScore: (quizId: string, score: number) => void
+  incrementCodeRuns: () => void
+  getTotalProgress: () => number
+  getLevelProgress: (level: string) => number
+  isLevelCompleted: (level: string) => boolean
+  getQuizBestScore: (quizId: string) => number | undefined
+  getQuizAttempts: (quizId: string) => any[]
+}
+
+const ProgressContext = createContext<ProgressContextType | null>(null)
 
 const STORAGE_KEY = 'cmaster-progress'
 
-function migrateQuizScores(quizScores) {
+function migrateQuizScores(quizScores: any) {
   if (!quizScores) return {}
-  const migrated = {}
+  const migrated: Record<string, QuizScore> = {}
   for (const [quizId, value] of Object.entries(quizScores)) {
     if (typeof value === 'number') {
       migrated[quizId] = { attempts: [], bestScore: value }
-    } else if (value && typeof value === 'object' && typeof value.bestScore === 'number') {
-      migrated[quizId] = value
+    } else if (value && typeof value === 'object' && typeof (value as any).bestScore === 'number') {
+      migrated[quizId] = value as QuizScore
     }
   }
   return migrated
 }
 
-function loadProgress() {
+function loadProgress(): ProgressState {
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
     if (saved) {
@@ -41,12 +69,12 @@ function loadProgress() {
   }
 }
 
-export function ProgressProvider({ children }) {
+export function ProgressProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth()
-  const [state, setState] = useState(loadProgress)
+  const [state, setState] = useState<ProgressState>(loadProgress)
   const quizScoresRef = useRef(state.quizScores)
   quizScoresRef.current = state.quizScores
-  const syncTimerRef = useRef(null)
+  const syncTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const initialSyncDone = useRef(false)
 
   useEffect(() => {
@@ -59,7 +87,7 @@ export function ProgressProvider({ children }) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
   }, [state])
 
-  const syncToSupabase = useCallback((currentState) => {
+  const syncToSupabase = useCallback((currentState: ProgressState) => {
     if (!user || !isSupabaseEnabled()) return
     let earnedBadges
     try {
@@ -95,7 +123,7 @@ export function ProgressProvider({ children }) {
     return () => { if (syncTimerRef.current) clearTimeout(syncTimerRef.current) }
   }, [user, state, syncToSupabase])
 
-  const completeLesson = useCallback((lessonId) => {
+  const completeLesson = useCallback((lessonId: string) => {
     setState(prev => {
       const newCompleted = new Set(prev.completedLessons)
       newCompleted.add(lessonId)
@@ -113,7 +141,7 @@ export function ProgressProvider({ children }) {
     })
   }, [])
 
-  const uncompleteLesson = useCallback((lessonId) => {
+  const uncompleteLesson = useCallback((lessonId: string) => {
     setState(prev => {
       const newCompleted = new Set(prev.completedLessons)
       newCompleted.delete(lessonId)
@@ -121,7 +149,7 @@ export function ProgressProvider({ children }) {
     })
   }, [])
 
-  const saveQuizScore = useCallback((quizId, score) => {
+  const saveQuizScore = useCallback((quizId: string, score: number) => {
     const now = new Date().toISOString()
     setState(prev => {
       const existing = prev.quizScores[quizId] || { attempts: [], bestScore: 0 }
@@ -148,8 +176,6 @@ export function ProgressProvider({ children }) {
         updated_at: new Date().toISOString()
       }, { onConflict: 'user_id,quiz_id' }).then(({ error }) => {
         if (error) console.error('퀴즈 점수 저장 오류:', error.message)
-      }).catch(err => {
-        console.error('퀴즈 점수 저장 오류:', err)
       })
     }
   }, [user])
@@ -164,24 +190,24 @@ export function ProgressProvider({ children }) {
     return Math.round((state.completedLessons.size / total) * 100)
   }, [state.completedLessons])
 
-  const getLevelProgress = useCallback((level) => {
-    const levelLessons = lessons[level] || []
+  const getLevelProgress = useCallback((level: string) => {
+    const levelLessons = (lessons as Record<string, any[]>)[level] || []
     if (levelLessons.length === 0) return 0
     const completed = levelLessons.filter(l => state.completedLessons.has(l.id)).length
     return Math.round((completed / levelLessons.length) * 100)
   }, [state.completedLessons])
 
-  const isLevelCompleted = useCallback((level) => {
-    const levelLessons = lessons[level] || []
+  const isLevelCompleted = useCallback((level: string) => {
+    const levelLessons = (lessons as Record<string, any[]>)[level] || []
     return levelLessons.length > 0 && levelLessons.every(l => state.completedLessons.has(l.id))
   }, [state.completedLessons])
 
-  const getQuizBestScore = useCallback((quizId) => {
+  const getQuizBestScore = useCallback((quizId: string) => {
     const data = state.quizScores[quizId]
     return data?.bestScore
   }, [state.quizScores])
 
-  const getQuizAttempts = useCallback((quizId) => {
+  const getQuizAttempts = useCallback((quizId: string) => {
     const data = state.quizScores[quizId]
     return data?.attempts || []
   }, [state.quizScores])

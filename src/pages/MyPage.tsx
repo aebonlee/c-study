@@ -24,9 +24,9 @@ export default function MyPage() {
 
   const quizStats = useMemo(() => {
     const entries = Object.entries(quizScores)
-    const totalAttempts = entries.reduce((sum, [, data]) => sum + (data?.attempts?.length || 0), 0)
+    const totalAttempts = entries.reduce((sum, [, data]: [string, any]) => sum + (data?.attempts?.length || 0), 0)
     const avgScore = entries.length > 0
-      ? Math.round(entries.reduce((sum, [, data]) => sum + (data?.bestScore || 0), 0) / entries.length)
+      ? Math.round(entries.reduce((sum, [, data]: [string, any]) => sum + (data?.bestScore || 0), 0) / entries.length)
       : 0
     return { quizCount: entries.length, totalAttempts, avgScore }
   }, [quizScores])

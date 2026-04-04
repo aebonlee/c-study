@@ -157,7 +157,7 @@ export default function CLearning() {
               to={`/c-learning/${step.id}`}
               key={step.id}
               className="curriculum-card"
-              style={{ '--week-color': step.color }}
+              style={{ '--week-color': step.color } as React.CSSProperties}
             >
               <div className="curriculum-timeline-dot" style={{ background: step.color }}>
                 <span>{index + 1}</span>

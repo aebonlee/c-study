@@ -4,14 +4,14 @@ import { supabase, isSupabaseEnabled, TABLES } from '../config/supabase'
 const POSTS_PER_PAGE = 12
 
 export default function useCommunity() {
-  const [posts, setPosts] = useState([])
-  const [post, setPost] = useState(null)
-  const [comments, setComments] = useState([])
+  const [posts, setPosts] = useState<any[]>([])
+  const [post, setPost] = useState<any>(null)
+  const [comments, setComments] = useState<any[]>([])
   const [totalCount, setTotalCount] = useState(0)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
 
-  const fetchPosts = useCallback(async ({ category, search, tag, page = 1, sortBy = 'latest' } = {}) => {
+  const fetchPosts = useCallback(async ({ category, search, tag, page = 1, sortBy = 'latest' }: { category?: string; search?: string; tag?: string; page?: number; sortBy?: string } = {}) => {
     if (!isSupabaseEnabled()) return
     setLoading(true)
     setError(null)
@@ -36,7 +36,7 @@ export default function useCommunity() {
       if (fetchError) throw fetchError
       setPosts(data || [])
       setTotalCount(count || 0)
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message)
       setPosts([])
     } finally {
@@ -44,7 +44,7 @@ export default function useCommunity() {
     }
   }, [])
 
-  const fetchPost = useCallback(async (postId) => {
+  const fetchPost = useCallback(async (postId: any) => {
     if (!isSupabaseEnabled()) return
     setLoading(true)
     setError(null)
@@ -57,8 +57,8 @@ export default function useCommunity() {
 
       if (fetchError) throw fetchError
       setPost(data)
-      supabase.rpc('cmaster_increment_view_count', { p_post_id: postId }).catch(() => {})
-    } catch (err) {
+      supabase.rpc('cmaster_increment_view_count', { p_post_id: postId }).then(() => {})
+    } catch (err: any) {
       setError(err.message)
       setPost(null)
     } finally {
@@ -66,7 +66,7 @@ export default function useCommunity() {
     }
   }, [])
 
-  const createPost = useCallback(async ({ category, title, content, tags }) => {
+  const createPost = useCallback(async ({ category, title, content, tags }: { category: string; title: string; content: string; tags?: string[] }) => {
     if (!isSupabaseEnabled()) return null
     setError(null)
     try {
@@ -84,53 +84,53 @@ export default function useCommunity() {
 
       if (insertError) throw insertError
       return data
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message)
       return null
     }
   }, [])
 
-  const updatePost = useCallback(async (postId, updates) => {
+  const updatePost = useCallback(async (postId: any, updates: any) => {
     if (!isSupabaseEnabled()) return null
     setError(null)
     try {
       const { data, error: updateError } = await supabase.from(TABLES.COMMUNITY_POSTS).update(updates).eq('id', postId).select().single()
       if (updateError) throw updateError
       return data
-    } catch (err) { setError(err.message); return null }
+    } catch (err: any) { setError(err.message); return null }
   }, [])
 
-  const deletePost = useCallback(async (postId) => {
+  const deletePost = useCallback(async (postId: any) => {
     if (!isSupabaseEnabled()) return false
     setError(null)
     try {
       const { error: deleteError } = await supabase.from(TABLES.COMMUNITY_POSTS).delete().eq('id', postId)
       if (deleteError) throw deleteError
       return true
-    } catch (err) { setError(err.message); return false }
+    } catch (err: any) { setError(err.message); return false }
   }, [])
 
-  const toggleSolved = useCallback(async (postId, isSolved) => {
+  const toggleSolved = useCallback(async (postId: any, isSolved: boolean) => {
     if (!isSupabaseEnabled()) return false
     setError(null)
     try {
       const { error: updateError } = await supabase.from(TABLES.COMMUNITY_POSTS).update({ is_solved: isSolved }).eq('id', postId)
       if (updateError) throw updateError
-      setPost(prev => prev ? { ...prev, is_solved: isSolved } : prev)
+      setPost((prev: any) => prev ? { ...prev, is_solved: isSolved } : prev)
       return true
-    } catch (err) { setError(err.message); return false }
+    } catch (err: any) { setError(err.message); return false }
   }, [])
 
-  const fetchComments = useCallback(async (postId) => {
+  const fetchComments = useCallback(async (postId: any) => {
     if (!isSupabaseEnabled()) return
     try {
       const { data, error: fetchError } = await supabase.from(TABLES.COMMUNITY_COMMENTS).select('*').eq('post_id', postId).order('created_at', { ascending: true })
       if (fetchError) throw fetchError
       setComments(data || [])
-    } catch (err) { setError(err.message); setComments([]) }
+    } catch (err: any) { setError(err.message); setComments([]) }
   }, [])
 
-  const createComment = useCallback(async (postId, content) => {
+  const createComment = useCallback(async (postId: any, content: string) => {
     if (!isSupabaseEnabled()) return null
     setError(null)
     try {
@@ -146,24 +146,24 @@ export default function useCommunity() {
 
       if (insertError) throw insertError
       setComments(prev => [...prev, data])
-      setPost(prev => prev ? { ...prev, comment_count: (prev.comment_count || 0) + 1 } : prev)
+      setPost((prev: any) => prev ? { ...prev, comment_count: (prev.comment_count || 0) + 1 } : prev)
       return data
-    } catch (err) { setError(err.message); return null }
+    } catch (err: any) { setError(err.message); return null }
   }, [])
 
-  const deleteComment = useCallback(async (commentId) => {
+  const deleteComment = useCallback(async (commentId: any) => {
     if (!isSupabaseEnabled()) return false
     setError(null)
     try {
       const { error: deleteError } = await supabase.from(TABLES.COMMUNITY_COMMENTS).delete().eq('id', commentId)
       if (deleteError) throw deleteError
       setComments(prev => prev.filter(c => c.id !== commentId))
-      setPost(prev => prev ? { ...prev, comment_count: Math.max((prev.comment_count || 1) - 1, 0) } : prev)
+      setPost((prev: any) => prev ? { ...prev, comment_count: Math.max((prev.comment_count || 1) - 1, 0) } : prev)
       return true
-    } catch (err) { setError(err.message); return false }
+    } catch (err: any) { setError(err.message); return false }
   }, [])
 
-  const toggleLike = useCallback(async (postId) => {
+  const toggleLike = useCallback(async (postId: any) => {
     if (!isSupabaseEnabled()) return null
     setError(null)
     try {
@@ -174,17 +174,17 @@ export default function useCommunity() {
 
       if (existing) {
         await supabase.from(TABLES.COMMUNITY_LIKES).delete().eq('id', existing.id)
-        setPost(prev => prev ? { ...prev, like_count: Math.max((prev.like_count || 1) - 1, 0) } : prev)
+        setPost((prev: any) => prev ? { ...prev, like_count: Math.max((prev.like_count || 1) - 1, 0) } : prev)
         return false
       } else {
         await supabase.from(TABLES.COMMUNITY_LIKES).insert({ post_id: postId, user_id: user.id })
-        setPost(prev => prev ? { ...prev, like_count: (prev.like_count || 0) + 1 } : prev)
+        setPost((prev: any) => prev ? { ...prev, like_count: (prev.like_count || 0) + 1 } : prev)
         return true
       }
-    } catch (err) { setError(err.message); return null }
+    } catch (err: any) { setError(err.message); return null }
   }, [])
 
-  const checkLiked = useCallback(async (postId) => {
+  const checkLiked = useCallback(async (postId: any) => {
     if (!isSupabaseEnabled()) return false
     try {
       const { data: { user } } = await supabase.auth.getUser()
@@ -199,5 +199,9 @@ export default function useCommunity() {
     fetchPosts, fetchPost, createPost, updatePost, deletePost,
     toggleSolved, fetchComments, createComment, deleteComment,
     toggleLike, checkLiked,
+    // Aliases for CommunityPost compatibility
+    getPost: fetchPost,
+    addComment: createComment,
+    likePost: toggleLike,
   }
 }

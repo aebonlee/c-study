@@ -60,7 +60,7 @@ export default function QuizCenter() {
           </button>
           <h2>{localizedField(selectedQuiz, 'title')}</h2>
         </div>
-        <QuizComponent quiz={selectedQuiz} onBack={handleBackToList} />
+        <QuizComponent quiz={selectedQuiz} quizId={selectedQuiz.id} onComplete={handleBackToList} />
       </div>
     )
   }
