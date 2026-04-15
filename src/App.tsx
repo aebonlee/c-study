@@ -17,6 +17,7 @@ const QuizCenter = lazy(() => import('./pages/QuizCenter'))
 const Login = lazy(() => import('./pages/Login'))
 const MyPage = lazy(() => import('./pages/MyPage'))
 const AdminPage = lazy(() => import('./pages/AdminPage'))
+const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'))
 const TeacherPage = lazy(() => import('./pages/TeacherPage'))
 const CLearning = lazy(() => import('./pages/CLearning'))
 const CPractice = lazy(() => import('./pages/CPractice'))
@@ -94,6 +95,7 @@ function AppLayout() {
           <Route path="/" element={<LazyRoute element={<Home />} />} />
           <Route path="/my" element={<LazyRoute element={<MyPage />} />} />
           <Route path="/admin" element={<AdminRoute><LazyRoute element={<AdminPage />} /></AdminRoute>} />
+          <Route path="/admin/dashboard/*" element={<AdminRoute><LazyRoute element={<AdminDashboard />} /></AdminRoute>} />
           <Route path="/teacher" element={<TeacherRoute><LazyRoute element={<TeacherPage />} /></TeacherRoute>} />
           <Route path="/c-learning" element={<LazyRoute element={<CLearning />} />} />
           <Route path="/c-learning/01" element={<LazyRoute element={<CLesson01 />} />} />
