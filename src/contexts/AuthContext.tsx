@@ -216,15 +216,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
     })
 
-
-  // 10분 무동작 세션 타임아웃
-  useIdleTimeout({
-    enabled: !!user,
-    onTimeout: () => {
-      doSignOut();
-    },
-  });
-
     return () => {
       subscription.unsubscribe()
       if (intervalRef.current) clearInterval(intervalRef.current)
@@ -293,6 +284,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     showLoginModal,
     dismissLoginModal,
   }
+
+
+  // 10분 무동작 세션 타임아웃
+  useIdleTimeout({
+  enabled: !!user,
+  onTimeout: () => {
+  doSignOut();
+  },
+  });
 
   return (
     <AuthContext.Provider value={value}>
