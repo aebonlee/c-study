@@ -3,6 +3,7 @@ import { supabase, isSupabaseEnabled, TABLES } from '../config/supabase'
 import { ADMIN_EMAILS } from '../config/admin'
 import { useIdleTimeout } from '../hooks/useIdleTimeout';
 import ProfileCompleteModal from '../components/ProfileCompleteModal';
+import PaymentNudgePopup from '../components/PaymentNudgePopup';
 
 interface AccountBlock {
   status: string
@@ -354,6 +355,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             </div>
           </div>
         </div>
+      )}
+      {!!user && !needsProfileCompletion && (
+        <PaymentNudgePopup user={user} siteSlug="c-study" />
       )}
     </AuthContext.Provider>
   )
