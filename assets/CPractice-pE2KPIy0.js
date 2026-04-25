@@ -1,4 +1,4 @@
-import{u as m,r as f,j as n}from"./index-CfpVJagY.js";import{C as h}from"./CodeEditor-BLqh-YIy.js";const x=[{step:1,titleKo:"기초 출력",titleEn:"Basic Output",descKo:"printf를 사용하여 다양한 출력을 연습합니다.",descEn:"Practice various outputs using printf.",examples:[{titleKo:"Hello World 출력",titleEn:"Print Hello World",code:`#include <stdio.h>
+import{u as m,r as f,j as n}from"./index-mvafIGLz.js";import{C as h}from"./CodeEditor-BcSsDKUZ.js";const x=[{step:1,titleKo:"기초 출력",titleEn:"Basic Output",descKo:"printf를 사용하여 다양한 출력을 연습합니다.",descEn:"Practice various outputs using printf.",examples:[{titleKo:"Hello World 출력",titleEn:"Print Hello World",code:`#include <stdio.h>
 
 int main() {
     printf("Hello, World!\\n");
